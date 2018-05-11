@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <!-- 设置状态栏的北京颜色（ios） -->
+    <meta name="apple-mobile-web-app-capable" content="yes">  
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">  
+    <title></title>
+    <script src="js/mui.min.js"></script> 
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="fonts/iconfont.css"/>
+    <style type="text/css">
+    	.search{ width:94%; left:3%; margin:8px 0; position:absolute; z-index:10;}
+    	.search input{ background-color:#fff; border-radius:50px;}
+    	.banner{}
+    	
+    	.classify{ background-color:#fff; padding:10px;}
+    	.classify ul{ display:flex; flex-wrap:wrap;}
+    	.classify ul li{ width:20%; text-align:center; margin-top:10px;}
+    	.classify ul li img{ width:45px;}
+    	.classify ul li p{}
+    </style>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	
+      	mui.plusReady(function(){ 
+      		var winAll = plus.webview.all();
+      		console.log(winAll);
+      	});
+    </script>
+</head>
+<body>
+	
+	<!--<header class="mui-bar mui-bar-nav">
+		<h1 class="mui-title">标题</h1>
+	</header>-->
+	
+	<div class="mui-bar mui-bar-tab tabs">
+  		<ul>
+  			<li>
+  				<a id="home" class="tabs-active">
+  					<span class="mui-icon mui-icon-home"></span>
+  					<span class="tabs-name">首页</span>
+  				</a>
+  			</li>
+  			<li>
+  				<a id="friends">
+  					<span class="mui-icon mui-icon-contact"></span>
+  					<span class="tabs-name">朋友圈</span>
+  				</a>
+  			</li>
+  			<li>
+  				<a id="search">
+  					<span class="mui-icon mui-icon-search"></span>
+  					<span class="tabs-name">搜索</span>
+  				</a>
+  			</li>
+  			<li>
+  				<a id="store">
+  					<span class="mui-icon iconfont icon-store"></span>
+  					<span class="tabs-name">商城</span>
+  				</a>
+  			</li>
+  			<li>
+  				<a id="personal">
+  					<span class="mui-icon mui-icon-person"></span>
+  					<span class="tabs-name">个人中心</span>
+  				</a>
+  			</li>
+  		</ul>
+    </div>  
+	
+	<div class="mui-content">
+		<div class="mui-input-row mui-search search">
+			<input type="search" class="mui-input-clear" name="" required="" placeholder="搜索商品">
+		</div>
+		
+		<div class="mui-slider banner">
+			<div class="mui-slider-group mui-slider-loop"> 
+				<div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="imgs/4.jpg"/></a></div>
+				
+				<div class="mui-slider-item"><a href="#"><img src="imgs/1.jpg"/></a></div>
+				<div class="mui-slider-item"><a href="#"><img src="imgs/2.jpg"/></a></div>
+				<div class="mui-slider-item"><a href="#"><img src="imgs/3.jpg"/></a></div>
+				<div class="mui-slider-item"><a href="#"><img src="imgs/4.jpg"/></a></div>
+				
+				<div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="imgs/1.jpg"/></a></div>
+			</div>
+		</div>
+		
+		<div class="classify">
+			<ul>
+				<li>
+					<a href="#">
+						<img src="imgs/icon.png" alt="" />
+						<p>超級返</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="imgs/icon1.png" alt="" />
+						<p>全球贿选</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="imgs/icon.png" alt="" />
+						<p>9块9</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="imgs/icon1.png" alt="" />
+						<p>有好券</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="imgs/icon.png" alt="" />
+						<p>充值中心</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="imgs/icon1.png" alt="" />
+						<p>淘宝返利</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="imgs/icon.png" alt="" />
+						<p>京东返利</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="imgs/icon1.png" alt="" />
+						<p>商城返利</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="imgs/icon.png" alt="" />
+						<p>理财返利</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="imgs/icon1.png" alt="" />
+						<p>刷卡返利</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+		
+		
+	</div>
+	
+	
+	<script type="text/javascript" src="js/base.js"></script>
+	<script type="text/javascript">
+		var gallery = mui('.mui-slider');
+		gallery.slider({ 
+			interval: 3000 //自动轮播周期
+		});
+		
+/*		window.addEventListener("changePage", function(e) {
+				var page = e.detail.page;
+				if(page == "home") {
+					mui.trigger(document.querySelector("#home"), 'tap');
+				} else if(page == "mofaqunti") {
+					mui.trigger(document.querySelector("#daogou"), 'tap');
+				} else if(page == "shop") {
+					mui.trigger(document.querySelector("#shop"), 'tap');
+				} else if(page == "mine") {
+					mui.trigger(document.querySelector("#mine"), 'tap');
+				}
+			});*/
+			
+		window.addEventListener('click',function(e){
+			var page = e.detail.page;
+			console.log(page);
+			if(page == "home"){
+				mui.trigger(document.querySelector("#home"),'tap');
+			}
+		});
+		
+	</script>
+	
+</body>
+</html>
