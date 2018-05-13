@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="../../css/mui.css"/>
+    	<link rel="stylesheet" href="../../css/base.css"/>
+    	<link rel="stylesheet" href="../../fonts/iconfont.css"/>
+		<style>
+			.orders-tabs{ background-color:#fff;}
+			.orders-tabs ul{ display:flex; justify-content:space-around; border-bottom:1px solid #ddd;}
+			.orders-tabs ul li{ height:40px; line-height:40px;}
+			.orders-tabs ul li.active{ color:#f00; border-bottom:2px solid #f00;}
+			
+			.orders-list{}
+			.orders-list .mui-table-view{}
+			.orders-list .mui-table-view li{ border-top:5px solid #f5f5f5;}
+			.orders-list .price{ position:absolute; color:#f00; right:20px; font-size:16px;}
+		
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">我的订单</h1>
+		</header>
+		
+		<div class="mui-content">
+			
+			<div class="orders-tabs">
+				<ul id="orders-tabs1">
+					<li class="active">淘宝订单</li>
+					<li>京东订单</li>
+					<li>拼多多订单</li>
+				</ul>
+				
+				<ul id="orders-tabs2">
+					<li class="active">全部</li>
+					<li>已结算</li>
+					<li>未结算</li>
+				</ul>
+			</div>
+			
+			<div class="orders-list">
+				<ul class="mui-table-view">
+				    <li class="mui-table-view-cell mui-media">
+				        <a href="javascript:;">
+				        	<div class="price">￥100</div>
+				            <img class="mui-media-object mui-pull-left" src="../../imgs/1.jpg">
+				            <div class="mui-media-body">
+				                男装
+				                <p class='mui-ellipsis'>2018-10-10 15:15:15</p>
+				            </div>
+				        </a>
+				    </li>
+				    <li class="mui-table-view-cell mui-media">
+				        <a href="javascript:;">
+				        	<div class="price">￥50</div>
+				            <img class="mui-media-object mui-pull-left" src="../../imgs/2.jpg">
+				            <div class="mui-media-body">
+				                女装
+				                <p class='mui-ellipsis'>2018-10-10 15:15:15</p>
+				            </div>
+				        </a>
+				    </li>
+				    <li class="mui-table-view-cell mui-media">
+				        <a href="javascript:;">
+				        	<div class="price">￥200</div>
+				            <img class="mui-media-object mui-pull-left" src="../../imgs/3.jpg">
+				            <div class="mui-media-body">
+				               蓝牙耳机
+				                <p class='mui-ellipsis'>2018-10-10 15:15:15</p>
+				            </div>
+				        </a>
+				    </li>
+				</ul>
+			</div>
+			
+		</div>
+		
+		<script src="../../js/mui.min.js"></script> 
+		<script src="../../js/base.js"></script>
+		<script type="text/javascript">
+			mui.init({ 
+				swipeBack: true, //启动右滑关闭功能，默认为false关闭（ios无效）
+				/*keyEventBind: {
+					backbutton: false //关闭back按键监听（Android手机）
+				}*/
+				beforeback: function(){
+					
+				}
+			});
+			
+			//onload从服务器获取列表数据
+			window.onload = function(){
+				//从服务器获取数据
+				//....
+				//业务数据获取完毕，并已插入当前页面DOM
+				//注意：若为ajax请求，则需将如下代码放在处理完ajax响应数据之后
+				mui.plusReady(function(){ 
+					
+					//获取传过来的参数
+					var self = plus.webview.currentWebview();
+					var name = self.name; 
+					console.log(name);
+					
+					//关闭等待框
+					plus.nativeUI.closeWaiting(); 
+					//显示当前页面
+					mui.currentWebview.show();
+				});
+			};
+			
+			mui('#orders-tabs1').on('tap','li',function(){
+				
+				//tabs切换
+				//console.log(this.classList); //获取当前的class列表
+				var tabs1 = document.getElementById('orders-tabs1').children;
+				for(var i=0;i<tabs1.length;i++){
+					tabs1[i].classList.remove("active");
+				}
+				this.classList.add('active');
+			});
+			
+			mui('#orders-tabs2').on('tap','li',function(){
+				//tabs切换
+				var tabs1 = document.getElementById('orders-tabs2').children;
+				for(var i=0;i<tabs1.length;i++){
+					tabs1[i].classList.remove("active");
+				}
+				this.classList.add('active');
+			});
+			
+		</script>
+	</body>
+	
+</html>

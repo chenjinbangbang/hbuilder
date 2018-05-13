@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="../../css/mui.css"/>
+    	<link rel="stylesheet" href="../../css/base.css"/>
+    	<link rel="stylesheet" href="../../fonts/iconfont.css"/>
+		<style>
+			.earnings-head{ height:160px; padding-top:30px; text-align:center; color:#fff; background: -webkit-linear-gradient(top, #E80056 , #8F1A96);}
+			.earnings-head h1{ font-weight:normal; }
+			.earnings-head div{ background-color:#fff; margin:6px 0; border-radius:20px; display:inline-block; color:#8F1A96; padding:2px 15px;}
+			.earnings-head p{ color:#fff;}
+		</style>
+	</head>
+	<body>
+		
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">会员收益</h1>
+		</header>
+		
+		<div class="mui-content">
+			
+			<div class="earnings-head">
+				<h1>￥100</h1>
+				<p>账户余额</p>
+				<div class="btn">立即提现</div>
+				<p>累计结算收益：￥0</p>
+			</div>
+			
+		</div>
+		
+		<script src="../../js/mui.min.js"></script> 
+		<script src="../../js/base.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			
+			//onload从服务器获取列表数据
+			window.onload = function(){
+				//从服务器获取数据
+				//....
+				//业务数据获取完毕，并已插入当前页面DOM
+				//注意：若为ajax请求，则需将如下代码放在处理完ajax响应数据之后
+				mui.plusReady(function(){ 
+					
+					//获取传过来的参数
+					var self = plus.webview.currentWebview();
+					
+					//关闭等待框
+					plus.nativeUI.closeWaiting(); 
+					//显示当前页面
+					mui.currentWebview.show();
+				});
+			};
+		</script>
+	</body>
+	
+</html>

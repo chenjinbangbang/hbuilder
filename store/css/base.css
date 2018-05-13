@@ -1,5 +1,5 @@
 body,html{ height:100%;}
-body{ color: #666; font-size:14px;}
+body{ color: #333; font-size:14px;}
 *{ box-sizing:border-box;}
 body,p,ul,ol,li,h1,h2,h3,h4,h5,h6,dt,dd{ margin:0;}
 ul,ol,li{ padding:0;}
@@ -20,15 +20,5 @@ ul,ol{ list-style-type:none;}
 a:link,a:visited{ text-decoration:none;}
 
 .red{ color:#f00;}
-
-
-.tabs{}
-.tabs ul{ display:flex; text-align:center;}
-.tabs ul li{ flex:1;}
-.tabs ul li a{ color:#666;}
-.tabs ul li span{ display:block;}
-.tabs ul li a .mui-icon{ padding:2px 0; width:30px; height:30px; line-height:30px; margin:auto;}
-.tabs ul li a .tabs-name{ font-size:12px;}
-.tabs-active{ color:#f00 !important;}
 
 

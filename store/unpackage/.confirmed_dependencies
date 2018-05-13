@@ -1,12 +1,12 @@
 {
-	"index.html": {
-		"refer": [
-			"personal.html"
-		]
-	},
-	"personal.html": {
-		"refer": [
-			"index.html"
-		]
-	}
+  "index.html": {
+    "refer": [
+      "personal.html"
+    ]
+  },
+  "personal.html": {
+    "refer": [
+      "index.html"
+    ]
+  }
 }

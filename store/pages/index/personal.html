@@ -3,21 +3,17 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <!-- 设置状态栏的北京颜色（ios） -->
-    <meta name="apple-mobile-web-app-capable" content="yes">  
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">  
     <title></title>
-    <script src="js/mui.min.js"></script>
-    <link href="css/mui.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="css/base.css"/>
-    <link rel="stylesheet" type="text/css" href="fonts/iconfont.css"/>
-    <style type="text/css">
+    <link rel="stylesheet" href="../../css/mui.min.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+    <link rel="stylesheet" href="../../fonts/iconfont.css"/>
+    <style>
     	.setting{ position:absolute; color:#fff; right:0; margin:12px;}
     	.setting ul{ display:flex;}
     	.setting ul li{ margin-left:12px;}
     	.setting ul li span{}
     	
-    	.userinfo{ height:180px; padding:30px 0; color:#eee; /*background-color:#F45118;*/ background: -webkit-linear-gradient(top, #E80056 , #8F1A96); display:flex;}
+    	.userinfo{ height:140px; padding:30px 0; color:#eee; /*background-color:#F45118;*/ background: -webkit-linear-gradient(top, #E80056 , #8F1A96); display:flex;}
     	.userinfo .userinfo-img{ flex:1; text-align:center;}
     	.userinfo .userinfo-img img{ width:70px; height:70px; border-radius:50%;}
     	.userinfo .userinfo-info{ flex:3; margin-top:20px;}
@@ -27,7 +23,7 @@
     	.userinfo .userinfo-info ul li .userinfo-btn{ background-color:#fff; color:#F45118; margin-left:5px; padding:1px 12px; border-radius:20px;}
     	.userinfo .userinfo-info ul li .copy{ border:1px solid #fff; border-radius:20px; margin-left:5px; padding:1px 5px;}
     
-    	.earnings{ width:94%; left:3%; margin-top:-50px; position:absolute; background-color:#fff; border-radius:8px;}
+    	.earnings{ width:94%; margin:20px auto; /*left:3%; margin-top:-50px; position:absolute;*/ background-color:#fff; border-radius:8px;}
     	.earnings .earnings-top{ height:50px; align-items:center; display:flex;}
     	.earnings .earnings-top p{} 
     	.earnings .earnings-top p:nth-child(1){ margin-left:10px;}
@@ -40,57 +36,15 @@
     	.earnings .earnings-foot ul li p:nth-child(1){color:#f00; font-size:18px; margin-bottom:10px;}
     	.earnings .earnings-foot ul li p:nth-child(2){}
     
-    	.menu{ margin-top:100px; padding:12px 0; background-color:#fff;}
+    	.menu{ padding:12px 0; background-color:#fff;}
     	.menu ul{ display:flex; text-align:center;}
     	.menu ul li{ flex:1;}
     	.menu ul li a{}
     	.menu ul li a img{ width:40px;}
     	.menu ul li a p{}
     </style>
-    <script type="text/javascript" charset="utf-8">
-      	mui.init();
-    </script>
 </head>
 <body>
-	
-	<!--<header class="mui-bar mui-bar-nav">
-		<h1 class="mui-title">标题</h1>
-	</header>-->
-	
-	<div class="mui-bar mui-bar-tab tabs">
-  		<ul>
-  			<li>
-  				<a href="index.html">
-  					<span class="mui-icon mui-icon-home"></span>
-  					<span class="tabs-name">首页</span>
-  				</a>
-  			</li>
-  			<li>
-  				<a href="friends.html">
-  					<span class="mui-icon mui-icon-contact"></span>
-  					<span class="tabs-name">朋友圈</span>
-  				</a>
-  			</li>
-  			<li>
-  				<a href="search.html">
-  					<span class="mui-icon mui-icon-search"></span>
-  					<span class="tabs-name">搜索</span>
-  				</a>
-  			</li>
-  			<li>
-  				<a href="store.html">
-  					<span class="mui-icon iconfont icon-store"></span>
-  					<span class="tabs-name">商城</span>
-  				</a>
-  			</li>
-  			<li>
-  				<a href="personal.html" class="tabs-active">
-  					<span class="mui-icon mui-icon-person"></span>
-  					<span class="tabs-name">个人中心</span>
-  				</a>
-  			</li>
-  		</ul>
-    </div>  
 	
 	<div class="mui-content">
 		
@@ -108,7 +62,7 @@
 		<header class="userinfo">
 
 			<div class="userinfo-img">
-				<img src="imgs/4.jpg/" alt="" />
+				<img src="../../imgs/4.jpg/" alt="" />
 			</div>
 			<div class="userinfo-info">
 				<ul>
@@ -149,28 +103,28 @@
 		
 		<main class="menu">
 			<ul>
-				<li>
-					<a href="#">
-						<img src="imgs/user_icon1.png" alt="" />
+				<li id="earnings">
+					<a href="javascript:;">
+						<img src="../../imgs/user_icon1.png" alt="" />
 						<p>收益</p>
 					</a>
 				</li>
-				<li>
-					<a href="#">
-						<img src="imgs/user_icon2.png" alt="" />
-						<p>订单</p>
+				<li id="orders">
+					<a href="javascript:;">
+						<img src="../../imgs/user_icon2.png" alt="" />
+						<p>订单</p> 
 					</a>
 				</li>
-				<li>
-					<a href="#">
-						<img src="imgs/user_icon3.png" alt="" />
+				<li id="fans">
+					<a href="javascript:;">
+						<img src="../../imgs/user_icon3.png" alt="" />
 						<p>粉丝</p>
 					</a>
 				</li>
-				<li>
-					<a href="#">
-						<img src="imgs/user_icon4.png" alt="" />
-						<p>邀请<p>
+				<li id="invite">
+					<a href="javascript:;">
+						<img src="../../imgs/user_icon4.png" alt="" />
+						<p>邀请<p> 
 					</a>
 				</li>
 			</ul>
@@ -178,9 +132,97 @@
 		
 	</div>
 	
-	
-	<script type="text/javascript" src="js/base.js"></script>
-	<script type="text/javascript">
+	<script src="../../js/mui.min.js"></script>
+	<script src="../../js/base.js"></script>
+	<script>
+		mui.init(); 
+		
+		//跳转到粉丝
+		document.getElementById('earnings').addEventListener('tap',function(){
+			
+			mui.openWindow({
+				url: '../personal/earnings.html',
+				id: '../personal/earnings.html',
+				styles: {
+					//top: '50px'
+				},
+				extras: {},
+				show: {
+					autoShow: false,
+				},
+				waiting: {
+					autoShow: true,
+					title: '正在加载...'
+				}
+			});
+		});
+		
+		//跳转到订单页面
+		document.getElementById('orders').addEventListener('tap',function(){
+			//console.log(plus.webview.currentWebview().getURL()); 
+			
+			mui.openWindow({
+				url: '../personal/orders.html',
+				id: '../personal/orders.html',
+				extras: {
+					name: 'jinbang'
+				},
+				show: {
+					autoShow: false,
+				},
+				waiting: {
+					autoShow: true,
+					title: '正在加载...'
+				}
+			});
+		});
+		
+		//跳转到粉丝
+		document.getElementById('fans').addEventListener('tap',function(){
+			
+			mui.openWindow({
+				url: '../personal/fans.html',
+				id: '../personal/fans.html',
+				styles: {
+					//top: '50px'
+				},
+				extras: {},
+				show: {
+					autoShow: false,
+				},
+				waiting: {
+					autoShow: true,
+					title: '正在加载...'
+				}
+			});
+		});
+		
+		//跳转到邀请好友
+		document.getElementById('invite').addEventListener('tap',function(){
+			
+			mui.openWindow({
+				url: '../personal/invite.html',
+				id: '../personal/invite.html',
+				styles: {
+					//top: '50px'
+				},
+				extras: {},
+				show: {
+					autoShow: false,
+				},
+				waiting: {
+					autoShow: true,
+					title: '正在加载...'
+				}
+			});
+		});
+		
+		mui.plusReady(function(){
+
+		});
+		
+		
+		
 		
 	</script>
 	

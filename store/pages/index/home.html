@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="../../css/mui.css"/>
+    	<link rel="stylesheet" href="../../css/base.css"/>
+    	<link rel="stylesheet" href="../../fonts/iconfont.css"/>
+		<style>
+			.search{ width:94%; left:3%; margin:8px 0; position:absolute; z-index:10;}
+	    	.search input{ background-color:#fff; border-radius:50px;}
+	    	
+	    	.banner{ height:250px;}
+	    	
+	    	.classify{ background-color:#fff; padding:10px;}
+	    	.classify ul{ display:flex; flex-wrap:wrap;}
+	    	.classify ul li{ width:20%; text-align:center; margin-top:10px;}
+	    	.classify ul li img{ width:45px;}
+	    	.classify ul li p{}
+		</style>
+	</head>
+	<body>
+		<div class="mui-content">
+			<div class="mui-input-row mui-search search">
+				<input type="search" class="mui-input-clear" name="" required="" placeholder="搜索商品" id="search">
+			</div>
+			
+			<div class="mui-slider banner">
+				<div class="mui-slider-group mui-slider-loop"> 
+					<div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="imgs/4.jpg"/></a></div>
+					
+					<div class="mui-slider-item"><a href="#"><img src="../../imgs/1.jpg"/></a></div>
+					<div class="mui-slider-item"><a href="#"><img src="../../imgs/2.jpg"/></a></div>
+					<div class="mui-slider-item"><a href="#"><img src="../../imgs/3.jpg"/></a></div>
+					<div class="mui-slider-item"><a href="#"><img src="../../imgs/4.jpg"/></a></div>
+					
+					<div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="imgs/1.jpg"/></a></div>
+				</div>
+			</div>
+			
+			<div class="classify">
+				<ul>
+					<li>
+						<a href="#">
+							<img src="../../imgs/icon.png" alt="" />
+							<p>超級返</p>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="../../imgs/icon1.png" alt="" />
+							<p>全球贿选</p>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="../../imgs/icon.png" alt="" />
+							<p>9块9</p>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="../../imgs/icon1.png" alt="" />
+							<p>有好券</p>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="../../imgs/icon.png" alt="" />
+							<p>充值中心</p>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="../../imgs/icon1.png" alt="" />
+							<p>淘宝返利</p>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="../../imgs/icon.png" alt="" />
+							<p>京东返利</p>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="../../imgs/icon1.png" alt="" />
+							<p>商城返利</p>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="../../imgs/icon.png" alt="" />
+							<p>理财返利</p>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="../../imgs/icon1.png" alt="" />
+							<p>刷卡返利</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+			
+		</div>
+		
+		<script src="../../js/mui.min.js"></script> 
+		<script src="../../js/base.js"></script>
+		<script type="text/javascript">
+			var gallery = mui('.mui-slider');
+			gallery.slider({ 
+				interval: 3000 //自动轮播周期
+			});
+			
+			/*var search = document.getElementById('search');
+			search.addEventListener('focus',function(){
+				mui.openWindow({ 
+					id: 'pages/index/search.html'
+				});
+			});*/
+			
+			/*mui.ajax('http://test.wx.nuozhe8.com/plugin.php',{
+				data:{
+					mod: 'wechat',
+					act: 'app',
+					sign: '11',
+					timestamp: '1526184037'
+				},
+				dataType:'json',//服务器返回json格式数据
+				type:'get',//HTTP请求类型
+				timeout:10000,//超时时间设置为10秒；
+				crossDomain: true,
+				headers:{'Content-Type':'application/json'},	              
+				success:function(data,textStatus,xhr){
+					//服务器返回响应，根据响应结果，分析是否登录成功；
+					console.log(data);
+				},
+				error:function(xhr,type,errorThrown){
+					//异常处理；
+					console.log(errorThrown);
+				}
+			});*/
+			
+		</script>
+	</body>
+	
+</html>
