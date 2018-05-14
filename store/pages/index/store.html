@@ -8,18 +8,94 @@
     	<link rel="stylesheet" href="../../css/base.css"/>
     	<link rel="stylesheet" href="../../fonts/iconfont.css"/>
 		<style>
-			
+			.search{ width:94%; margin:10px auto;}
+	    	.search input{ background-color:#fff; border-radius:50px;}
+	    	
+	    	.wrapper{ display:flex;}
+	    	.wrapper-left{ flex:1;}
+	    	.wrapper-right{ flex:3;}
+	    	.wrapper .mui-scroll-wrapper{ margin-top:60px;}
+	    	.wrapper .mui-scroll-wrapper:nth-child(1){ width:100px; text-align:center;}
+	    	.wrapper .mui-scroll-wrapper:nth-child(1) ul{ font-size:16px;}
+	    	.wrapper .mui-scroll-wrapper:nth-child(1) ul li{ height:50px; line-height:50px; border-bottom:1px solid #ddd;}
+	    	
+	    	.wrapper .mui-scroll-wrapper:nth-child(2){ left:100px; background-color:#fff;}
+	    	
 		</style>
 	</head>
 	<body>
 		<div class="mui-content">
-			商城
+			<div class="mui-input-row mui-search search">
+				<input type="search" class="mui-input-clear" name="" required="" placeholder="搜索商城" id="search">
+			</div>
+			
+			<div class="title">
+				常去商城
+			</div>
+	
+			<div class="wrapper">
+				
+				<div class="mui-scroll-wrapper wrapper-left">
+				    <div class="mui-scroll">
+				        <!--这里放置真实显示的DOM内容-->
+				        <ul>
+				        	<li>热门商家</li>
+				        	<li>食品日用</li>
+				        	<li>热门商家</li>
+				        	<li>旅行票务</li>
+				        	<li>母婴美妆</li>
+				        	<li>服饰鞋包</li>
+				        	<li>数码书籍</li>
+				        	<li>医药保健</li>
+				        	<li>其他</li>
+				        </ul>
+				    </div>
+				</div>
+				
+				<div class="mui-scroll-wrapper wrapper-right">
+				    <div class="mui-scroll">
+				        <!--这里放置真实显示的DOM内容-->
+				        <ul>
+				        	<li>京东</li>
+				        	<li>苏宁</li>
+				        	<li>当当网</li>
+				        	<li>唯品会</li>
+				        	<li>网易考拉</li>
+				        	<li>国美</li>
+				        	<li>1号店</li>
+				        	<li>京东</li>
+				        	<li>苏宁</li>
+				        	<li>当当网</li>
+				        	<li>唯品会</li>
+				        	<li>网易考拉</li>
+				        	<li>国美</li>
+				        	<li>1号店</li>
+				        </ul>
+				    </div>
+				</div>
+				
+			</div>
+			
+			
+			
+			
 		</div>
 		
-		<script src="../../js/mui.min.js"></script> 
+		<script src="../../js/mui.min.js"></script>
 		<script src="../../js/base.js"></script>
 		<script type="text/javascript">
 			mui.init();
+			
+			//滚动设置
+			mui('.mui-scroll-wrapper').scroll({
+				scrollY: true,
+				scrollX: false,
+				startX: 0,
+				startY: 0,
+				indicators: true,
+				deceleration: 0.0005,
+				bounce: true
+			});
 		</script>
 	</body>
 	

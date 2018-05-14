@@ -2142,7 +2142,6 @@ input[type='submit']:enabled:active, input[type='submit'].mui-active:enabled,
 .mui-table-view-icon .mui-table-view-cell .mui-navigate-right .mui-icon
 {
     font-size: 20px;
-
     margin-top: -1px;
     margin-right: 5px;
     margin-left: -5px;

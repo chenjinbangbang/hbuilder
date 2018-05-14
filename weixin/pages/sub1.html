@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link href="../css/mui.min.css" rel="stylesheet"/>
+	</head>
+	<body>
+		<div class="mui-content">
+		    <ul class="mui-table-view">
+	    	    <li class="mui-table-view-cell mui-media">
+	    	        <a href="javascript:;" title="张三">
+	    	            <img class="mui-media-object mui-pull-left" src="../imgs/1.jpg">
+	    	            <div class="mui-media-body">
+	    	                张三
+	    	                <p class="mui-ellipsis">能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+	    	            </div>
+	    	        </a>
+	    	    </li>
+	    	    <li class="mui-table-view-cell mui-media">
+	    	        <a href="javascript:;" title="李四">
+	    	            <img class="mui-media-object mui-pull-left" src="../imgs/2.jpg">
+	    	            <div class="mui-media-body">
+	    	                李四
+	    	                <p class="mui-ellipsis">想要这样一间小木屋，夏天挫冰吃瓜，冬天围炉取暖.</p>
+	    	            </div>
+	    	        </a>
+	    	    </li>
+	    	    <li class="mui-table-view-cell mui-media">
+	    	        <a href="javascript:;" title="王五">
+	    	            <img class="mui-media-object mui-pull-left" src="../imgs/3.jpg">
+	    	            <div class="mui-media-body">
+	    	                王五
+	    	                <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
+	    	            </div>
+	    	        </a>
+	    	</ul>
+		</div>
+	</body>
+	
+	<script src="../js/mui.min.js"></script>
+	<script type="text/javascript">
+		mui.init(); 
+		
+		mui('.mui-table-view-cell').on('tap','a',function(e){
+			var title = this.getAttribute('title');
+			
+			mui.openWindow({
+				url: 'sub1_Chat.html',
+				id: 'sub1_Chat.html',
+				styles: {},
+				extras: {
+					title: title
+				},
+				show: {
+					autoShow: true,
+					aniShow: 'slide-in-right',
+					duration: 100
+				},
+				waiting: {
+					autoShow: true,
+					title: '正在加载...'
+				}
+			});
+		});
+	</script>
+	
+</html>

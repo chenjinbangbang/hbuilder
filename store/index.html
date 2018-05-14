@@ -7,15 +7,8 @@
     <link rel="stylesheet" href="css/mui.css"/>
     <link rel="stylesheet" href="css/base.css"/>
     <link rel="stylesheet" href="fonts/iconfont.css"/>
-    <style> 
-		.tabs{}
-		.tabs ul{ height:50px; display:flex; text-align:center;}
-		.tabs ul li{ flex:1;}
-		.tabs ul li a{ color:#333}
-		.tabs ul li span{ display:block;}
-		.tabs ul li a .mui-icon{ width:30px; height:30px; line-height:30px; margin:auto;}
-		.tabs ul li a .mui-tab-label{ margin-top:4px;}
-		.tabs ul li a.mui-active{ color:#f00 !important;}
+    <style>
+		
     </style>
 </head>
 <body>
@@ -24,164 +17,58 @@
 		<h1 class="mui-title">首页</h1>
 	</header>
 	
-	<nav class="mui-bar mui-bar-tab tabs">
-  		<ul>
-  			<li> 
-  				<a href="pages/index/home.html" class="mui-tab-item mui-active">
-  					<span class="mui-icon mui-icon-home"></span>
-  					<span class="mui-tab-label">首页</span>
-  				</a>
-  			</li>
-  			<li>
-  				<a href="pages/index/search.html" class="mui-tab-item">
-  					<span class="mui-icon mui-icon-search"></span>
-  					<span class="mui-tab-label">搜索</span>
-  				</a>
-  			</li>
-  			<li>
-  				<a href="pages/index/friends.html" class="mui-tab-item">
-  					<span class="mui-icon mui-icon-contact"></span>
-  					<span class="mui-tab-label">朋友圈</span>
-  				</a> 
-  			</li>
-  			<li>
-  				<a href="pages/index/store.html" class="mui-tab-item">
-  					<span class="mui-icon iconfont icon-store"></span>
-  					<span class="mui-tab-label">商城</span>
-  				</a>
-  			</li>
-  			<li>
-  				<a href="pages/index/personal.html" class="mui-tab-item">
-  					<span class="mui-icon mui-icon-person"></span>
-  					<span class="mui-tab-label">个人中心</span>
-  				</a> 
-  			</li>
-  		</ul>
-    </nav>  
+	<nav class="mui-bar mui-bar-tab">
+		<a class="mui-tab-item mui-active" href="pages/index/home.html">
+			<span class="mui-icon mui-icon-home"></span>
+			<span class="mui-tab-label">首页</span>
+		</a>
+	    <a class="mui-tab-item" href="pages/index/search.html">
+			<span class="mui-icon mui-icon-search"></span>
+			<span class="mui-tab-label">搜索</span>
+		</a>
+	    <a class="mui-tab-item" href="pages/index/friends.html">
+			<span class="mui-icon mui-icon-contact"></span>
+			<span class="mui-tab-label">朋友圈</span>
+		</a>
+		<a class="mui-tab-item" href="pages/index/store.html">
+			<span class="mui-icon mui-icon-contact"></span>
+			<span class="mui-tab-label">商城</span>
+		</a>
+	    <a class="mui-tab-item" href="pages/index/personal.html">
+			<span class="mui-icon mui-icon-person"></span>
+			<span class="mui-tab-label">个人中心</span>
+		</a> 
+	</nav> 
 	
-
 	<script src="js/mui.min.js"></script> 
 	<script src="js/base.js"></script>
 	<script> 
-		mui.init({
-			//子页面（这是子页面的默认显示，还需配合底部导航对应）
-			subpages: [{
-				url: 'pages/index/home.html', //子页面html地址，支持本地地址和网络地址
-				id: 'pages/index/home.html', //子页面标志 
-				styles: {
-					top: '50px', //子页面顶部位置
-					bottom: '50px' //子页面底部位置
-					//width: '', //子页面宽度，默认为100%
-					//height: '', //子页面高度，默认为100%
-				},
-				extras: {}, //自定义扩展参数，可以用来处理页面间传值
-			}],  
-			//预加载
-			preloadPages: [],
-			//下拉刷新，下拉加载
-			pullRefresh: {},
-			//手势配置
-			gestureConfig: { 
-				doubletap: true
-			},
-			//侧滑关闭
-			swipeBack: true, //Boolean（默认false）启动右滑关闭功能
-			//监听Android手机的back，menu按键
-			keyEventBind: {
-				backbutton: false, //Boolean（默认true），关闭back按键监听
-				menubutton: false, //Boolean（默认true），关闭menu按键监听
-			},
-			//处理窗口关闭前的业务
-			beforeback: function(){},
-			//设置状态栏颜色
-			statusBarBackground: "#9defbcg",
-			preloadLimit: 5 //预加载窗口数量限制（一旦超出，先进先出）默认不限制
-		});
+		mui.init();
 		
-		/*mui.openWindow({ 
-			url: 'pages/index/search.html',
-			id: 'search',
-			styles: {
-				top: '50px',
-				bottom: '50px'
-			},
-			//自定义扩展参数，可以用来处理页面间传值
-			extras: {  
-				name: 'jibnang'
-			},
-			createNew: false, //是否重复创建同样id的webview，默认为false：不重复创建，直接显示
-			show: {
-				autoShow: true, //页面loaded事件发生后自动显示，默认为true
-				//aniShow: '', //页面显示动画，默认为“slide-in-right”
-				//duration: '', //页面动画持续时间，Android平台默认100毫秒，IOS平台默认20
-			},
-			waiting: {
-				autoShow: true, //自动显示等待框，默认为true
-				title: '正在加载...', //等待对话框上显示的提示内容
-				options: {
-					//width: '', //等待框背景区域宽度，默认根据内容自动计算合适宽度
-					//height: '', //等待框背景区域高度，默认根据内容自动计算合适高
-				}
-			}
-		});*/ 
-		
-		
-		//设置默认打开首页显示的子页序号
-  		var Index = 0;
-  		//把子页的路径写在数组里面
-  		var subpages = ['pages/index/home.html','pages/index/search.html','pages/index/friends.html','pages/index/store.html','pages/index/personal.html'];
-  		
-  		//所有的plus-*方法写在mui.plusReady中或者后面
-		mui.plusReady(function(){   
-      		//当前页面URL
-      		var current = plus.webview.currentWebview().getURL();
-      		console.log('当前页面URL：'+current);
-      		
-			//获取当前页面所属的Webview窗口对象
-			var self = plus.webview.currentWebview();
-			for(var i=0;i<5;i++){
-				//创建webview子页
-				var sub = plus.webview.create( 
-					subpages[i], //子页url
-					subpages[i], //子页id
-					{
-						top: '50px',
-						bottom: '50px',
-					}
-				);
-				//如不是我们设置的默认的子页则隐藏，否则添加到窗口中
-				if(i != Index){ 
-					sub.hide();
-				}
-				//将webview对象填充到窗口
-				self.append(sub);
-			}
-			
-			//当前激活选项，头部标题
-			var activeTab = subpages[Index],title=document.querySelector('.mui-title');
-			
- 
-			//选项卡点击事件 
-			mui('.mui-bar-tab').on('tap','a',function(){
-				//获取目标子页的id
-				var targetTab = this.getAttribute('href');
-				if(targetTab == activeTab){
-					return; 
-				}
-				//更换标题
-				title.innerHTML = this.querySelector('.mui-tab-label').innerHTML;
-				//显示目标选项卡
-				plus.webview.show(targetTab);
-				//隐藏当前选项卡
-				plus.webview.hide(activeTab);  
-				//更改当前活跃的选项卡
-				activeTab = targetTab;
-				
-				console.log(activeTab);
-			});
-      		
-      		
-     });
+		//跳转页面
+    	var subPages = ['pages/index/home.html','pages/index/search.html','pages/index/friends.html','pages/index/store.html','pages/index/personal.html'];
+    	var subPageStyle = {
+    		top: '44px',
+    		bottom: '50px'
+    	};
+    	//窗体管理
+    	mui.plusReady(function(){
+    		var self = plus.webview.currentWebview(); //获取当前的窗体
+    		//console.log(self.getURL());
+    		for(var i=0;i<subPages.length;i++){
+    			var sub = plus.webview.create(subPages[i],subPages[i],subPageStyle); //创建窗体
+    			sub.hide(); //所有窗体都隐藏
+    			self.append(sub); //把窗体追加到self中
+    		}
+    		plus.webview.show(subPages[0]); //显示subPages[0]的窗体
+    	});
+    	//点击底部导航跳转页面
+    	mui('.mui-bar-tab').on('tap','a',function(){
+    		var tagPage = this.getAttribute('href');
+    		plus.webview.show(tagPage,"fade-in",1000);
+    		document.querySelector('.mui-title').innerHTML = this.querySelector('.mui-tab-label').innerHTML;
+    	});
+      
 		
 	</script>
 	

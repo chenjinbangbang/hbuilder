@@ -4,21 +4,15 @@ body{ color: #333; font-size:14px;}
 body,p,ul,ol,li,h1,h2,h3,h4,h5,h6,dt,dd{ margin:0;}
 ul,ol,li{ padding:0;}
 ul,ol{ list-style-type:none;}
-.themeColor{ color:#f00;}
-.colorSub{ color:#f00;}
-.colorBgSub{ background-color:#f00;}
-
-//公共字体样式
-.black{ color:#666;}
-.primary{ color:#409EFF;}
-.success{ color:#67C23A;}
-.warning{ color:#EB9E05;}
-.danger{ color:#FA5555;}
-.info{ color:#878D99;}
 
 .clearfix{ clear:both;}
 a:link,a:visited{ text-decoration:none;}
 
-.red{ color:#f00;}
+.mui-content{ padding-bottom:20px;}
+.mui-action-back{ color:#000;}
+.mui-active .mui-tab-label,.mui-active .mui-icon{ color:#f00;}
+
+//用户设置列表导航箭头样式
+
 
 

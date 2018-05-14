@@ -12,6 +12,15 @@
 			.earnings-head h1{ font-weight:normal; }
 			.earnings-head div{ background-color:#fff; margin:6px 0; border-radius:20px; display:inline-block; color:#8F1A96; padding:2px 15px;}
 			.earnings-head p{ color:#fff;}
+			
+			.earnings-main{ text-align:center; background-color:#fff; margin-bottom:10px;}
+			.earnings-main h4{ font-size:16px; text-align:left; font-weight: normal; margin-left:20px; padding-top:10px;}
+			.earnings-main h4:before{ content:''; position:absolute; width:3px; height:16px; margin-left:-10px; background-color:#E80056;}
+			.earnings-main ul{ display:flex; padding:15px 0;}
+			.earnings-main ul li{ flex:1;}
+			.earnings-main ul li p{ margin-top:5px;}
+			.earnings-main ul li p:nth-child(1),.earnings-main li p:nth-child(2){}
+			.earnings-main ul li p:nth-child(3){ font-size:12px;}
 		</style>
 	</head>
 	<body>
@@ -29,6 +38,77 @@
 				<div class="btn">立即提现</div>
 				<p>累计结算收益：￥0</p>
 			</div>
+			
+			<div class="earnings-main">
+				<ul>
+					<li>
+						<p>结算收入</p>
+						<p>￥0</p>
+						<p>上月佣金</p>
+					</li>
+					<li>
+						<p>预估收入</p>
+						<p>￥0</p>
+						<p>本月佣金</p>
+					</li>
+					<li>
+						<p>结算收入</p>
+						<p>￥0</p>
+						<p>上月佣金</p>
+					</li>
+				</ul>
+			</div>
+
+			<div class="earnings-main">
+				<h4>今日</h4>
+				<ul>
+					<li>
+						<p>付款笔数</p>
+						<p>0</p>
+					</li>
+					<li>
+						<p>预估佣金</p>
+						<p>0</p>
+					</li>
+					<li>
+						<p>分享赚</p>
+						<p>0</p>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="earnings-main">
+				<h4>昨日</h4>
+				<ul>
+					<li>
+						<p>付款笔数</p>
+						<p>0</p>
+					</li>
+					<li>
+						<p>预估佣金</p>
+						<p>0</p>
+					</li>
+					<li>
+						<p>分享赚</p>
+						<p>0</p>
+					</li>
+				</ul>
+			</div>
+			
+			<ul class="mui-table-view">
+			        <li class="mui-table-view-cell">
+			            <a class="mui-navigate-right">
+			                结算佣金明细
+			            </a>
+			        </li>
+			        <li class="mui-table-view-cell">
+			            <a class="mui-navigate-right">
+			                 提现记录
+			            </a>
+			        </li>
+			    </ul>
+			
+		
 			
 		</div>
 		
