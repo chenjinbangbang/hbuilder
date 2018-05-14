@@ -8,20 +8,33 @@
     	<link rel="stylesheet" href="../../css/base.css"/>
     	<link rel="stylesheet" href="../../fonts/iconfont.css"/>
 		<style>
-			.search{ height:80px; padding:0 20px; displaY:flex; align-items:center; background-color:#8F1A96;}
-			.search .mui-input-row{ flex:8; margin-top:14px; margin-right:1px;}
+			.search-tabs{}
+			.search-tabs ul{}
+			.search-tabs ul li{}
+			
+			.search{ height:80px; padding:0 20px; displaY:flex; align-items:center; /*background-color:#8F1A96;*/}
+			.search .mui-input-row{ flex:8; margin-top:14px; margin-right:2px;}
 	    	.search .mui-input-row input{ background-color:#fff; border-radius:4px;}
 	    	.search button{ flex:1;}
 		</style>
 	</head>
 	<body>
+		
 		<div class="mui-content">
+			
+			<div class="search-tabs">
+				<ul>
+					<li>淘宝</li>
+					<li>京东</li>
+					<li>拼多多</li>
+				</ul>
+			</div>
 			
 			<div class="search">
 				<div class="mui-input-row mui-search">
 					<input type="search" class="mui-input-clear" placeholder="搜索商品" id="search">
 				</div>
-				<button type="button" class="mui-btn mui-btn-success">搜索</button>
+				<button type="button" class="mui-btn mui-btn-warning">搜索</button>
 			</div>
 			
 			

@@ -13,7 +13,7 @@
     	.setting ul li{ margin-left:12px;}
     	.setting ul li a{ color:#fff;}
     	
-    	.userinfo{ height:140px; padding:30px 0; color:#eee; /*background-color:#F45118;*/ background: -webkit-linear-gradient(top, #E80056 , #8F1A96); display:flex;}
+    	.userinfo{ height:180px; padding:30px 0; margin-bottom:100px; color:#eee; /*background-color:#F45118;*/ background: -webkit-linear-gradient(top, #E80056 , #8F1A96); display:flex;}
     	.userinfo .userinfo-img{ flex:1; text-align:center;}
     	.userinfo .userinfo-img img{ width:70px; height:70px; border-radius:50%;}
     	.userinfo .userinfo-info{ flex:3; margin-top:20px;}
@@ -23,7 +23,7 @@
     	.userinfo .userinfo-info ul li .userinfo-btn{ background-color:#fff; color:#F45118; margin-left:5px; padding:1px 12px; border-radius:20px;}
     	.userinfo .userinfo-info ul li .copy{ border:1px solid #fff; border-radius:20px; margin-left:5px; padding:1px 5px;}
     
-    	.earnings{ width:94%; margin:20px auto; /*left:3%; margin-top:-50px; position:absolute;*/ background-color:#fff; border-radius:8px;}
+    	.earnings{ width:94%; /*margin:15px auto;*/ left:3%; margin-top:-150px; position:absolute; background-color:#fff; border-radius:8px;}
     	.earnings .earnings-top{ height:50px; align-items:center; display:flex;}
     	.earnings .earnings-top p{} 
     	.earnings .earnings-top p:nth-child(1){ margin-left:10px;}
@@ -42,6 +42,17 @@
     	.menu ul li a{}
     	.menu ul li a img{ width:40px;}
     	.menu ul li a p{}
+    	
+    	.tools{ width:94%; margin:auto; background-color:#fff; margin-top:15px; padding-bottom:10px; border-radius:8px;}
+    	.tools .title{ display:flex; justify-content:space-between; align-items:center;  padding:10px;  border-bottom:1px solid #eee;}
+    	.tools .title h4{ font-weight:normal; font-size:16px;}
+    	.tools .title a{ color:#999;}
+    	.tools .title a .mui-icon{ font-size:18px; }
+    	.tools ul{ display:flex; flex-wrap:wrap; text-align:center;}
+    	.tools ul li{ width:25%; margin-top:10px;}
+    	.tools ul li a{ color:#333;}
+    	.tools ul li a img{ width:40px;}
+    	.tools ul li a p{}   
     </style>
 </head>
 <body>
@@ -101,7 +112,7 @@
 			</div>
 		</div>
 		
-		<main class="menu">
+		<!--<main class="menu">
 			<ul>
 				<li>
 					<a href="../personal/earnings.html">
@@ -128,7 +139,96 @@
 					</a>
 				</li>
 			</ul>
-		</main>
+		</main>-->
+		
+		<div class="tools">
+			<div class="title">
+				<h4>我的订单</h4>
+				<a href="../personal/orders.html">查看更多订单  <span class="mui-icon mui-icon-arrowright"></span> </a>
+			</div>
+			<ul>
+				<li>
+					<a href="../personal/orders.html">
+						<img src="../../imgs/user_icon5.png"/>
+						<p>全部订单</p>
+					</a>
+				</li>
+				<li>
+					<a href="../personal/orders.html">
+						<img src="../../imgs/user_icon7.png"/>
+						<p>淘宝订单</p>
+					</a>
+				</li>
+				<li>
+					<a href="../personal/orders.html">
+						<img src="../../imgs/user_icon5.png"/>
+						<p>京东订单</p>
+					</a>
+				</li>
+				<li>
+					<a href="../personal/orders.html">
+						<img src="../../imgs/user_icon6.png"/>
+						<p>拼多多订单</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="tools">
+			<div class="title">
+				<h4>必备工具</h4>
+			</div>
+			<ul>
+				<li>
+					<a href="../personal/earnings.html">
+						<img src="../../imgs/user_icon6.png"/>
+						<p>收益报表</p>
+					</a>
+				</li>
+				<li>
+					<a href="../personal/fans.html">
+						<img src="../../imgs/user_icon7.png"/>
+						<p>我的粉丝</p>
+					</a>
+				</li>
+				<li>
+					<a href="../personal/invite.html">
+						<img src="../../imgs/user_icon5.png"/>
+						<p>邀请有奖</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="../../imgs/user_icon4.png"/>
+						<p>客服中心</p>
+					</a>
+				</li>
+				<li>
+					<a href="../personal/list.html" title="官方公告">
+						<img src="../../imgs/user_icon5.png"/>
+						<p>官方公告</p>
+					</a>
+				</li>
+				<li>
+					<a href="../personal/list.html" title="新手攻略">
+						<img src="../../imgs/user_icon4.png"/>
+						<p>新手攻略</p>
+					</a>
+				</li>
+				<li>
+					<a href="../personal/list.html" title="常见问题">
+						<img src="../../imgs/user_icon3.png"/>
+						<p>常见问题</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="../../imgs/user_icon7.png"/>
+						<p>关于我们</p>
+					</a>
+				</li>
+			</ul>
+		</div>
 		
 	</div>
 	
@@ -141,11 +241,20 @@
 		mui('.mui-content').on('tap','a',function(){
 			var tagPage = this.getAttribute('href');
 			
+			//获取title，新手攻略，官方公告，常见问题列表页面需要
+			//console.log(this.getAttribute('title'));
+			if(this.getAttribute('title')){
+				var title = this.getAttribute('title');
+			}
+			
+			
 			mui.openWindow({
 				url: tagPage,
 				id: tagPage,
 				styles: {},
-				extras: {},
+				extras: {
+					title: title ? title : ''
+				},
 				show: {
 					autoShow: true,
 					aniShow: 'slide-in-right',

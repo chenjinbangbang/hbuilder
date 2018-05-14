@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link href="../../css/base.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">新手攻略</h1>
+		</header>
+		
+		<div class="mui-content">
+		    
+		    <ul class="mui-table-view">
+		        <li class="mui-table-view-cell mui-media">
+		            <a href="javascript:;" class="mui-navigate-right">
+		                <img class="mui-media-object mui-pull-left" src="../../imgs/1.jpg">
+		                <div class="mui-media-body">
+		                    花生日记功能介绍
+		                    <p class="mui-ellipsis">花生日记功能介绍花生日记功能介绍</p>
+		                </div> 
+		            </a>
+		        </li>
+		        <li class="mui-table-view-cell mui-media">
+		            <a href="javascript:;" class="mui-navigate-right">
+		                <img class="mui-media-object mui-pull-left" src="../../imgs/3.jpg">
+		                <div class="mui-media-body">
+		                    首页特色板块介绍 
+		                    <p class="mui-ellipsis">首页特色板块介绍首页特色板块介绍</p>
+		                </div>
+		            </a>
+		        </li>
+		        <li class="mui-table-view-cell mui-media">
+		            <a href="javascript:;" class="mui-navigate-right">
+		                <img class="mui-media-object mui-pull-left" src="../../imgs/4.jpg">
+		                <div class="mui-media-body">
+		                    如何搜索优惠券
+		                    <p class="mui-ellipsis">如何搜索优惠券如何搜索优惠券</p>
+		                </div>
+		            </a>
+		        </li>
+		    </ul>
+		    
+		</div>
+		
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			
+			mui.plusReady(function(){
+				var cw = plus.webview.currentWebview();
+				var title = cw.title;
+				
+				document.querySelector(".mui-title").innerHTML = title;
+			});
+			
+		</script>
+	</body>
+
+</html>
