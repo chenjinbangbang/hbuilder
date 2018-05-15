@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link href="../../css/base.css" rel="stylesheet" />
+		<style type="text/css">
+			.mui-content{ padding:10px;}
+			.title{ padding:15px 0;}
+			.date{ padding-bottom:20px; border-bottom:1px solid #ccc; }
+			.content{ color:#333; padding:15px 0;}
+		</style>
+	</head>
+
+	<body>
+		
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">标题</h1>
+		</header>
+		
+		<div class="mui-content">
+		    
+		    <h3 class="title">标题</h3>
+		    
+		    <p class="date">2018-04-25</p>
+		    
+		    <p class="content">5.15功能介绍5.15功能介绍5.15功能介绍5.15功能介绍5.15功能介绍5.15功能介绍</p>
+		    
+		</div>
+		
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			
+			mui.plusReady(function(){
+				var cw = plus.webview.currentWebview();
+				//console.log(cw.title);
+				var title = cw.title;
+				
+				document.querySelector('.mui-title').innerHTML = title;
+				document.querySelector('.title').innerHTML = title;
+				
+			});
+			
+		</script>
+	</body>
+
+</html>

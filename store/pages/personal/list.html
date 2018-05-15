@@ -20,16 +20,16 @@
 		    
 		    <ul class="mui-table-view">
 		        <li class="mui-table-view-cell mui-media">
-		            <a href="javascript:;" class="mui-navigate-right">
+		            <a href="listDetail.html" class="mui-navigate-right" title="功能介绍">
 		                <img class="mui-media-object mui-pull-left" src="../../imgs/1.jpg">
 		                <div class="mui-media-body">
-		                    花生日记功能介绍
+		                    功能介绍
 		                    <p class="mui-ellipsis">花生日记功能介绍花生日记功能介绍</p>
-		                </div> 
+		                </div>
 		            </a>
 		        </li>
 		        <li class="mui-table-view-cell mui-media">
-		            <a href="javascript:;" class="mui-navigate-right">
+		            <a href="listDetail.html" class="mui-navigate-right" title="首页特色板块介绍">
 		                <img class="mui-media-object mui-pull-left" src="../../imgs/3.jpg">
 		                <div class="mui-media-body">
 		                    首页特色板块介绍 
@@ -38,7 +38,7 @@
 		            </a>
 		        </li>
 		        <li class="mui-table-view-cell mui-media">
-		            <a href="javascript:;" class="mui-navigate-right">
+		            <a href="listDetail.html" class="mui-navigate-right" title="如何搜索优惠券">
 		                <img class="mui-media-object mui-pull-left" src="../../imgs/4.jpg">
 		                <div class="mui-media-body">
 		                    如何搜索优惠券
@@ -59,6 +59,30 @@
 				var title = cw.title;
 				
 				document.querySelector(".mui-title").innerHTML = title;
+			});
+			
+			mui('.mui-table-view').on('tap','a',function(){
+				var page = this.getAttribute('href');
+				var title = this.getAttribute('title');
+				
+				mui.openWindow({
+					url: page,
+					id: page,
+					styles: {},
+					extras: {
+						title: title
+					},
+					show: {
+						autoShow: true,
+						aniShow: 'slide-in-right',
+						duration: 100
+					},
+					waiting: {
+						autoShow: true,
+						title: '正在加载...'
+					}
+				});
+				
 			});
 			
 		</script>

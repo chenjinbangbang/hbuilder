@@ -64,8 +64,8 @@
     	});
     	//点击底部导航跳转页面
     	mui('.mui-bar-tab').on('tap','a',function(){
-    		var tagPage = this.getAttribute('href');
-    		plus.webview.show(tagPage,"fade-in",200);
+    		var page = this.getAttribute('href');
+    		plus.webview.show(page,"fade-in",200);
     		document.querySelector('.mui-title').innerHTML = this.querySelector('.mui-tab-label').innerHTML;
     	});
       

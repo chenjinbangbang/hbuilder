@@ -16,18 +16,79 @@
 		    <h1 class="mui-title"></h1>
 		</header>
 		
+		<div class="mui-content">
+			<button type="button" id="gallery" class="mui-btn mui-btn-blue">相册</button>
+			<button type="button" id="camera" class="mui-btn mui-btn-blue">摄像头</button>
+			<button type="button" id="getacc" class="mui-btn mui-btn-blue">重力感应</button>
+			<div id="msg">此处为聊天消息</div>
+		</div>
+
 		<script src="../js/mui.min.js"></script>
 		<script type="text/javascript">
 			mui.init();
 			
-			mui.plusReady(function(){
+			mui.plusReady(function(){  
 				var cw = plus.webview.currentWebview();
 				var titleName = cw.title;
-				console.log(titleName);
+				//console.log(titleName);
 				
 				var header = document.querySelector(".mui-title");
 				header.innerHTML = titleName;
+				
 			});
+			
+			var msgDom = document.getElementById('msg');
+				var galleryBtn = document.getElementById('gallery');
+				galleryBtn.addEventListener('tap',function(){
+					//从系统相册选择文件（图片或视频）
+					plus.gallery.pick(
+						function(path){ //path：图片的路径
+							//console.log(JSON.stringify(path));
+							//单张图片
+							var img = "<img width=200 height=200 src='"+ path +"'/>";
+							msgDom.innerHTML = img;
+							
+							//多张图片
+							/*var img1 = "";
+							for(var i in path.files){
+								img1 += "<img width=200 height=200 src='"+ path.files[0] +"'/>";
+							}
+							msgDom.innerHTML = img1;*/
+							
+							//console.log(msgDom.innerHTML);
+						},
+						function(e){
+							msgDom.innerHTML = e.message;
+						},
+						{
+							filter: "image", //只能选择图片或视频
+							multiple: false //是否多选
+						}
+					
+					)
+				}); 
+				
+				var cmDom = document.getElementById('camera');
+				cmDom.addEventListener('tap',function(){
+					var cm = plus.camera.getCamera(1);
+					cm.captureImage(function(path){ //path：为图片相对路径
+						console.log(path);
+						//将本地URL路径转换成平台绝对路径
+						var url = "file://" + plus.io.convertLocalFileSystemURL(path);
+						var img = "<img width=200 height=200 src='"+ url +"'/>";
+						msgDom.innerHTML = img;
+					});
+				});
+				
+				var accDom = document.getElementById('getacc');
+				accDom.addEventListener('tap',function(e){
+					//获取当前设备的加速度信息
+					plus.accelerometer.getCurrentAcceleration(function(a){
+						msgDom.innerText = "x: "+a.xAxis+"\n y: " + a.yAxis + "\n z: " + a.zAxis;
+					});
+				});
+			
+			
 			
 		</script>
 	</body>

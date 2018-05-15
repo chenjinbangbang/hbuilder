@@ -115,12 +115,29 @@
 				interval: 3000 //自动轮播周期
 			});
 			
-			/*var search = document.getElementById('search');
+			var search = document.getElementById('search');
 			search.addEventListener('focus',function(){
-				mui.openWindow({ 
-					id: 'pages/index/search.html'
+				mui.openWindow({
+					url: "../searchPage.html",
+					id: "../searchPage.html",
+					styles: {},
+					extras: {},
+					show: {
+						autoShow: true,
+						aniShow: 'slide-in-right',
+						duration: 100
+					},
+					waiting: {
+						autoShow: true,
+						title: '正在加载...'
+					}
 				});
-			});*/
+				
+				/*setTimeout(function(){
+					search.blur();
+				},500);*/
+				
+			});
 			
 			/*mui.ajax('http://test.wx.nuozhe8.com/plugin.php',{
 				data:{

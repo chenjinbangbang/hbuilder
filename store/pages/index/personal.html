@@ -198,7 +198,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="../personal/ser.html">
 						<img src="../../imgs/user_icon4.png"/>
 						<p>客服中心</p>
 					</a>
@@ -222,7 +222,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="../personal/about.html">
 						<img src="../../imgs/user_icon7.png"/>
 						<p>关于我们</p>
 					</a>
@@ -239,7 +239,7 @@
 		
 		//跳转页面
 		mui('.mui-content').on('tap','a',function(){
-			var tagPage = this.getAttribute('href');
+			var page = this.getAttribute('href');
 			
 			//获取title，新手攻略，官方公告，常见问题列表页面需要
 			//console.log(this.getAttribute('title'));
@@ -249,8 +249,8 @@
 			
 			
 			mui.openWindow({
-				url: tagPage,
-				id: tagPage,
+				url: page,
+				id: page,
 				styles: {},
 				extras: {
 					title: title ? title : ''
