@@ -54,22 +54,32 @@
     	//窗体管理
     	mui.plusReady(function(){
     		var self = plus.webview.currentWebview(); //获取当前的窗体
-    		//console.log(self.getURL());
+    		//console.log(self.getURL()); 
     		for(var i=0;i<subPages.length;i++){
     			var sub = plus.webview.create(subPages[i],subPages[i],subPageStyle); //创建窗体
     			sub.hide(); //所有窗体都隐藏
     			self.append(sub); //把窗体追加到self中
-    		}
+    		} 
     		plus.webview.show(subPages[0]); //显示subPages[0]的窗体
-    		
+    		 
     		//跳转到登录页面
     		var loginPage = 'pages/login.html';
-    		plus.webview.create(loginPage,loginPage);
-    		plus.webview.show(loginPage); 
+    		mui.openWindow({
+				url: loginPage,
+				id: loginPage,
+				show: { 
+					autoShow: true,
+					aniShow: "slide-in-bottom",
+					duration: 500
+				}, 
+				waiting: { 
+					autoShow: false,
+				}
+			}); 
     		
     	});
-    	//点击底部导航跳转页面
-    	mui('.mui-bar-tab').on('tap','a',function(){
+    	//点击底部导航跳转页面  
+    	mui('.mui-bar-tab').on('tap','a',function(){ 
     		var page = this.getAttribute('href');
     		plus.webview.show(page,"fade-in",200);
     		document.querySelector('.mui-title').innerHTML = this.querySelector('.mui-tab-label').innerHTML;
