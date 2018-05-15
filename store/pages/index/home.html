@@ -139,12 +139,14 @@
 				
 			});
 			
+			var now = new Date().getTime();
+			//console.log(Math.round(now/1000));
 			/*mui.ajax('http://test.wx.nuozhe8.com/plugin.php',{
 				data:{
-					mod: 'wechat',
+					mod: 'wechat1',
 					act: 'app',
 					sign: '11',
-					timestamp: '1526184037'
+					timestamp: now
 				},
 				dataType:'json',//服务器返回json格式数据
 				type:'get',//HTTP请求类型
