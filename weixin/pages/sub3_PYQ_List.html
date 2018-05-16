@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/main.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		
+		<!--下拉刷新容器-->
+		<div id="refreshContainer" class="mui-content mui-scroll-wrapper">
+		  <div class="mui-scroll">
+		  	
+		  	<div class="mui-slider">
+			  <div class="mui-slider-group">
+			    <div class="mui-slider-item"><a href="#"><img src="../imgs/1.jpg" /></a></div>
+			    <div class="mui-slider-item"><a href="#"><img src="../imgs/2.jpg" /></a></div>
+			    <div class="mui-slider-item"><a href="#"><img src="../imgs/3.jpg" /></a></div>
+			    <div class="mui-slider-item"><a href="#"><img src="../imgs/4.jpg" /></a></div>
+			  </div>
+			</div>
+		  	
+		    <!--数据列表-->
+		    <ul class="mui-table-view">
+		        <li class="mui-table-view-cell mui-media">
+		            <a href="javascript:;">
+		                <img class="mui-media-object mui-pull-left" src="../imgs/1.jpg">
+		                <div class="mui-media-body">
+		                    幸福
+		                    <p class="mui-ellipsis">能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+		                </div>
+		            </a>
+		        </li>
+		        <li class="mui-table-view-cell mui-media">
+		            <a href="javascript:;">
+		                <img class="mui-media-object mui-pull-left" src="../imgs/2.jpg">
+		                <div class="mui-media-body">
+		                    木屋
+		                    <p class="mui-ellipsis">想要这样一间小木屋，夏天挫冰吃瓜，冬天围炉取暖.</p>
+		                </div>
+		            </a>
+		        </li>
+		        <li class="mui-table-view-cell mui-media">
+		            <a href="javascript:;">
+		                <img class="mui-media-object mui-pull-left" src="../imgs/3.jpg">
+		                <div class="mui-media-body">
+		                    CBD
+		                    <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
+		                </div>
+		            </a>
+		        </li>
+		    </ul>
+		  </div>
+		</div>
+		
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				//配置下拉刷新和上拉加载
+				pullRefresh: {
+					container: '#refreshContainer',
+					//下拉刷新
+					down: {
+						contentdown: "下拉可以刷新",
+						contentover: '释放立即刷新',
+						contentrefresh: '正在刷新...',
+						callback: pulldownRefresh
+					},
+					//上拉加载
+					up: {
+						callback: pullupRefresh
+					}
+				}
+			});
+			
+			function pulldownRefresh(){
+				setTimeout(function(){
+					//创建dom
+					var table =document.querySelector(".mui-table-view");
+					for(var i=0;i<3;i++){
+						var li = document.createElement("li");
+						li.className = "mui-table-view-cell mui-media";
+						
+						/*var str = "";
+						str += "<img class='mui-media-object mui-pull-left' src='../imgs/2.jpg'>";
+			            str += "<div class='mui-media-body'>";
+			            str += "木屋";
+			            str += "<p class='mui-ellipsis'>想要这样一间小木屋，夏天挫冰吃瓜，冬天围炉取暖.</p>";
+			            str += "</div>";*/
+			            
+			            var str = `<img class="mui-media-object mui-pull-left" src="../imgs/2.jpg">
+			                <div class="mui-media-body">
+			                    木屋
+			                    <p class="mui-ellipsis">想要这样一间小木屋，夏天挫冰吃瓜，冬天围炉取暖.</p>
+			                </div>`;
+			                
+			            li.innerHTML = str;
+			            table.insertBefore(li,table.firstChild);    
+					}
+					//结束下拉刷新
+					mui('#refreshContainer').pullRefresh().endPulldownToRefresh();	
+				},1000);
+			}
+			
+			function pullupRefresh(){
+				setTimeout(function(){
+					//创建dom
+					var table =document.querySelector(".mui-table-view");
+					for(var i=0;i<3;i++){
+						var li = document.createElement("li");
+						li.className = "mui-table-view-cell mui-media";
+						
+						/*var str = "";
+						str += "<img class='mui-media-object mui-pull-left' src='../imgs/2.jpg'>";
+			            str += "<div class='mui-media-body'>";
+			            str += "木屋";
+			            str += "<p class='mui-ellipsis'>想要这样一间小木屋，夏天挫冰吃瓜，冬天围炉取暖.</p>";
+			            str += "</div>";*/
+			            
+			            var str = `<img class="mui-media-object mui-pull-left" src="../imgs/2.jpg">
+			                <div class="mui-media-body">
+			                    木屋
+			                    <p class="mui-ellipsis">想要这样一间小木屋，夏天挫冰吃瓜，冬天围炉取暖.</p>
+			                </div>`;
+			                
+			            li.innerHTML = str;
+			            table.appendChild(li);    
+					}
+					//结束下拉刷新
+					mui('#refreshContainer').pullRefresh().endPullupToRefresh();	
+				},1000);
+			}
+		
+			
+			
+		</script>
+	</body>
+
+</html>

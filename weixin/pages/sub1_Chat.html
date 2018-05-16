@@ -83,7 +83,11 @@
 				var accDom = document.getElementById('getacc');
 				accDom.addEventListener('tap',function(e){
 					//获取当前设备的加速度信息
-					plus.accelerometer.getCurrentAcceleration(function(a){
+					/*plus.accelerometer.getCurrentAcceleration(function(a){
+						msgDom.innerText = "x: "+a.xAxis+"\n y: " + a.yAxis + "\n z: " + a.zAxis;
+					});*/
+					//监听设备加速度变化信息
+					plus.accelerometer.watchAcceleration(function(a){
 						msgDom.innerText = "x: "+a.xAxis+"\n y: " + a.yAxis + "\n z: " + a.zAxis;
 					});
 				});
