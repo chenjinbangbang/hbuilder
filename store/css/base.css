@@ -7,12 +7,3 @@ ul,ol{ list-style-type:none;}
 
 .clearfix{ clear:both;}
 a:link,a:visited{ text-decoration:none;}
-
-.mui-content{ padding-bottom:20px;}
-.mui-action-back{ color:#000;}
-.mui-active .mui-tab-label,.mui-active .mui-icon{ color:#f00;}
-
-//用户设置列表导航箭头样式
-
-
-

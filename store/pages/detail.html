@@ -8,14 +8,45 @@
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/base.css" rel="stylesheet" />
 		<style type="text/css">
+			.icon{ width:20px; height:20px;}
+			
 			body,.mui-content{ background-color:#fff;}
 			.title{ font-size:18px; padding:10px;}
 			.tip{ display:flex; justify-content: center;}
-			.tip li{ padding:0; display:flex; font-size:13px;}
-			.tip li embed{ width:16px; height:16px; margin-top:2px;}
+			.tip li{ color:#999; padding:0; display:flex; font-size:13px;}
+			.tip li embed{ width:16px; height:16px; margin:2px;}
 			.price{ color:#f00; padding:15px 10px; margin-top:10px; border-top:1px solid #eee; border-bottom:1px solid #eee;}
 			.price span:nth-child(1){ font-size:18px;}
 			.price span:nth-child(2){ font-size:26px;}
+			
+			.mui-table-view p{ color:#333; margin-top:8px;}
+			.mui-table-view .btn{ position:absolute; right:0;}
+			.mui-table-view .btn .mui-btn{ border-radius:20px; margin-right:10px;}
+			
+			.comment{ padding:0 10px; display:flex; justify-content: space-between;}
+			.comment li{ color:#999; height:40px; line-height:40px;}
+			.comment li span{ color:#f00;}
+			
+			.evaluate{ padding:0 10px;}
+			.evaluate .top{ display:flex; height:40px; justify-content: space-between; align-items:center;}
+			.evaluate .top p{ color:#333;}
+			.evaluate .top a{ color:#f00;}
+			.evaluate .top a .mui-icon{ font-size:18px;}
+			.evaluate .label{ display:flex; flex-wrap:wrap;}
+			.evaluate .label li{ display:inline-block; padding:3px 13px; margin:10px; background-color:rgba(255,0,0,0.05); border-radius:20px; color:#666;}
+			
+			.mui-card-content{ padding:10px;}
+			
+			.detail{}
+			.detail .mui-control-item{ border:1px solid #f00 !important;}
+			.detail .mui-control-item.mui-active{ background-color:#f00 !important; color:#fff !important;}
+			
+			.like{}
+			.like .top{ height:40px; margin:auto; display:flex; justify-content: center; align-items:center;}
+			.like .top:before{ content:''; position:absolute; width:50px; height:1px; background-color:#f00; margin:20px 0 0 -60px;}
+			.like .top:after{ content:''; position:absolute; width:50px; height:1px; background-color:#f00; margin:20px 0 0 10px;}
+			.like .top p{ margin-left:10px;}
+			
 		</style> 
 	</head>
 
@@ -78,11 +109,109 @@
 				<span>￥</span><span>55.6</span>
 			</div>
 			
+			<ul class="mui-table-view">
+			    <li class="mui-table-view-cell mui-media">
+		            <img class="mui-media-object mui-pull-left" src="../imgs/3.jpg">
+		            <div class="mui-media-body">
+		            	<div class="btn">
+		            		<button type="button" class="mui-btn mui-btn-danger mui-btn-outlined">全部宝贝</button>
+		            		<button type="button" class="mui-btn mui-btn-danger">进店逛逛</button>
+		            	</div>
+		                <p class="mui-ellipsis">京东店铺</p>
+		            </div>
+			    </li>
+			</ul>
+			
+			<ul class="comment">
+				<li>宝贝描述  <span>4.9 高</span></li>
+				<li>卖家服务  <span>4.8 高</span></li>
+				<li>物流服务  <span>4.8 高</span></li>
+			</ul>
+			
+			<div class="evaluate">
+				<div class="top">
+					<p>宝贝评价（6382）</p>
+					<a href="#">查看全部   <span class="mui-icon mui-icon-arrowright"></span></a>
+				</div>
+				<ul class="label">
+					<li>质量不错(7)</li>
+					<li>快递不错(3)</li>
+				</ul>
+				
+				<div class="mui-card">
+					<!--页眉，放置标题-->
+					<div class="mui-card-header mui-card-media">
+						<img src="../imgs/4.jpg" />
+						<div class="mui-media-body">
+							小M
+							<p>发表于 2016-06-30 15:30</p>
+						</div>
+					</div>
+					<!--内容区-->
+					<div class="mui-card-content">
+						东西不错，已经是第三次购买了，老板服务好，速度快，质量是好的没的说，已经推荐了好几个朋友来这家店买了...
+					</div>
+					<!--页脚，放置补充信息或支持的操作-->
+					<!--<div class="mui-card-footer">页脚</div>-->
+				</div>
+				
+				<div class="mui-slider detail">
+				    <div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+				        <a class="mui-control-item mui-active" href="#item1">选项卡1</a>
+				        <a class="mui-control-item" href="#item2">选项卡2</a>
+				    </div>
+				    <!--<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div>-->
+				    <div class="mui-slider-group">
+				        <div id="item1" class="mui-slider-item mui-control-content mui-active">
+				            <img src="../imgs/1.jpg" alt="" />
+		                	<img src="../imgs/2.jpg" alt="" />
+		                	<img src="../imgs/3.jpg" alt="" />
+		                	<img src="../imgs/4.jpg" alt="" />
+				        </div>
+				        <div id="item2" class="mui-slider-item mui-control-content">
+				            <ul class="mui-table-view">
+				                <li class="mui-table-view-cell">保修：全国联保</li>
+				                <li class="mui-table-view-cell">成色：全新</li>
+				                <li class="mui-table-view-cell">手表镜面材质：矿物强化玻璃镜面</li>
+				                <li class="mui-table-view-cell">机芯产地：日本</li>
+				                <li class="mui-table-view-cell">生产厂家名称：广州市创世钟表有限公司</li>
+				            </ul>
+				        </div>
+				    </div>
+				</div>
+				
+			</div>
+			
+			<div class="like">
+				<div class="top">
+					<svg class="icon" aria-hidden="true">
+					  <use xlink:href="#icon-heart"></use>
+					</svg>
+					<p>猜你喜欢</p>
+				</div>
+				
+				<ul>
+					<li>
+						<div class="like-left">
+							<img src="../imgs/1.jpg" alt="" />
+						</div>
+						<div class="like-right">
+							<div class="name">爱奇艺VIP黄金会员月卡 爱奇艺会员1个月</div>
+							<div class="price">￥19.9</div>
+							<p>天猫价  ￥69.9</p>
+						</div>
+					</li>
+				</ul>
+				
+			</div>
+			
+			
 		  </div>
 		</div>
 		
 		
 		<script src="../js/mui.min.js"></script>
+		<script src="../fonts/iconfont.js"></script>
 		<script type="text/javascript">
 			mui.init({
 				//配置下拉刷新和上拉加载

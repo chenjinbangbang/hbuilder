@@ -8,7 +8,13 @@
     <link rel="stylesheet" href="css/base.css"/>
     <link rel="stylesheet" href="fonts/iconfont.css"/>
     <style>
+		.mui-content{ padding-bottom:20px;}
+		.mui-action-back{ color:#000;}
+		.mui-icon{ height:40px;}
+		.mui-active .mui-tab-label,.mui-active .mui-icon{ color:#f00;}
 		
+		.icon{ width:28px; height:28px;}
+		.iconfont{width:22px !important; height:22px !important; font-size:16px !important;}
     </style>
 </head>
 <body>
@@ -23,15 +29,19 @@
 			<span class="mui-tab-label">首页</span>
 		</a>
 	    <a class="mui-tab-item" href="pages/index/search.html">
-			<span class="mui-icon mui-icon-search"></span>
-			<span class="mui-tab-label">搜索</span>
+			<span class="mui-icon">
+				<svg class="icon" aria-hidden="true">
+				  <use xlink:href="#icon-search"></use>
+				</svg>
+			</span>
+			<span class="mui-tab-label" style="margin-top:-7px;">搜索</span>
 		</a>
 	    <a class="mui-tab-item" href="pages/index/friends.html">
 			<span class="mui-icon mui-icon-contact"></span>
 			<span class="mui-tab-label">朋友圈</span>
 		</a>
 		<a class="mui-tab-item" href="pages/index/store.html">
-			<span class="mui-icon mui-icon-contact"></span>
+			<span class="mui-icon iconfont icon-store"></span>
 			<span class="mui-tab-label">商城</span>
 		</a>
 	    <a class="mui-tab-item" href="pages/index/personal.html">
@@ -41,6 +51,7 @@
 	</nav> 
 	
 	<script src="js/mui.min.js"></script>
+	<script src="fonts/iconfont.js"></script>
 	<script src="js/base.js"></script>
 	<script> 
 		mui.init();
