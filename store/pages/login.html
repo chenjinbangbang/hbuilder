@@ -20,6 +20,7 @@
 			.mui-slider-item{ border:none !important;}
 			.mui-slider-progress-bar{ border-bottom:2px solid #f00;}
 			.mui-btn{ width:94%; display:block; margin:auto; height:40px; font-size:16px;}
+			.sendCode{ color:#999; position:absolute; z-index:10; right:15px; margin-top:8px; padding-left:15px;  border-left:1px solid #ccc;}
 		
 			.login-foot{ width:94%; margin:20px auto; display:flex; justify-content:space-between; }
 			.login-foot a{ color:#666;}
@@ -43,16 +44,16 @@
 			    </div>
 			    
 			    <div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div>
-			    <div class="mui-slider-group">
-			        <div id="item1" class="mui-slider-item mui-control-content mui-active">
+			    <div class="mui-slider-group" id="normalLogin">
+			        <div id="item1" class="mui-slider-item mui-control-content">
 			            <form class="mui-input-group">
 					       <div class="mui-input-row">
 					           <label>账号</label>
-					           <input type="text" class="mui-input-clear" placeholder="用户名/手机号">
+					           <input type="text" class="mui-input-clear" placeholder="用户名/手机号" id="username">
 					       </div>
 					       <div class="mui-input-row">
 					           <label>密码</label>
-					           <input type="password" class="mui-input-password" placeholder="请输入密码">
+					           <input type="password" class="mui-input-password" placeholder="请输入密码" id="password">
 					       </div> 
 					   </form>
 					   <button type="button" id="login" class="mui-btn mui-btn-success">按钮</button>
@@ -63,18 +64,19 @@
 						</div>
 			        
 			        </div>
-			        <div id="item2" class="mui-slider-item mui-control-content">
-			            <form class="mui-input-group">
+			        <div id="item2" class="mui-slider-item mui-control-content mui-active">
+			            <form class="mui-input-group" id="phoneLogin">
 					       <div class="mui-input-row">
 					           <label>手机号</label>
-					           <input type="text" class="mui-input-clear" placeholder="请输入手机号">
+					           <input type="text" class="mui-input-clear" placeholder="请输入手机号" id="user">
 					       </div>
 					       <div class="mui-input-row">
-					           <label>校验码</label>
-					           <input type="text" class="mui-input-clear code" placeholder="请输入校验码">
+					       		<div class="sendCode">获取验证码</div>
+					           <label>验证码</label>
+					           <input type="text" class="mui-input-clear code" placeholder="请输入校验码" id="code">
 					       </div> 
 					   </form>
-					   <button type="button" id="login" class="mui-btn mui-btn-success">按钮</button>
+					   <button type="button" id="loginBtn" class="mui-btn mui-btn-success">按钮</button>
 			        
 			        	<div class="login-foot">
 							<a href="register.html">免费注册</a>
@@ -89,21 +91,60 @@
 		<script type="text/javascript">
 			mui.init();
 			
-			var varcheck = true;
+			//账号密码登录
+			var check = true;
 			document.getElementById('login').addEventListener('tap',function(){
 				 
-				mui('.mui-input-group input').each(function(){
+				mui('#normalLogin input').each(function(){
 					if(!this.value || this.value.trim() == ""){
 						var label = this.previousElementSibling;
 						mui.alert(label.innerText + '不允许为空');
 						check = false;
 						return false;
 					}else{ 
-						check = true;
+						check = true; 
 					}
 				});
 				if(check){
-					mui.alert('验证通过');
+					console.log('验证通过');
+					
+					var username = document.getElementById("usernamee").value;
+					var password = document.getElementById("password").value;
+					//mui.ajax();
+				}
+			});
+			
+			//手机号快捷登录
+			//点击获取验证码
+			document.querySelector('.sendCode').addEventListener('tap',function(){
+				mui.ajax(
+						'GEThttp://test.wx.nuozhe8.com/plugin.php?mod=wechat&act=app&do=sms_code',
+						{mobile: '13360502844'},
+						function(result){
+							console.log(result);
+						}
+					);
+			});
+			
+			var check1 = true;
+			document.getElementById('loginBtn').addEventListener('tap',function(){
+				 
+				mui('#phoneLogin input').each(function(){
+					if(!this.value || this.value.trim() == ""){
+						var label = this.previousElementSibling;
+						mui.alert(label.innerText + '不允许为空');
+						check1 = false;
+						return false;
+					}else{ 
+						check1 = true; 
+					}
+				});
+				if(check1){
+					console.log('验证通过');
+					
+					var user = document.getElementById("user").value;
+					var pwd = document.getElementById("pwd").value;
+					//mui.ajax();
 				}
 			});
 			

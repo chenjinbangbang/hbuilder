@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/base.css" rel="stylesheet" />
+		<style type="text/css">
+			body,.mui-content{ background-color:#fff;}
+			.title{ font-size:18px; padding:10px;}
+			.tip{ display:flex; justify-content: center;}
+			.tip li{ padding:0; display:flex; font-size:13px;}
+			.tip li embed{ width:16px; height:16px; margin-top:2px;}
+			.price{ color:#f00; padding:15px 10px; margin-top:10px; border-top:1px solid #eee; border-bottom:1px solid #eee;}
+			.price span:nth-child(1){ font-size:18px;}
+			.price span:nth-child(2){ font-size:26px;}
+		</style> 
+	</head>
+
+	<body> 
+		
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">商品详情</h1>
+		</header>
+		
+		<!--下拉刷新容器-->
+		<div id="refreshContainer" class="mui-content mui-scroll-wrapper">
+		  <div class="mui-scroll">
+		    <!--数据列表-->
+		    <div class="mui-slider">
+			    <div class="mui-slider-group">
+					<div class="mui-slider-item"><a href="#"><img src="../imgs/1.jpg"/></a></div>
+					<div class="mui-slider-item"><a href="#"><img src="../imgs/2.jpg"/></a></div>
+					<div class="mui-slider-item"><a href="#"><img src="../imgs/3.jpg"/></a></div>
+					<div class="mui-slider-item"><a href="#"><img src="../imgs/4.jpg"/></a></div>
+				</div>
+			</div>
+			
+			<div class="title">百草味-芒果干</div>
+			
+			<ul class="tip">
+				<li>
+					<embed src="../imgs/rightno.svg" width="300" height="100" 
+				type="image/svg+xml"
+				pluginspage="../imgs/right.svg" />
+					<span>过敏包退</span>
+				</li>
+				<li>
+					<embed src="../imgs/right.svg" width="300" height="100" 
+				type="image/svg+xml"
+				pluginspage="../imgs/right.svg" />
+					<span>破损包退</span>
+				</li>
+				<li>
+					<embed src="../imgs/rightno.svg" width="300" height="100" 
+				type="image/svg+xml"
+				pluginspage="../imgs/right.svg" />
+					<span>急速包退</span>
+				</li>
+				<li>
+					<embed src="../imgs/rightno.svg" width="300" height="100" 
+				type="image/svg+xml"
+				pluginspage="../imgs/right.svg" />
+					<span>正品保证</span>
+				</li>
+				<li>
+					<embed src="../imgs/rightno.svg" width="300" height="100" 
+				type="image/svg+xml"
+				pluginspage="../imgs/right.svg" />
+					<span>急速退款</span>
+				</li>
+			</ul>
+			
+			<div class="price">
+				<span>￥</span><span>55.6</span>
+			</div>
+			
+		  </div>
+		</div>
+		
+		
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				//配置下拉刷新和上拉加载
+				pullRefresh: {
+					container: '#refreshContainer',
+					//下拉刷新
+					down: {
+						contentdown: "下拉可以刷新",
+						contentover: '释放立即刷新',
+						contentrefresh: '正在刷新...',
+						callback: pulldownRefresh
+					},
+					//上拉加载
+					/*up: {
+						callback: pullupRefresh
+					}*/
+				}
+			});
+			
+			//下拉刷新
+			function pulldownRefresh(){
+				setTimeout(function(){
+					
+					//结束下拉刷新
+					mui('#refreshContainer').pullRefresh().endPulldownToRefresh();	
+				},1000);
+			}
+			
+		</script>
+	</body>
+
+</html>
