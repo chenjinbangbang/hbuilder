@@ -91,7 +91,28 @@
     	});
     	//点击底部导航跳转页面  
     	mui('.mui-bar-tab').on('tap','a',function(){ 
+    		
     		var page = this.getAttribute('href');
+    		
+    		if(page == 'pages/index/personal.html' || page == 'pages/index/friends.html'){
+    			if(!judge_login_status()){
+    				var loginPage = 'pages/login.html';
+		    		mui.openWindow({
+						url: loginPage,
+						id: loginPage,
+						show: { 
+							autoShow: true,
+							aniShow: "slide-in-bottom",
+							duration: 500
+						}, 
+						waiting: { 
+							autoShow: false,
+						}
+					}); 
+    			}else{ 
+    				return true;
+    			}
+    		}
     		plus.webview.show(page,"fade-in",200);
     		document.querySelector('.mui-title').innerHTML = this.querySelector('.mui-tab-label').innerHTML;
     	});

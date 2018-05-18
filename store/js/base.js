@@ -17,3 +17,8 @@ setTimeout(function(){
 		//......
 	}
 });*/
+
+//判断是否已经登录
+function judge_login_status(){
+	return false;
+}

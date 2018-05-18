@@ -82,6 +82,22 @@
     <script type="text/javascript"> 
     	mui.init();
     	
+    	//连续两次按下退出应用
+    	var first = null;
+    	mui.back = function(){
+    		if(!first){
+				first = new Date().getTime();
+				mui.toast('再按一次退出应用');
+				setTimeout(function(){
+					first = null;
+				},1000);
+    		}else{
+    			if(new Date().getTime() - first < 1000){
+    				plus.runtime.quit(); //退出客户端程序
+    			} 
+    		}
+    	};
+    	
     	//跳转页面
     	var subPages = ['pages/sub1.html','pages/sub2.html','pages/sub3.html','pages/sub4.html'];
     	var subPageStyle = {
@@ -91,7 +107,7 @@
     	//窗体管理
     	mui.plusReady(function(){
     		var self = plus.webview.currentWebview(); //获取当前的窗体
-    		console.log(self.getURL());
+    		//console.log(self.getURL());
     		for(var i=0;i<subPages.length;i++){
     			var sub = plus.webview.create(subPages[i],subPages[i],subPageStyle); //创建窗体
     			sub.hide(); //所有窗体都隐藏

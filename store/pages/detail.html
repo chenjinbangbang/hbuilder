@@ -7,17 +7,37 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/base.css" rel="stylesheet" />
+		<link href="../fonts/iconfont.css" rel="stylesheet" />
 		<style type="text/css">
 			.icon{ width:20px; height:20px;}
+			
+			.mui-bar{}
+			.mui-bar .mui-tab-item:nth-child(1){ width:1px; border-right:1px solid #ddd !important; color:#333;}
+			.mui-bar .mui-tab-item:nth-child(1).active{ color:#FF6400; }
+			.mui-bar .mui-tab-item:nth-child(2){ width:4px;}
+			.cart{ width:80%; margin:auto; display:flex; border-radius:20px; color:#fff; overflow:hidden; position:relative;}
+			.cart div{ flex:1; height:40px; line-height:40px;}
+			.cart div:first-child{ background-color:#FFA401;}
+			.cart div:last-child{ background-color:#FF6400;}
+			
+			.starToast{ height:60px; text-align:center;}
+			.starToast span{ display:block; margin-top:15px;}
+			.starToast .iconfont{ color:#FF6400; font-size:24px;}
+			.starToast .message{ }
+			
+			.scrollToTop{ width:48px; height:48px; font-weight:bold; position:fixed; right:20px; bottom:60px; z-index:100; text-align: center; background-color:rgba(255,255,255,0.8); border:1px solid #ccc; border-radius:50%;}
+			.scrollToTop .mui-icon{ color:#999; font-size:26px;}
+			.scrollToTop p{ margin-top:-8px;}
+			.hide{ display:none;}
 			
 			body,.mui-content{ background-color:#fff;}
 			.title{ font-size:18px; padding:10px;}
 			.tip{ display:flex; justify-content: center;}
 			.tip li{ color:#999; padding:0; display:flex; font-size:13px;}
 			.tip li embed{ width:16px; height:16px; margin:2px;}
-			.price{ color:#f00; padding:15px 10px; margin-top:10px; border-top:1px solid #eee; border-bottom:1px solid #eee;}
-			.price span:nth-child(1){ font-size:18px;}
-			.price span:nth-child(2){ font-size:26px;}
+			.goodsprice{ color:#f00; padding:15px 10px; margin-top:10px; border-top:1px solid #eee; border-bottom:1px solid #eee;}
+			.goodsprice span:nth-child(1){ font-size:18px;}
+			.goodsprice span:nth-child(2){ font-size:26px;}
 			
 			.mui-table-view p{ color:#333; margin-top:8px;}
 			.mui-table-view .btn{ position:absolute; right:0;}
@@ -46,6 +66,17 @@
 			.like .top:before{ content:''; position:absolute; width:50px; height:1px; background-color:#f00; margin:20px 0 0 -60px;}
 			.like .top:after{ content:''; position:absolute; width:50px; height:1px; background-color:#f00; margin:20px 0 0 10px;}
 			.like .top p{ margin-left:10px;}
+			.like ul{}
+			.like ul li{ border-bottom:1px solid #f5f5f5; padding:5px;}
+			.like ul li a{ display:flex; color:#333;}
+			.like .like-left{ width:140px;}
+			.like .like-left img{ width:100%; height:140px; display:block;}
+			.like .like-right{ flex:1; padding:0 8px;}
+			.like .like-right .name{ font-size:16px;}
+			.like .like-right .price{ margin-top:40px; display:flex; justify-content: space-between;}
+			.like .like-right .price p:nth-child(1){ color:#f00; font-size:20px;}
+			.like .like-right .price p:nth-child(2){}
+			.like .like-right .price1{ margin-top:10px; color:#999;}
 			
 		</style> 
 	</head>
@@ -57,8 +88,27 @@
 		    <h1 class="mui-title">商品详情</h1>
 		</header>
 		
+		<nav class="mui-bar mui-bar-tab">
+		    <a class="mui-tab-item mui-active" id="collect">
+		        <span class="mui-icon iconfont icon-star"></span>
+		        <span class="mui-tab-label" id="star">收藏</span>
+		    </a>
+		    <a class="mui-tab-item">
+		        <div class="cart">
+		        	<div>加入购物车</div> 
+		        	<div>立即购买</div>
+		        </div>
+		    </a>
+		</nav>
+		
+		<div class="scrollToTop hide" id="scrollToTop">
+			<span class="mui-icon mui-icon-arrowup"></span>
+			<p>顶部</p>
+		</div>
+		
 		<!--下拉刷新容器-->
 		<div id="refreshContainer" class="mui-content mui-scroll-wrapper">
+			
 		  <div class="mui-scroll">
 		    <!--数据列表-->
 		    <div class="mui-slider">
@@ -105,7 +155,7 @@
 				</li>
 			</ul>
 			
-			<div class="price">
+			<div class="goodsprice">
 				<span>￥</span><span>55.6</span>
 			</div>
 			
@@ -143,7 +193,7 @@
 					<div class="mui-card-header mui-card-media">
 						<img src="../imgs/4.jpg" />
 						<div class="mui-media-body">
-							小M
+							小明
 							<p>发表于 2016-06-30 15:30</p>
 						</div>
 					</div>
@@ -157,8 +207,8 @@
 				
 				<div class="mui-slider detail">
 				    <div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-				        <a class="mui-control-item mui-active" href="#item1">选项卡1</a>
-				        <a class="mui-control-item" href="#item2">选项卡2</a>
+				        <a class="mui-control-item mui-active" href="#item1">图文详情</a>
+				        <a class="mui-control-item" href="#item2">产品规格</a>
 				    </div>
 				    <!--<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div>-->
 				    <div class="mui-slider-group">
@@ -192,18 +242,55 @@
 				
 				<ul>
 					<li>
-						<div class="like-left">
-							<img src="../imgs/1.jpg" alt="" />
-						</div>
-						<div class="like-right">
-							<div class="name">爱奇艺VIP黄金会员月卡 爱奇艺会员1个月</div>
-							<div class="price">￥19.9</div>
-							<p>天猫价  ￥69.9</p>
-						</div>
+						<a href="detail.html">
+							<div class="like-left">
+								<img src="../imgs/1.jpg" alt="" />
+							</div>
+							<div class="like-right">
+								<div class="name">爱奇艺VIP黄金会员月卡 爱奇艺会员1个月</div>
+								<div class="price">
+									<p><span>￥</span>19.9</p>
+									<p>月销49118</p>
+								</div>
+								<div class="price1">天猫价  ￥69.9</div>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="detail.html">
+							<div class="like-left">
+								<img src="../imgs/2.jpg" alt="" />
+							</div>
+							<div class="like-right">
+								<div class="name">爱奇艺VIP黄金会员月卡 爱奇艺会员1个月</div>
+								<div class="price">
+									<span>￥19.9</span>
+									<span>月销49118</span>
+								</div>
+								<p class="price1">天猫价  ￥69.9</p>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="detai3.html">
+							<div class="like-left">
+								<img src="../imgs/3.jpg" alt="" />
+							</div>
+							<div class="like-right">
+								<div class="name">爱奇艺VIP黄金会员月卡 爱奇艺会员1个月</div>
+								<div class="price">
+									<span>￥19.9</span>
+									<span>月销49118</span>
+								</div>
+								<p class="price1">天猫价  ￥69.9</p>
+							</div>
+						</a>
 					</li>
 				</ul>
 				
 			</div>
+			
+			
 			
 			
 		  </div>
@@ -225,9 +312,9 @@
 						callback: pulldownRefresh
 					},
 					//上拉加载
-					/*up: {
+					up: {
 						callback: pullupRefresh
-					}*/
+					}
 				}
 			});
 			
@@ -239,6 +326,89 @@
 					mui('#refreshContainer').pullRefresh().endPulldownToRefresh();	
 				},1000);
 			}
+			
+			//上拉加载
+			function pullupRefresh(){
+				setTimeout(function(){
+					//创建dom
+					var table =document.querySelector(".like ul");
+					for(var i=0;i<3;i++){
+						var li = document.createElement("li");
+						//li.className = "mui-table-view-cell mui-media";
+					
+			            var str = `<a href="detai3.html">
+								<div class="like-left">
+									<img src="../imgs/${i+1}.jpg" alt="" />
+								</div>
+								<div class="like-right">
+									<div class="name">爱奇艺VIP黄金会员月卡 爱奇艺会员1个月</div>
+									<div class="price">
+										<span>￥19.9</span>
+										<span>月销49118</span>
+									</div>
+									<p class="price1">天猫价  ￥69.9</p>
+								</div>
+							</a>`;
+			                
+			            li.innerHTML = str;
+			            table.appendChild(li);    
+					}
+					//结束下拉刷新
+					mui('#refreshContainer').pullRefresh().endPullupToRefresh();	
+				},1000);
+			}
+			
+			mui.plusReady(function(){
+				
+				//滑动到底部（因为dom还没加载完导致失效，所以在plusReady里面才生效）
+				//mui('.mui-scroll-wrapper').scroll().scrollToBottom(10); 
+				
+			});
+			
+			//回到顶部
+			var scrollToTopBox = document.getElementById('scrollToTop');
+			scrollToTopBox.addEventListener('tap',function(e){
+				e.stopPropagation();
+				mui('.mui-scroll-wrapper').pullRefresh().scrollTo(0,0,1000);
+			});
+			//Android上监听原生滚动，IOS上监听div滚动，上拉超过一定距离后显示按钮，否则隐藏，可自行在条件判断中修改
+			if(mui.os.android){ //android设备
+				window.addEventListener('scroll',function(e){
+					if(window.pageYOffset >= window.innerHeight && scrollToTopBox.classList.contains('hidden')){
+						scrollToTopBox.classList.remove('hide');
+					}else if(window.pageYOffset < window.innerHeight && !scrollToTopBox.classList.contains('hide')){
+						scrollToTopBox.classList.add('hide');
+					}
+				});
+			}else{ //ios设备
+				//console.log(scrollToTopBox.classList);
+				document.querySelector('.mui-scroll-wrapper').addEventListener('scroll',function(){
+					//获取滑动的高度
+					if(mui('.mui-scroll-wrapper').pullRefresh().y <= window.innerHeight * (-1) && scrollToTopBox.classList.contains('hide')){
+						scrollToTopBox.classList.remove('hide');
+					}else if(mui('.mui-scroll-wrapper').pullRefresh().y > window.innerHeight * (-1) && !scrollToTopBox.classList.contains('hide')){
+						scrollToTopBox.classList.add('hide');
+					}
+				});
+			}
+			
+			//点击收藏
+			document.getElementById("collect").addEventListener('tap',function(){
+				this.classList.toggle('active');
+				if(this.classList.contains('active')){
+					var message = '<div class="starToast"><span class="iconfont icon-star1"></span><span class="message">收藏成功!</span></div>';
+					mui.toast(message,{duration: 1000,type: 'div'});
+					document.getElementById("star").innerHTML = '已收藏';
+				}else{ 
+					var message = '<div class="starToast"><span class="iconfont icon-star1"></span><span class="message">取消收藏成功!</span></div>';
+					mui.toast(message,{duration: 1000,type: 'div'});
+					document.getElementById("star").innerHTML = '收藏';
+				}
+				
+			});
+			
+			
+			
 			
 		</script>
 	</body>
