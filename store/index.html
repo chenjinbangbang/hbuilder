@@ -3,11 +3,17 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title></title>
-    <link rel="stylesheet" href="css/mui.css"/>
+    <link rel="stylesheet" href="css/mui.min.css"/>
     <link rel="stylesheet" href="css/base.css"/>
     <link rel="stylesheet" href="fonts/iconfont.css"/>
     <style>
+    	.hide{ display:none;}
+    	.title{ background-color:rgba(0,0,0,0.5);}
+    	.title h1{}
+    	
 		.mui-content{ padding-bottom:20px;}
 		.mui-action-back{ color:#000;}
 		.mui-icon{ height:40px;}
@@ -19,7 +25,7 @@
 </head>
 <body>
 	
-	<header class="mui-bar mui-bar-nav">
+	<header class="mui-bar mui-bar-nav hide mui-bar-transparent">
 		<h1 class="mui-title">首页</h1>
 	</header>
 	
@@ -47,25 +53,38 @@
 	    <a class="mui-tab-item" href="pages/index/personal.html">
 			<span class="mui-icon mui-icon-person"></span>
 			<span class="mui-tab-label">个人中心</span>
-		</a> 
-	</nav> 
+		</a>
+	</nav>
 	
 	<script src="js/mui.min.js"></script>
 	<script src="fonts/iconfont.js"></script>
 	<script src="js/base.js"></script>
 	<script> 
-		mui.init();
+		mui.init({
+			//statusBarBackground: '#666'
+		}); 
 		
 		//跳转页面
     	var subPages = ['pages/index/home.html','pages/index/search.html','pages/index/friends.html','pages/index/store.html','pages/index/personal.html'];
     	var subPageStyle = {
-    		top: '44px',
+    		top: '0',
     		bottom: '50px'
     	};
     	//窗体管理
-    	mui.plusReady(function(){
+    	mui.plusReady(function(){ 
+    		
+    		//plus.navigator.setFullscreen(true);
+    		
     		var self = plus.webview.currentWebview(); //获取当前的窗体
     		//console.log(self.getURL()); 
+    		
+    		//首页隐藏标题
+    		/*let p = self.getURL();
+    		console.log(p);
+    		if(p.indexOf('pages/index/home.html') >= 0){
+    			document.querySelector('.mui-bar').classList.add('hide');
+    		}*/
+    		
     		for(var i=0;i<subPages.length;i++){
     			var sub = plus.webview.create(subPages[i],subPages[i],subPageStyle); //创建窗体
     			sub.hide(); //所有窗体都隐藏

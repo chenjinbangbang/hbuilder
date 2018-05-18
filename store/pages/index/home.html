@@ -8,10 +8,17 @@
     	<link rel="stylesheet" href="../../css/base.css"/>
     	<link rel="stylesheet" href="../../fonts/iconfont.css"/>
 		<style>
-			.search{ width:94%; left:3%; margin:8px 0; position:absolute; z-index:10;}
-	    	.search input{ background-color:#fff; border-radius:50px;}
+			
+			body,.mui-content{ background-color:#fff;}
+			
+			.search{ width:94%; left:3%; margin:28px 0; position:absolute; z-index:10; display:flex;}
+			.search .mui-search{ flex:1;}
+	    	.search .mui-search input{ background-color:#fff; border-radius:50px; font-size:10px !important;}
+	    	.search .message{ width:40px; text-align:right; position:relative;}
+	    	.search .message span{ font-size:22px; margin-top:5px; display:inline-block; color:#fff;}
+	    	.search .message .messageTip{ width:10px; height:10px; border-radius:50%; background-color:#f00; border:1px solid #fff; position:absolute; right:-3px; top:-2px;}
 	    	
-	    	.banner{ height:250px;}
+	    	.banner{ height:250px;} 
 	    	
 	    	.classify{ background-color:#fff; padding:10px;}
 	    	.classify ul{ display:flex; flex-wrap:wrap;}
@@ -19,39 +26,106 @@
 	    	.classify ul li img{ width:45px;}
 	    	.classify ul li p{}
 	    	
-	    	.view{ background: -webkit-linear-gradient(top, #B8FF87 , #fff); /*background-color:#B8FF87;*/ border-top:1px solid #eee; border-bottom:1px solid #eee;}
+	    	.activity{ margin:20px 0;}
+			.activity ul{ display:flex; flex-wrap:wrap;}
+			.activity ul li{ width:50%; height:100px; padding:5px;}
+			.activity ul li a{ display:flex;}
+			.activity .activity-left{ flex:2;}
+			.activity .activity-left .title{ font-size:18px; font-weight:bold; color:#666;}
+			.activity li:nth-child(1) .activity-left .title{ 
+				/*实现字体渐变*/
+				background-image: -webkit-gradient(linear, 0 0, right 0, from(#F75956), to(#B22A9C));
+	    		-webkit-background-clip: text;
+	    		-webkit-text-fill-color: transparent;
+    		}
+    		.activity li:nth-child(2) .activity-left .title{ 
+				/*实现字体渐变*/
+				background-image: -webkit-gradient(linear, 0 0, right 0, from(#F75956), to(#B22A9C));
+	    		-webkit-background-clip: text;
+	    		-webkit-text-fill-color: transparent;
+    		}
+    		 /*#F75956 #FC2E95*/
+			.activity .activity-left .name{ margin:6px 0;}
+			.activity .activity-left .tip{ display:inline-block; padding:0 5px; background: -webkit-linear-gradient(left, #F75956 , #FC2E95); color:#fff; text-align: center; border-radius:4px; font-size:12px;}
+			.activity .activity-right{ flex:1;}
+			.activity .activity-right img{ width:100%;}
+	    	
+	    	.view{ /*background: -webkit-linear-gradient(top, #B8FF87 , #fff);*/ border-top:1px solid #eee; border-bottom:1px solid #eee;}
 	    	.view-title{ padding:0 10px; height:40px; display:flex; justify-content:space-between; align-items:center;}
 	    	.view-title p{ color:#666;}
 	    	.view-title a{ color:#666;}
 	    	
-	    	.view .mui-scroll-wrapper{ height:230px !important;}
+	    	.view .mui-scroll-wrapper{ height:280px !important;}
 	    	.view .mui-scroll-wrapper .mui-control-item{ display:inline-block; width:160px; border:2px solid #fff; padding:0; border-radius:8px; margin:0 3px;}
 	    	.view .mui-scroll-wrapper .mui-control-item.mui-active{ border:2px solid #fff; color:#666;}
 	    	.view .mui-scroll-wrapper .mui-control-item span{ display:block;}
 	    	.view .mui-scroll-wrapper .mui-control-item .img{ display:flex; justify-content:center; align-items:center; height:160px;}
 	    	.view .mui-scroll-wrapper .mui-control-item .img img{ width:100%; width:100%; height:100%;}
-			.title{ margin:-5px 0 0 5px; text-align:left;}
-	    	.price{ margin:-5px 0 0 5px;  text-align:left;}
+			.title{ margin:-5px 0 0 5px; display:block; text-align:center;}
+	    	.price{ width:90%; margin:auto; position:relative; overflow:hidden; border:1px solid #FA6477; border-radius:8px;}
+	    	.price div{ height:20px; line-height:20px; font-size:14px;}
+	    	.price .price-top{ background-color:#FA6477; color:#fff;}
+	    	.price .price-foot{ color:#FA6477;}
+	    	
 		</style>
 	</head>
 	<body>
 		
 		<div class="mui-content">
-			<div class="mui-input-row mui-search search">
-				<input type="search" class="mui-input-clear" name="" required="" placeholder="搜索商品" id="search">
+			<div class="search">
+				<div class="mui-input-row mui-search">
+					<input type="search" class="mui-input-clear" name="" required="" placeholder="搜索商品名称/淘宝宝贝标题" id="search">
+				</div>
+				<div class="message">
+					<span class="messageTip"></span>
+					<span class="iconfont icon-message"></span>
+				</div>
 			</div>
 			
-			<div class="mui-slider banner">
-				<!--<div class="mui-slider-group mui-slider-loop"> -->
-				<div class="mui-slider-group">
-					<!--<div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="imgs/4.jpg"/></a></div>-->
-					
-					<div class="mui-slider-item"><a href="#"><img src="../../imgs/1.jpg"/></a></div>
-					<div class="mui-slider-item"><a href="#"><img src="../../imgs/2.jpg"/></a></div>
-					<div class="mui-slider-item"><a href="#"><img src="../../imgs/3.jpg"/></a></div>
-					<div class="mui-slider-item"><a href="#"><img src="../../imgs/4.jpg"/></a></div>
-					
-					<!--<div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="imgs/1.jpg"/></a></div>-->
+			<div class="mui-slider" >
+				<div class="mui-slider-group mui-slider-loop">
+					<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#">
+							<img src="../../imgs/4.jpg"/>
+						</a> 
+					</div>
+					<!-- 第一张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="../../imgs/1.jpg"/>
+						</a> 
+					</div>
+					<!-- 第二张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="../../imgs/2.jpg"/>
+						</a>
+					</div>
+					<!-- 第三张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="../../imgs/3.jpg"/>
+						</a>
+					</div>
+					<!-- 第四张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="../../imgs/4.jpg"/>
+						</a>
+					</div>
+					<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#">
+							<img src="../../imgs/1.jpg"/>
+						</a>
+					</div>
+				</div>
+				<div class="mui-slider-indicator">
+					<div class="mui-indicator mui-active"></div>
+					<div class="mui-indicator"></div>
+					<div class="mui-indicator"></div>
+					<div class="mui-indicator"></div>
 				</div>
 			</div>
 			
@@ -119,6 +193,57 @@
 					</li>
 				</ul>
 			</div>
+
+			<div class="activity">
+				<ul>
+					<li>
+						<a href="detail.html">
+							<div class="activity-left">
+								<p class="title" style=" color:#FC417D;">超级返</p>
+								<p class="name">吻雾感唇膏￥29</p>
+								<p class="tip">每日10点上新</p>
+							</div>
+							<div class="activity-right">
+								<img src="../../imgs/5.png" alt="" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="detail.html">
+							<div class="activity-left">
+								<p class="title">限量秒杀</p>
+								<p class="name">7天固元膏￥29.9</p>
+							</div>
+							<div class="activity-right">
+								<img src="../../imgs/6.png" alt="" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="detail.html">
+							<div class="activity-left">
+								<p class="title">9.9包邮</p>
+								<p class="name">每日白菜价</p>
+							</div>
+							<div class="activity-right">
+								<img src="../../imgs/7.png" alt="" />
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="detail.html">
+							<div class="activity-left">
+								<p class="title">理财返利</p>
+								<p class="name">返利限时提升</p>
+								<p class="tip">最高返150元+1.5%</p>
+							</div>
+							<div class="activity-right">
+								<img src="../../imgs/8.png" alt="" />
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
 			
 			<div class="view">
 				<div class="view-title">
@@ -133,42 +258,60 @@
 			            		<img src="../../imgs/1.jpg" alt="" />
 				            </span>
 				            <span class="title">韩潮男装</span>
-				            <span class="price">￥200</span>
+				            <div class="price">
+				            	<div class="price-top">3元券</div>
+				            	<div class="price-foot">券后￥14.90</div>
+				            </div>
 				        </a>
 				        <a class="mui-control-item" href="../detail.html">
 				            <span class="img">
 			            		<img src="../../imgs/2.jpg" alt="" />
 				            </span>
 				            <span class="title">韩潮男装</span>
-				            <span class="price">￥200</span>
+				            <div class="price">
+				            	<div class="price-top">3元券</div>
+				            	<div class="price-foot">券后￥14.90</div>
+				            </div>
 				        </a>
 				        <a class="mui-control-item" href="../detail.html">
 				            <span class="img">
 			            		<img src="../../imgs/3.jpg" alt="" />
 				            </span>
 				            <span class="title">韩潮男装</span>
-				            <span class="price">￥200</span>
+				            <div class="price">
+				            	<div class="price-top">3元券</div>
+				            	<div class="price-foot">券后￥14.90</div>
+				            </div>
 				        </a>
 				        <a class="mui-control-item" href="../detail.html">
 				            <span class="img">
 			            		<img src="../../imgs/4.jpg" alt="" />
 				            </span>
 				            <span class="title">韩潮男装</span>
-				            <span class="price">￥200</span>
+				            <div class="price">
+				            	<div class="price-top">3元券</div>
+				            	<div class="price-foot">券后￥14.90</div>
+				            </div>
 				        </a>
 				        <a class="mui-control-item" href="../detail.html">
 				            <span class="img">
 			            		<img src="../../imgs/2.jpg" alt="" />
 				            </span>
 				            <span class="title">韩潮男装</span>
-				            <span class="price">￥200</span>
+				            <div class="price">
+				            	<div class="price-top">3元券</div>
+				            	<div class="price-foot">券后￥14.90</div>
+				            </div>
 				        </a>
 				        <a class="mui-control-item" href="../detail.html">
 				            <span class="img">
 			            		<img src="../../imgs/4.jpg" alt="" />
 				            </span>
 				            <span class="title">韩潮男装</span>
-				            <span class="price">￥200</span>
+				            <div class="price">
+				            	<div class="price-top">3元券</div>
+				            	<div class="price-foot">券后￥14.90</div>
+				            </div>
 				        </a>
 				    </div>
 				</div>
@@ -181,7 +324,7 @@
 		<script type="text/javascript">
 			var gallery = mui('.mui-slider');
 			gallery.slider({ 
-				interval: 3000 //自动轮播周期
+				interval: 2000 //自动轮播周期
 			});
 			
 			var search = document.getElementById('search');

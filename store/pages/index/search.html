@@ -9,13 +9,25 @@
     	<link rel="stylesheet" href="../../fonts/iconfont.css"/>
 		<style>
 			body,.mui-content{background-color:#fff;}
+			.mui-bar-nav{ margin-top:20px; box-shadow:none;}
+			.mui-bar-nav .mui-icon{  color:#fff;}
+			.mui-bar-nav .mui-title{ color:#fff;}
+			.mui-content{ margin-top:-45px;}
 			
-			.tabs{ /*background-color:#fff;*/ background: -webkit-linear-gradient(top, #E80056 , #8F1A96); color:#fff; text-align: center;}
-			.tabs{ display:flex; justify-content:space-around; border-bottom:1px solid #ddd;}
-			.tabs li{ flex:1; height:40px; line-height:40px;}
-			.tabs li.active{ /*color:#f00; border-bottom:2px solid #f00;*/ background-color:#E80056;  opacity:1; font-weight:bold;}
+			.search-top{ background-color:#FF5454; padding-top:70px}
 			
-			.search{ height:80px; padding:0 20px; displaY:flex; align-items:center; background-color:#f5f5f5;}
+			.tabs{ color:#fff; text-align: center;}
+			.tabs{ display:flex; justify-content:space-around;}
+			.tabs li{ flex:1; height:40px; line-height:40px;
+				/*梯形*/ 
+				/*border-top: 40px solid transparent;*/
+			    border-right: 20px solid transparent;
+			    border-bottom: 40px solid #f00;
+			    border-left: 20px solid transparent;
+			}
+			.tabs li.active{ opacity:1; font-weight:bold;}
+			
+			.search{ height:80px; padding:0 20px; displaY:flex; align-items:center;}
 			.search .mui-input-row{ flex:8; margin-top:14px; margin-right:2px;}
 	    	.search .mui-input-row input{ background-color:#fff; border-radius:4px;}
 	    	.search button{ flex:1;}
@@ -32,20 +44,29 @@
 	</head>
 	<body>
 		
+		<header class="mui-bar mui-bar-nav mui-bar-transparent">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">搜索</h1>
+		</header>
+		
 		<div class="mui-content">
 			
-			<ul class="tabs">
-				<li class="active">淘宝</li>
-				<li>京东</li>
-				<li>拼多多</li>
-			</ul>
-			
-			<div class="search">
-				<div class="mui-input-row mui-search">
-					<input type="search" class="mui-input-clear" placeholder="搜索商品" id="search">
+			<div class="search-top">
+				<ul class="tabs">
+					<li class="active">淘宝</li>
+					<li>京东</li>
+					<li>拼多多</li>
+				</ul>
+				
+				<div class="search">
+					<div class="mui-input-row mui-search">
+						<input type="search" class="mui-input-clear" placeholder="搜索商品" id="search">
+					</div>
+					<button type="button" class="mui-btn mui-btn-warning">搜索</button>
 				</div>
-				<button type="button" class="mui-btn mui-btn-warning">搜索</button>
 			</div>
+			
+
 			
 			<div class="storage">
 				<div class="title">
