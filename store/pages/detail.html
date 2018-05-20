@@ -9,7 +9,10 @@
 		<link href="../css/base.css" rel="stylesheet" />
 		<link href="../fonts/iconfont.css" rel="stylesheet" />
 		<style type="text/css">
+			.mui-content{ margin-top:-44px; }
 			.icon{ width:20px; height:20px;}
+			
+			.back{ width:30px; height:30px; line-height:30px; text-align:center; background-color:rgba(0,0,0,0.3); border-radius:50%; position:absolute; top:70px; left:10px; z-index:10; color:#fff; font-size:26px;}
 			
 			.mui-bar{}
 			.mui-bar .mui-tab-item:nth-child(1){ width:1px; border-right:1px solid #ddd !important; color:#333;}
@@ -28,9 +31,7 @@
 			.scrollToTop{ width:48px; height:48px; font-weight:bold; position:fixed; right:20px; bottom:60px; z-index:100; text-align: center; background-color:rgba(255,255,255,0.8); border:1px solid #ccc; border-radius:50%;}
 			.scrollToTop .mui-icon{ color:#999; font-size:26px;}
 			.scrollToTop p{ margin-top:-8px;}
-			.hide{ display:none;}
 			
-			body,.mui-content{ background-color:#fff;}
 			.title{ font-size:18px; padding:10px;}
 			.tip{ display:flex; justify-content: center;}
 			.tip li{ color:#999; padding:0; display:flex; font-size:13px;}
@@ -76,16 +77,17 @@
 			.like .like-right .price{ margin-top:40px; display:flex; justify-content: space-between;}
 			.like .like-right .price p:nth-child(1){ color:#f00; font-size:20px;}
 			.like .like-right .price p:nth-child(2){}
-			.like .like-right .price1{ margin-top:10px; color:#999;}
+			.like .like-right .price1{ margin-top:10px; display:flex; justify-content: space-between;}
+			.like .like-right .price1 p{ color:#999;}
+			.like .like-right .price1 .ticket{}
+			.like .like-right .price1 .ticket img{ width:60px;}
 			
 		</style> 
 	</head>
-
 	<body> 
-		
-		<header class="mui-bar mui-bar-nav">
+		<header class="mui-bar mui-bar-nav hide">
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-		    <h1 class="mui-title">商品详情</h1>
+		    <!--<h1 class="mui-title">商品详情</h1>-->
 		</header>
 		
 		<nav class="mui-bar mui-bar-tab">
@@ -101,6 +103,9 @@
 		    </a>
 		</nav>
 		
+		<!--顶部白色背景-->
+		<div class="topStatus hide"></div>
+		
 		<div class="scrollToTop hide" id="scrollToTop">
 			<span class="mui-icon mui-icon-arrowup"></span>
 			<p>顶部</p>
@@ -109,8 +114,10 @@
 		<!--下拉刷新容器-->
 		<div id="refreshContainer" class="mui-content mui-scroll-wrapper">
 			
+			<span class="back mui-action-back mui-icon mui-icon-back"></span>
+			
 		  <div class="mui-scroll">
-		    <!--数据列表-->
+		    
 		    <div class="mui-slider">
 			    <div class="mui-slider-group">
 					<div class="mui-slider-item"><a href="#"><img src="../imgs/1.jpg"/></a></div>
@@ -252,7 +259,12 @@
 									<p><span>￥</span>19.9</p>
 									<p>月销49118</p>
 								</div>
-								<div class="price1">天猫价  ￥69.9</div>
+								<div class="price1">
+									<p>天猫价  ￥69.9</p>
+									<div class="ticket">
+										<img src="../imgs/ticket.png" alt="" />
+									</div>
+								</div>
 							</div>
 						</a>
 					</li>
@@ -264,10 +276,15 @@
 							<div class="like-right">
 								<div class="name">爱奇艺VIP黄金会员月卡 爱奇艺会员1个月</div>
 								<div class="price">
-									<span>￥19.9</span>
-									<span>月销49118</span>
+									<p><span>￥</span>19.9</p>
+									<p>月销49118</p>
 								</div>
-								<p class="price1">天猫价  ￥69.9</p>
+								<div class="price1">
+									<p>天猫价  ￥69.9</p>
+									<div class="ticket">
+										<img src="../imgs/ticket.png" alt="" />
+									</div>
+								</div>
 							</div>
 						</a>
 					</li>
@@ -279,10 +296,15 @@
 							<div class="like-right">
 								<div class="name">爱奇艺VIP黄金会员月卡 爱奇艺会员1个月</div>
 								<div class="price">
-									<span>￥19.9</span>
-									<span>月销49118</span>
+									<p><span>￥</span>19.9</p>
+									<p>月销49118</p>
 								</div>
-								<p class="price1">天猫价  ￥69.9</p>
+								<div class="price1">
+									<p>天猫价  ￥69.9</p>
+									<div class="ticket">
+										<img src="../imgs/ticket.png" alt="" />
+									</div>
+								</div>
 							</div>
 						</a>
 					</li>
@@ -300,6 +322,7 @@
 		<script src="../js/mui.min.js"></script>
 		<script src="../fonts/iconfont.js"></script>
 		<script type="text/javascript">
+			
 			mui.init({
 				//配置下拉刷新和上拉加载
 				pullRefresh: {
@@ -321,7 +344,6 @@
 			//下拉刷新
 			function pulldownRefresh(){
 				setTimeout(function(){
-					
 					//结束下拉刷新
 					mui('#refreshContainer').pullRefresh().endPulldownToRefresh();	
 				},1000);
@@ -343,10 +365,15 @@
 								<div class="like-right">
 									<div class="name">爱奇艺VIP黄金会员月卡 爱奇艺会员1个月</div>
 									<div class="price">
-										<span>￥19.9</span>
-										<span>月销49118</span>
+										<p><span>￥</span>19.9</p>
+										<p>月销49118</p>
 									</div>
-									<p class="price1">天猫价  ￥69.9</p>
+									<div class="price1">
+										<p>天猫价  ￥69.9</p>
+										<div class="ticket">
+											<img src="../imgs/ticket.png" alt="" />
+										</div>
+									</div>
 								</div>
 							</a>`;
 			                
@@ -358,15 +385,27 @@
 				},1000);
 			}
 			
+			//关闭页面时触发
+			var old_back = mui.back;
+			mui.back = function(){
+				plus.navigator.setStatusBarStyle( "dark" );
+				old_back();
+			};
+			
 			mui.plusReady(function(){
+				
+				plus.navigator.setStatusBarStyle( "light" );
 				
 				//滑动到底部（因为dom还没加载完导致失效，所以在plusReady里面才生效）
 				//mui('.mui-scroll-wrapper').scroll().scrollToBottom(10); 
 				
 			});
 			
-			//回到顶部
+			//回到顶部和返回按钮显示与隐藏
 			var scrollToTopBox = document.getElementById('scrollToTop');
+			var back = document.querySelector('.back'); //返回按钮
+			var backNav = document.querySelector('.mui-bar-nav'); //返回
+			var topStatus = document.querySelector('.topStatus'); //顶部状态栏
 			scrollToTopBox.addEventListener('tap',function(e){
 				e.stopPropagation();
 				mui('.mui-scroll-wrapper').pullRefresh().scrollTo(0,0,1000);
@@ -374,6 +413,25 @@
 			//Android上监听原生滚动，IOS上监听div滚动，上拉超过一定距离后显示按钮，否则隐藏，可自行在条件判断中修改
 			if(mui.os.android){ //android设备
 				window.addEventListener('scroll',function(e){
+					//返回按钮的显示与隐藏
+					if(window.pageYOffset > 0 && !back.classList.contains('hide')){
+						back.classList.add('hide');
+					}else if(window.pageYOffset <= 0 && back.classList.contains('hide')){
+						back.classList.remove('hide');
+					}
+					//返回按钮的变化
+					if(window.pageYOffset <= -100 && backNav.classList.contains('hide')){
+						back.classList.add('hide');
+						backNav.classList.remove('hide');
+						plus.navigator.setStatusBarStyle( "dark" );
+						topStatus.classList.remove('hide');
+					}else if(window.pageYOffset > -100 && !backNav.classList.contains('hide')){
+						back.classList.remove('hide');
+						backNav.classList.add('hide');
+						plus.navigator.setStatusBarStyle( "light" );
+						topStatus.classList.add('hide');
+					}
+					
 					if(window.pageYOffset >= window.innerHeight && scrollToTopBox.classList.contains('hidden')){
 						scrollToTopBox.classList.remove('hide');
 					}else if(window.pageYOffset < window.innerHeight && !scrollToTopBox.classList.contains('hide')){
@@ -383,7 +441,27 @@
 			}else{ //ios设备
 				//console.log(scrollToTopBox.classList);
 				document.querySelector('.mui-scroll-wrapper').addEventListener('scroll',function(){
-					//获取滑动的高度
+					//mui('.mui-scroll-wrapper').pullRefresh().y：获取距离顶部的距离大小
+					//返回按钮的显示与隐藏
+					if(mui('.mui-scroll-wrapper').pullRefresh().y > 0 && !back.classList.contains('hide')){
+						back.classList.add('hide');
+					}else if(mui('.mui-scroll-wrapper').pullRefresh().y <= 0 && back.classList.contains('hide')){
+						back.classList.remove('hide');
+					}
+					//返回按钮的变化
+					if(mui('.mui-scroll-wrapper').pullRefresh().y <= -100 && backNav.classList.contains('hide')){
+						back.classList.add('hide');
+						backNav.classList.remove('hide');
+						//plus.navigator.setStatusBarBackground("#f00"); //无效，因为manifest.json配置优先级高
+						plus.navigator.setStatusBarStyle( "dark" );
+						topStatus.classList.remove('hide');
+					}else if(mui('.mui-scroll-wrapper').pullRefresh().y > -100 && !backNav.classList.contains('hide')){
+						back.classList.remove('hide');
+						backNav.classList.add('hide');
+						plus.navigator.setStatusBarStyle( "light" );
+						topStatus.classList.add('hide');
+					}
+					
 					if(mui('.mui-scroll-wrapper').pullRefresh().y <= window.innerHeight * (-1) && scrollToTopBox.classList.contains('hide')){
 						scrollToTopBox.classList.remove('hide');
 					}else if(mui('.mui-scroll-wrapper').pullRefresh().y > window.innerHeight * (-1) && !scrollToTopBox.classList.contains('hide')){
@@ -394,6 +472,7 @@
 			
 			//点击收藏
 			document.getElementById("collect").addEventListener('tap',function(){
+				
 				this.classList.toggle('active');
 				if(this.classList.contains('active')){
 					var message = '<div class="starToast"><span class="iconfont icon-star1"></span><span class="message">收藏成功!</span></div>';

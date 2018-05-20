@@ -7,6 +7,19 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link href="../../css/base.css" rel="stylesheet" />
+		<style type="text/css">
+			.mui-content,body{ margin-top:20px; background-color:#f5f5f5;}
+			
+			.mui-card{ box-shadow:none; border-radius:8px;}
+			.mui-card div{ border:none;}
+			.mui-card .mui-media-body{}
+			.mui-card .mui-media-body p{}
+			.mui-card .mui-media-body p:nth-child(1){ font-weight:bold; font-size:16px; color:#000;}
+			.mui-card .mui-media-body p:nth-child(2){}
+			.mui-card .mui-card-content{ padding:10px;}
+			.mui-card .mui-card-content img{ width:100%;}
+			.mui-card .mui-card-footer a{ color:#333;}
+		</style>
 	</head>
 
 	<body>
@@ -17,36 +30,24 @@
 		</header>
 		
 		<div class="mui-content">
-		    
-		    <ul class="mui-table-view">
-		        <li class="mui-table-view-cell mui-media">
-		            <a href="listDetail.html" class="mui-navigate-right" title="功能介绍">
-		                <img class="mui-media-object mui-pull-left" src="../../imgs/1.jpg">
-		                <div class="mui-media-body">
-		                    功能介绍
-		                    <p class="mui-ellipsis">花生日记功能介绍花生日记功能介绍</p>
-		                </div>
-		            </a>
-		        </li>
-		        <li class="mui-table-view-cell mui-media">
-		            <a href="listDetail.html" class="mui-navigate-right" title="首页特色板块介绍">
-		                <img class="mui-media-object mui-pull-left" src="../../imgs/3.jpg">
-		                <div class="mui-media-body">
-		                    首页特色板块介绍 
-		                    <p class="mui-ellipsis">首页特色板块介绍首页特色板块介绍</p>
-		                </div>
-		            </a>
-		        </li>
-		        <li class="mui-table-view-cell mui-media">
-		            <a href="listDetail.html" class="mui-navigate-right" title="如何搜索优惠券">
-		                <img class="mui-media-object mui-pull-left" src="../../imgs/4.jpg">
-		                <div class="mui-media-body">
-		                    如何搜索优惠券
-		                    <p class="mui-ellipsis">如何搜索优惠券如何搜索优惠券</p>
-		                </div>
-		            </a>
-		        </li>
-		    </ul>
+			
+			<div class="mui-card">
+				<div class="mui-card-header">
+					<div class="mui-media-body">
+						<p>新手必看</p>
+						<p>发表于 2018-10-10 10:15:15</p>
+					</div>
+				</div>
+				<div class="mui-card-content">
+					<a href="listDetail.html" title="新手必看">
+						<img src="../../imgs/column1.png" alt="" />
+						<p>我在APP里能做什么</p>
+					</a>
+				</div>
+				<div class="mui-card-footer">
+					<p><a href="listDetail.html" title="新手必看">点击查看</a></p>
+				</div>
+			</div>
 		    
 		</div>
 		
@@ -61,7 +62,7 @@
 				document.querySelector(".mui-title").innerHTML = title;
 			});
 			
-			mui('.mui-table-view').on('tap','a',function(){
+			mui('.mui-card').on('tap','a',function(){
 				var page = this.getAttribute('href');
 				var title = this.getAttribute('title');
 				

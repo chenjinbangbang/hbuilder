@@ -7,23 +7,22 @@
 		<link rel="stylesheet" href="../../css/mui.css"/>
     	<link rel="stylesheet" href="../../css/base.css"/>
     	<link rel="stylesheet" href="../../fonts/iconfont.css"/>
-		<style>
+		<style> 
 			
-			body,.mui-content{ background-color:#fff;}
-			
-			.search{ width:94%; left:3%; margin:28px 0; position:absolute; z-index:10; display:flex;}
+			.search{ width:100%; padding:10px 10px 0 10px; top:20px; position:fixed; z-index:10; display:flex;}
 			.search .mui-search{ flex:1;}
-	    	.search .mui-search input{ background-color:#fff; border-radius:50px; font-size:10px !important;}
+	    	.search .mui-search input{ background-color:#f5f5f5; border-radius:50px; font-size:10px !important;}
 	    	.search .message{ width:40px; text-align:right; position:relative;}
-	    	.search .message span{ font-size:22px; margin-top:5px; display:inline-block; color:#fff;}
+	    	.search .message span{ font-size:22px; margin-top:5px; display:inline-block; color:#f5f5f5;}
 	    	.search .message .messageTip{ width:10px; height:10px; border-radius:50%; background-color:#f00; border:1px solid #fff; position:absolute; right:-3px; top:-2px;}
 	    	
-	    	.banner{ height:250px;} 
+	    	.banner{ height:250px;}
 	    	
 	    	.classify{ background-color:#fff; padding:10px;}
 	    	.classify ul{ display:flex; flex-wrap:wrap;}
 	    	.classify ul li{ width:20%; text-align:center; margin-top:10px;}
-	    	.classify ul li img{ width:45px;}
+	    	.classify ul li .icon{ height:50px; display:flex; justify-content: center; align-items:center;;}
+	    	.classify ul li .icon img{ width:45px;}
 	    	.classify ul li p{}
 	    	
 	    	.activity{ margin:20px 0;}
@@ -55,7 +54,7 @@
 	    	.view-title p{ color:#666;}
 	    	.view-title a{ color:#666;}
 	    	
-	    	.view .mui-scroll-wrapper{ height:280px !important;}
+	    	.view .mui-scroll-wrapper{ height:260px !important; overflow:hidden;}
 	    	.view .mui-scroll-wrapper .mui-control-item{ display:inline-block; width:160px; border:2px solid #fff; padding:0; border-radius:8px; margin:0 3px;}
 	    	.view .mui-scroll-wrapper .mui-control-item.mui-active{ border:2px solid #fff; color:#666;}
 	    	.view .mui-scroll-wrapper .mui-control-item span{ display:block;}
@@ -71,50 +70,50 @@
 	</head>
 	<body>
 		
-		<div class="mui-content">
-			<div class="search">
-				<div class="mui-input-row mui-search">
-					<input type="search" class="mui-input-clear" name="" required="" placeholder="搜索商品名称/淘宝宝贝标题" id="search">
-				</div>
-				<div class="message">
-					<span class="messageTip"></span>
-					<span class="iconfont icon-message"></span>
-				</div>
+		<!--顶部白色背景-->
+		<div class="topStatus hide"></div>
+		
+		<div class="search">
+			<div class="mui-input-row mui-search">
+				<input type="search" class="mui-input-clear" name="" required="" placeholder="搜索商品名称/淘宝宝贝标题" id="search">
 			</div>
+			<div class="message">
+				<span class="messageTip"></span>
+				<span class="iconfont icon-message"></span>
+			</div>
+		</div>
+		
+		<!--下拉刷新容器-->
+		<div id="refreshContainer" class="mui-content mui-scroll-wrapper wrapper">
+		  <div class="mui-scroll">
 			
 			<div class="mui-slider" >
 				<div class="mui-slider-group mui-slider-loop">
-					<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
 					<div class="mui-slider-item mui-slider-item-duplicate">
 						<a href="#">
 							<img src="../../imgs/4.jpg"/>
 						</a> 
 					</div>
-					<!-- 第一张 -->
 					<div class="mui-slider-item">
 						<a href="#">
 							<img src="../../imgs/1.jpg"/>
 						</a> 
 					</div>
-					<!-- 第二张 -->
 					<div class="mui-slider-item">
 						<a href="#">
 							<img src="../../imgs/2.jpg"/>
 						</a>
 					</div>
-					<!-- 第三张 -->
 					<div class="mui-slider-item">
 						<a href="#">
 							<img src="../../imgs/3.jpg"/>
 						</a>
 					</div>
-					<!-- 第四张 -->
 					<div class="mui-slider-item">
 						<a href="#">
 							<img src="../../imgs/4.jpg"/>
-						</a>
+						</a> 
 					</div>
-					<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
 					<div class="mui-slider-item mui-slider-item-duplicate">
 						<a href="#">
 							<img src="../../imgs/1.jpg"/>
@@ -131,66 +130,33 @@
 			
 			<div class="classify">
 				<ul>
-					<li>
-						<a href="#">
-							<img src="../../imgs/icon.png" alt="" />
-							<p>超級返</p>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<img src="../../imgs/icon1.png" alt="" />
-							<p>全球贿选</p>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<img src="../../imgs/icon.png" alt="" />
-							<p>9块9</p>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<img src="../../imgs/icon1.png" alt="" />
-							<p>有好券</p>
+					<!--<li>
+						<a href="../theme.html">
+							<div class="icon">
+								<img src="../../imgs/icon1.png" alt="" />
+							</div>
+							<p>主题街</p>
 						</a>
 					</li>
 					<li>
 						<a href="#">
 							<img src="../../imgs/icon.png" alt="" />
-							<p>充值中心</p>
+							<p>叮咚抢</p>
 						</a>
 					</li>
 					<li>
 						<a href="#">
 							<img src="../../imgs/icon1.png" alt="" />
-							<p>淘宝返利</p>
+							<p>拼购</p>
 						</a>
 					</li>
 					<li>
 						<a href="#">
 							<img src="../../imgs/icon.png" alt="" />
-							<p>京东返利</p>
+							<p>主题街</p>
 						</a>
-					</li>
-					<li>
-						<a href="#">
-							<img src="../../imgs/icon1.png" alt="" />
-							<p>商城返利</p>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<img src="../../imgs/icon.png" alt="" />
-							<p>理财返利</p>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<img src="../../imgs/icon1.png" alt="" />
-							<p>刷卡返利</p>
-						</a>
-					</li>
+					</li>-->
+
 				</ul>
 			</div>
 
@@ -316,13 +282,39 @@
 				    </div>
 				</div>
 			</div>
-			
+		  </div>
 		</div>
 		
 		<script src="../../js/mui.min.js"></script> 
 		<script src="../../js/base.js"></script>
 		<script type="text/javascript">
-			var gallery = mui('.mui-slider');
+			mui.init({
+				//配置下拉刷新和上拉加载
+				pullRefresh: {
+					container: '#refreshContainer',
+					//下拉刷新
+					down: {
+						contentdown: "下拉可以刷新",
+						contentover: '释放立即刷新',
+						contentrefresh: '正在刷新...',
+						callback: pulldownRefresh
+					},
+					//上拉加载
+					up: {
+						//callback: pullupRefresh
+					}
+				}
+			});
+			
+			//下拉刷新
+			function pulldownRefresh(){
+				setTimeout(function(){
+					//结束下拉刷新
+					mui('#refreshContainer').pullRefresh().endPulldownToRefresh();	
+				},1000);
+			}
+			
+			var gallery = mui('.mui-slider'); 
 			gallery.slider({ 
 				interval: 2000 //自动轮播周期
 			});
@@ -345,10 +337,25 @@
 					}
 				});
 				
-				/*setTimeout(function(){
+				setTimeout(function(){
 					search.blur();
-				},500);*/
+				},500);
 				
+			});
+			
+			//分类栏目跳转
+			mui('.classify').on('tap','a',function(){
+				var page = this.getAttribute('href');
+				
+				mui.openWindow({ 
+					url: page,
+					id: page,
+					extras: {},
+					waiting: {
+						autoShow: true,
+						title: '正在加载...'
+					}
+				});
 			});
 			
 			//跳转到商品详情
@@ -374,31 +381,129 @@
 			mui('.view .mui-scroll-wrapper').scroll({
 				scrollY: false,
 				scrollX: true,
+				deceleration: 0.0005
 			});
 			
-			var now = new Date().getTime();
+			//回到顶部和返回按钮显示与隐藏
+			//var scrollToTopBox = document.getElementById('scrollToTop');
+			//var back = document.querySelector('.back'); //返回按钮
+			var search = document.querySelector('.search'); //返回
+			var topStatus = document.querySelector('.topStatus'); //顶部状态栏
+
+			//Android上监听原生滚动，IOS上监听div滚动，上拉超过一定距离后显示按钮，否则隐藏，可自行在条件判断中修改
+			if(mui.os.android){ //android设备
+				window.addEventListener('scroll',function(e){
+					//返回按钮的显示与隐藏
+					if(window.pageYOffset > 0 && !search.classList.contains('hide')){
+						search.classList.add('hide');
+					}else if(window.pageYOffset <= 0 && search.classList.contains('hide')){
+						search.classList.remove('hide');
+					}
+					//返回按钮的变化
+					if(window.pageYOffset <= -100 && topStatus.classList.contains('hide')){
+						search.classList.add('searchbg');
+						plus.navigator.setStatusBarStyle( "dark" );
+						topStatus.classList.remove('hide');
+					}else if(window.pageYOffset > -100 && !topStatus.classList.contains('hide')){
+						search.classList.remove('searchbg'); 
+						plus.navigator.setStatusBarStyle( "light" );
+						topStatus.classList.add('hide'); 
+					}
+				});
+			}else{ //ios设备
+				//console.log(scrollToTopBox.classList);
+				document.querySelector('.wrapper').addEventListener('scroll',function(){
+					//mui('.wrapper').pullRefresh().y：获取距离顶部的距离大小
+					//搜索的显示与隐藏
+					if(mui('.wrapper').pullRefresh().y > 0 && !search.classList.contains('hide')){
+						search.classList.add('hide'); 
+					}else if(mui('.wrapper').pullRefresh().y <= 0 && search.classList.contains('hide')){
+						search.classList.remove('hide');
+					}
+					//搜索的变化
+					if(mui('.wrapper').pullRefresh().y <= -100 && topStatus.classList.contains('hide')){ //在下面滚动
+						search.classList.add('searchbg');
+						plus.navigator.setStatusBarStyle( "dark" );
+						topStatus.classList.remove('hide');
+					}else if(mui('.wrapper').pullRefresh().y > -100 && !topStatus.classList.contains('hide')){ //在开始滚动
+						search.classList.remove('searchbg'); 
+						plus.navigator.setStatusBarStyle( "light" );
+						topStatus.classList.add('hide'); 
+					}
+				});
+			}
+			
+			//var now = new Date().getTime();
 			//console.log(Math.round(now/1000));
-			/*mui.ajax('http://test.wx.nuozhe8.com/plugin.php',{
-				data:{
-					mod: 'wechat1',
-					act: 'app',
-					sign: '11',
-					timestamp: now
-				},
+			mui.ajax('http://test.wx.nuozhe8.com/plugin.php?mod=wechat&act=app&do=config',{
+			//mui.ajax('http://www.mjpai.cn:3100/api/users/code',{
+				/*data:{
+					"mod": "wechat",
+					"act": "app",
+					"do": "config"
+				},*/
 				dataType:'json',//服务器返回json格式数据
 				type:'get',//HTTP请求类型
 				timeout:10000,//超时时间设置为10秒；
-				crossDomain: true,
+				//crossDomain: true,
 				headers:{'Content-Type':'application/json'},	              
 				success:function(data,textStatus,xhr){
 					//服务器返回响应，根据响应结果，分析是否登录成功；
-					console.log(data);
+					console.log('成功'); 
+					console.log(JSON.stringify(data.icon));
+					
+					//轮播图
+					/*var sliders = data.slides;
+					var banner = document.querySelector('.mui-slider .mui-slider-group');
+					sliders.forEach(item => {
+						var div = document.createElement('div');
+						div.className = 'mui-slider-item';
+						
+						var str = `<a href="${item.url}">
+							<img src="${item.img}"/>
+						</a>`;
+						div.innerHTML = str;
+						banner.appendChild(div);
+					});
+					//插入第一个节点
+					var div1 = document.createElement('div');
+					div1.className = 'mui-slider-item mui-slider-item-duplicate';
+					var str1 = `<a href="${sliders[sliders.length-1].url}">
+							<img src="${sliders[sliders.length-1].img}"/>
+						</a>`;
+					div1.innerHTML = str1;
+					banner.insertBefore(div1); 
+					//插入最后一个节点
+					var div2 = document.createElement('div');
+					div2.className = 'mui-slider-item mui-slider-item-duplicate';
+					var str2 = `<a href="${sliders[0].url}">
+							<img src="${sliders[0].img}"/>
+						</a>`;
+					div2.innerHTML = str2;
+					banner.appendChild(div2);*/
+					
+					//分类
+					var icon = data.icon;
+					var classify = document.querySelector('.classify ul');
+					icon.forEach(item => {
+						var li = document.createElement('li');
+						var str = `<a href="#" title="${item.type}">
+							<div class="icon">
+								<img src="${item.img}" alt="" />
+							</div>
+							<p>${item.name}</p>
+						</a>`;
+						li.innerHTML = str;
+						classify.appendChild(li);
+					});
+					
 				},
 				error:function(xhr,type,errorThrown){
 					//异常处理；
+					console.log('失败');
 					console.log(errorThrown);
 				}
-			});*/
+			});
 			
 		</script>
 	</body>

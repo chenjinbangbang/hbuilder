@@ -45,6 +45,7 @@
 	},
 	"plus": {
 		"statusbar": {
+			"style": "dark",
 			"immersed": true //设置状态栏为透明
 		}, 
 		"splashscreen": {
@@ -139,9 +140,15 @@
 	"dependencies": {
 		"pages": {
 			"index.html": {
-				"resources": [],
+				"resources": [
+					"pages/index/home.html"
+				],
 				"refer": [
-					"personal.html"
+					"personal.html",
+					"pages/index/store.html",
+					"pages/index/search.html",
+					"pages/index/friends.html",
+					"pages/index/personal.html"
 				],
 				"priority": 0
 			},
@@ -149,6 +156,20 @@
 				"resources": [],
 				"refer": [
 					"index.html"
+				],
+				"priority": 0
+			},
+			"pages/index/friends.html": {
+				"resources": [
+					"pages/index/friends_sub.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"pages/index/home.html": {
+				"resources": [],
+				"refer": [
+					"pages/detail.html"
 				],
 				"priority": 0
 			}

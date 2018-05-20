@@ -6,7 +6,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title></title>
-    <link rel="stylesheet" href="css/mui.min.css"/>
+    <link rel="stylesheet" href="css/mui.css"/>
     <link rel="stylesheet" href="css/base.css"/>
     <link rel="stylesheet" href="fonts/iconfont.css"/>
     <style>
@@ -16,18 +16,18 @@
     	
 		.mui-content{ padding-bottom:20px;}
 		.mui-action-back{ color:#000;}
-		.mui-icon{ height:40px;}
-		.mui-active .mui-tab-label,.mui-active .mui-icon{ color:#f00;}
+		.mui-icon{}
+		.mui-active .mui-tab-label,.mui-active .mui-icon{ color:#E80056;}
 		
-		.icon{ width:28px; height:28px;}
-		.iconfont{width:22px !important; height:22px !important; font-size:16px !important;}
+		.icon{}
+		.iconfont{ font-size:18px !important; /*width:22px !important; height:22px !important; font-size:16px !important*/;}
     </style>
 </head>
 <body>
 	
-	<header class="mui-bar mui-bar-nav hide mui-bar-transparent">
+	<!--<header class="mui-bar mui-bar-nav hide mui-bar-transparent">
 		<h1 class="mui-title">首页</h1>
-	</header>
+	</header>-->
 	
 	<nav class="mui-bar mui-bar-tab">
 		<a class="mui-tab-item mui-active" href="pages/index/home.html">
@@ -35,15 +35,17 @@
 			<span class="mui-tab-label">首页</span>
 		</a>
 	    <a class="mui-tab-item" href="pages/index/search.html">
-			<span class="mui-icon">
+			<!--<span class="mui-icon">
 				<svg class="icon" aria-hidden="true">
 				  <use xlink:href="#icon-search"></use>
 				</svg>
 			</span>
-			<span class="mui-tab-label" style="margin-top:-7px;">搜索</span>
+			<span class="mui-tab-label" style="margin-top:-7px;">搜索</span>-->
+			<span class="mui-icon mui-icon-search"></span>
+			<span class="mui-tab-label">搜索</span>
 		</a>
 	    <a class="mui-tab-item" href="pages/index/friends.html">
-			<span class="mui-icon mui-icon-contact"></span>
+			<span class="mui-icon mui-icon-contact" style="color:#F45118;"></span>
 			<span class="mui-tab-label">朋友圈</span>
 		</a>
 		<a class="mui-tab-item" href="pages/index/store.html">
@@ -74,6 +76,7 @@
     	mui.plusReady(function(){ 
     		
     		//plus.navigator.setFullscreen(true);
+    		//console.log(plus.navigator.getStatusbarHeight()); //获取状态栏的高度（20px）
     		
     		var self = plus.webview.currentWebview(); //获取当前的窗体
     		//console.log(self.getURL()); 
@@ -86,10 +89,13 @@
     		}*/
     		
     		for(var i=0;i<subPages.length;i++){
+    		
     			var sub = plus.webview.create(subPages[i],subPages[i],subPageStyle); //创建窗体
+
     			sub.hide(); //所有窗体都隐藏
     			self.append(sub); //把窗体追加到self中
     		} 
+
     		plus.webview.show(subPages[0]); //显示subPages[0]的窗体
     		 
     		//跳转到登录页面
@@ -108,12 +114,13 @@
 			}); */ 
     		
     	});
+    	
     	//点击底部导航跳转页面  
     	mui('.mui-bar-tab').on('tap','a',function(){ 
     		
     		var page = this.getAttribute('href');
     		
-    		if(page == 'pages/index/personal.html' || page == 'pages/index/friends.html'){
+    		/*if(page == 'pages/index/personal.html'){
     			if(!judge_login_status()){
     				var loginPage = 'pages/login.html';
 		    		mui.openWindow({
@@ -131,9 +138,9 @@
     			}else{ 
     				return true;
     			}
-    		}
+    		}*/
     		plus.webview.show(page,"fade-in",200);
-    		document.querySelector('.mui-title').innerHTML = this.querySelector('.mui-tab-label').innerHTML;
+    		//document.querySelector('.mui-title').innerHTML = this.querySelector('.mui-tab-label').innerHTML;
     	});
     	
     	
