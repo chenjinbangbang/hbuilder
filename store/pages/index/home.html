@@ -18,49 +18,51 @@
 	    	
 	    	.banner{ height:250px;}
 	    	
-	    	.classify{ background-color:#fff; padding:10px;}
+	    	.classify{ background-color:#fff; padding:10px; border-bottom:10px solid #f5f5f5;}
 	    	.classify ul{ display:flex; flex-wrap:wrap;}
 	    	.classify ul li{ width:20%; text-align:center; margin-top:10px;}
 	    	.classify ul li .icon{ height:50px; display:flex; justify-content: center; align-items:center;;}
 	    	.classify ul li .icon img{ width:45px;}
 	    	.classify ul li p{}
 	    	
-	    	.activity{ margin:20px 0;}
-			.activity ul{ display:flex; flex-wrap:wrap;}
+	    	.activity{}
+	    	.activity h4{ padding:10px 0; font-size:18px; border-top:1px solid #eee; border-bottom:1px solid #eee; font-weight:bold; text-shadow:2px 2px 2px #ccc; color:#E80056; text-align: center;}
+			.activity ul{ display:flex; flex-wrap:wrap; padding-top:15px;}
 			.activity ul li{ width:50%; height:100px; padding:5px;}
 			.activity ul li a{ display:flex;}
 			.activity .activity-left{ flex:2;}
 			.activity .activity-left .title{ font-size:18px; font-weight:bold; color:#666;}
 			.activity li:nth-child(1) .activity-left .title{ 
 				/*实现字体渐变*/
-				background-image: -webkit-gradient(linear, 0 0, right 0, from(#F75956), to(#B22A9C));
+				/*background-image: -webkit-gradient(linear, 0 0, right 0, from(#F75956), to(#B22A9C));
 	    		-webkit-background-clip: text;
-	    		-webkit-text-fill-color: transparent;
+	    		-webkit-text-fill-color: transparent;*/
     		}
     		.activity li:nth-child(2) .activity-left .title{ 
 				/*实现字体渐变*/
-				background-image: -webkit-gradient(linear, 0 0, right 0, from(#F75956), to(#B22A9C));
+				/*background-image: -webkit-gradient(linear, 0 0, right 0, from(#F75956), to(#B22A9C));
 	    		-webkit-background-clip: text;
-	    		-webkit-text-fill-color: transparent;
+	    		-webkit-text-fill-color: transparent;*/
     		}
     		 /*#F75956 #FC2E95*/
+    		
 			.activity .activity-left .name{ margin:6px 0;}
 			.activity .activity-left .tip{ display:inline-block; padding:0 5px; background: -webkit-linear-gradient(left, #F75956 , #FC2E95); color:#fff; text-align: center; border-radius:4px; font-size:12px;}
 			.activity .activity-right{ flex:1;}
 			.activity .activity-right img{ width:100%;}
 	    	
-	    	.view{ /*background: -webkit-linear-gradient(top, #B8FF87 , #fff);*/ border-top:1px solid #eee; border-bottom:1px solid #eee;}
+	    	.view{ /*background: -webkit-linear-gradient(top, #B8FF87 , #fff);*/ /*border-top:1px solid #eee; border-bottom:1px solid #eee;*/}
 	    	.view-title{ padding:0 10px; height:40px; display:flex; justify-content:space-between; align-items:center;}
-	    	.view-title p{ color:#666;}
+	    	.view-title p{ color:#666;} 
 	    	.view-title a{ color:#666;}
 	    	
-	    	.view .mui-scroll-wrapper{ height:260px !important; overflow:hidden;}
+	    	.view .mui-scroll-wrapper{ height:260px !important; overflow:auto;}
 	    	.view .mui-scroll-wrapper .mui-control-item{ display:inline-block; width:160px; border:2px solid #fff; padding:0; border-radius:8px; margin:0 3px;}
 	    	.view .mui-scroll-wrapper .mui-control-item.mui-active{ border:2px solid #fff; color:#666;}
 	    	.view .mui-scroll-wrapper .mui-control-item span{ display:block;}
 	    	.view .mui-scroll-wrapper .mui-control-item .img{ display:flex; justify-content:center; align-items:center; height:160px;}
 	    	.view .mui-scroll-wrapper .mui-control-item .img img{ width:100%; width:100%; height:100%;}
-			.title{ margin:-5px 0 0 5px; display:block; text-align:center;}
+			.title{ margin:-5px 0 10px 5px; display:block; text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
 	    	.price{ width:90%; margin:auto; position:relative; overflow:hidden; border:1px solid #FA6477; border-radius:8px;}
 	    	.price div{ height:20px; line-height:20px; font-size:14px;}
 	    	.price .price-top{ background-color:#FA6477; color:#fff;}
@@ -87,9 +89,10 @@
 		<div id="refreshContainer" class="mui-content mui-scroll-wrapper wrapper">
 		  <div class="mui-scroll">
 			
+			<!--轮播图-->
 			<div class="mui-slider" >
 				<div class="mui-slider-group mui-slider-loop">
-					<div class="mui-slider-item mui-slider-item-duplicate">
+					<!--<div class="mui-slider-item mui-slider-item-duplicate">
 						<a href="#">
 							<img src="../../imgs/4.jpg"/>
 						</a> 
@@ -118,16 +121,17 @@
 						<a href="#">
 							<img src="../../imgs/1.jpg"/>
 						</a>
-					</div>
+					</div>-->
 				</div>
 				<div class="mui-slider-indicator">
-					<div class="mui-indicator mui-active"></div>
+					<!--<div class="mui-indicator mui-active"></div>
 					<div class="mui-indicator"></div>
 					<div class="mui-indicator"></div>
-					<div class="mui-indicator"></div>
-				</div>
+					<div class="mui-indicator"></div>-->
+				</div> 
 			</div>
 			
+			<!--分类栏目-->
 			<div class="classify">
 				<ul>
 					<!--<li>
@@ -160,9 +164,11 @@
 				</ul>
 			</div>
 
-			<div class="activity">
+			<!--专区栏目-->
+			<div class="activity" id="tb">
+				<h4>淘宝商品</h4>
 				<ul>
-					<li>
+					<!--<li>
 						<a href="detail.html">
 							<div class="activity-left">
 								<p class="title" style=" color:#FC417D;">超级返</p>
@@ -207,93 +213,137 @@
 								<img src="../../imgs/8.png" alt="" />
 							</div>
 						</a>
-					</li>
+					</li>-->
 				</ul>
+				
+				<div class="view">
+					<div class="view-title">
+						<p>边看边买</p>
+						<a href="#">更多</a>
+					</div>
+					
+					<div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					    <div class="mui-scroll">
+					        <!--<a class="mui-control-item mui-active" href="../detail.html">
+					            <span class="img">
+				            		<img src="../../imgs/1.jpg" alt="" />
+					            </span>
+					            <span class="title">韩潮男装</span>
+					            <div class="price">
+					            	<div class="price-top">3元券</div>
+					            	<div class="price-foot">券后￥14.90</div>
+					            </div>
+					        </a>
+					        <a class="mui-control-item" href="../detail.html">
+					            <span class="img">
+				            		<img src="../../imgs/2.jpg" alt="" />
+					            </span>
+					            <span class="title">韩潮男装</span>
+					            <div class="price">
+					            	<div class="price-top">3元券</div>
+					            	<div class="price-foot">券后￥14.90</div>
+					            </div>
+					        </a>
+					        <a class="mui-control-item" href="../detail.html">
+					            <span class="img">
+				            		<img src="../../imgs/3.jpg" alt="" />
+					            </span>
+					            <span class="title">韩潮男装</span>
+					            <div class="price">
+					            	<div class="price-top">3元券</div>
+					            	<div class="price-foot">券后￥14.90</div>
+					            </div>
+					        </a>
+					        <a class="mui-control-item" href="../detail.html">
+					            <span class="img">
+				            		<img src="../../imgs/4.jpg" alt="" />
+					            </span>
+					            <span class="title">韩潮男装</span>
+					            <div class="price">
+					            	<div class="price-top">3元券</div>
+					            	<div class="price-foot">券后￥14.90</div>
+					            </div>
+					        </a>
+					        <a class="mui-control-item" href="../detail.html">
+					            <span class="img">
+				            		<img src="../../imgs/2.jpg" alt="" />
+					            </span>
+					            <span class="title">韩潮男装</span>
+					            <div class="price">
+					            	<div class="price-top">3元券</div>
+					            	<div class="price-foot">券后￥14.90</div>
+					            </div>
+					        </a>
+					        <a class="mui-control-item" href="../detail.html">
+					            <span class="img">
+				            		<img src="../../imgs/4.jpg" alt="" />
+					            </span>
+					            <span class="title">韩潮男装</span>
+					            <div class="price">
+					            	<div class="price-top">3元券</div>
+					            	<div class="price-foot">券后￥14.90</div>
+					            </div>
+					        </a>-->
+					    </div>
+					</div>
+				</div>	
 			</div>
 			
-			<div class="view">
-				<div class="view-title">
-					<p>边看边买</p>
-					<a href="#">更多</a>
-				</div>
+			<div class="activity" id="jd">
+				<h4>京东</h4>
+				<ul>
+					
+				</ul>
 				
-				<div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-				    <div class="mui-scroll">
-				        <a class="mui-control-item mui-active" href="../detail.html">
-				            <span class="img">
-			            		<img src="../../imgs/1.jpg" alt="" />
-				            </span>
-				            <span class="title">韩潮男装</span>
-				            <div class="price">
-				            	<div class="price-top">3元券</div>
-				            	<div class="price-foot">券后￥14.90</div>
-				            </div>
-				        </a>
-				        <a class="mui-control-item" href="../detail.html">
-				            <span class="img">
-			            		<img src="../../imgs/2.jpg" alt="" />
-				            </span>
-				            <span class="title">韩潮男装</span>
-				            <div class="price">
-				            	<div class="price-top">3元券</div>
-				            	<div class="price-foot">券后￥14.90</div>
-				            </div>
-				        </a>
-				        <a class="mui-control-item" href="../detail.html">
-				            <span class="img">
-			            		<img src="../../imgs/3.jpg" alt="" />
-				            </span>
-				            <span class="title">韩潮男装</span>
-				            <div class="price">
-				            	<div class="price-top">3元券</div>
-				            	<div class="price-foot">券后￥14.90</div>
-				            </div>
-				        </a>
-				        <a class="mui-control-item" href="../detail.html">
-				            <span class="img">
-			            		<img src="../../imgs/4.jpg" alt="" />
-				            </span>
-				            <span class="title">韩潮男装</span>
-				            <div class="price">
-				            	<div class="price-top">3元券</div>
-				            	<div class="price-foot">券后￥14.90</div>
-				            </div>
-				        </a>
-				        <a class="mui-control-item" href="../detail.html">
-				            <span class="img">
-			            		<img src="../../imgs/2.jpg" alt="" />
-				            </span>
-				            <span class="title">韩潮男装</span>
-				            <div class="price">
-				            	<div class="price-top">3元券</div>
-				            	<div class="price-foot">券后￥14.90</div>
-				            </div>
-				        </a>
-				        <a class="mui-control-item" href="../detail.html">
-				            <span class="img">
-			            		<img src="../../imgs/4.jpg" alt="" />
-				            </span>
-				            <span class="title">韩潮男装</span>
-				            <div class="price">
-				            	<div class="price-top">3元券</div>
-				            	<div class="price-foot">券后￥14.90</div>
-				            </div>
-				        </a>
-				    </div>
-				</div>
+				<div class="view">
+					<div class="view-title">
+						<p>边看边买</p>
+						<a href="#">更多</a>
+					</div>
+					
+					<div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					    <div class="mui-scroll">
+					    	
+					    </div>
+					</div>
+				</div>	
 			</div>
+			
+			<div class="activity" id="pdd">
+				<h4>拼多多</h4>
+				<ul>
+					
+				</ul>
+				
+				<div class="view">
+					<div class="view-title">
+						<p>边看边买</p>
+						<a href="#">更多</a>
+					</div>
+					
+					<div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					    <div class="mui-scroll">
+					    	
+					    </div>
+					</div>
+				</div>	
+			</div> 
+			
 		  </div>
 		</div>
 		
 		<script src="../../js/mui.min.js"></script> 
 		<script src="../../js/base.js"></script>
 		<script type="text/javascript">
+			mui.init();
+			
 			mui.init({
 				//配置下拉刷新和上拉加载
 				pullRefresh: {
 					container: '#refreshContainer',
 					//下拉刷新
-					down: {
+					down: { 
+						//auto: false,
 						contentdown: "下拉可以刷新",
 						contentover: '释放立即刷新',
 						contentrefresh: '正在刷新...',
@@ -313,11 +363,6 @@
 					mui('#refreshContainer').pullRefresh().endPulldownToRefresh();	
 				},1000);
 			}
-			
-			var gallery = mui('.mui-slider'); 
-			gallery.slider({ 
-				interval: 2000 //自动轮播周期
-			});
 			
 			var search = document.getElementById('search');
 			search.addEventListener('focus',function(){
@@ -346,6 +391,12 @@
 			//分类栏目跳转
 			mui('.classify').on('tap','a',function(){
 				var page = this.getAttribute('href');
+				var title =  this.getAttribute('title');
+				
+				//叮咚抢
+				if(title == 'ddq'){
+					page = '../ddq.html';
+				}
 				
 				mui.openWindow({ 
 					url: page,
@@ -359,8 +410,13 @@
 			});
 			
 			//跳转到商品详情
-			mui('.view').on('tap','a',function(){
+			mui('.activity').on('tap','a',function(){
 				var page = this.getAttribute('href');
+				
+				var title = this.getAttribute('title');
+				if(title == 'zhutijie'){
+					page = '../theme.html';
+				}
 				
 				var id = 1;
 				mui.openWindow({
@@ -377,13 +433,6 @@
 					
 			});
 			
-			//中间横向滚动
-			mui('.view .mui-scroll-wrapper').scroll({
-				scrollY: false,
-				scrollX: true,
-				deceleration: 0.0005
-			});
-			
 			//回到顶部和返回按钮显示与隐藏
 			//var scrollToTopBox = document.getElementById('scrollToTop');
 			//var back = document.querySelector('.back'); //返回按钮
@@ -394,17 +443,18 @@
 			if(mui.os.android){ //android设备
 				window.addEventListener('scroll',function(e){
 					//返回按钮的显示与隐藏
+					//console.log(window.pageYOffset);
 					if(window.pageYOffset > 0 && !search.classList.contains('hide')){
 						search.classList.add('hide');
 					}else if(window.pageYOffset <= 0 && search.classList.contains('hide')){
 						search.classList.remove('hide');
 					}
 					//返回按钮的变化
-					if(window.pageYOffset <= -100 && topStatus.classList.contains('hide')){
+					if(window.pageYOffset >= 100 && topStatus.classList.contains('hide')){ //下面
 						search.classList.add('searchbg');
 						plus.navigator.setStatusBarStyle( "dark" );
 						topStatus.classList.remove('hide');
-					}else if(window.pageYOffset > -100 && !topStatus.classList.contains('hide')){
+					}else if(window.pageYOffset < 100 && !topStatus.classList.contains('hide')){ //开始
 						search.classList.remove('searchbg'); 
 						plus.navigator.setStatusBarStyle( "light" );
 						topStatus.classList.add('hide'); 
@@ -421,11 +471,11 @@
 						search.classList.remove('hide');
 					}
 					//搜索的变化
-					if(mui('.wrapper').pullRefresh().y <= -100 && topStatus.classList.contains('hide')){ //在下面滚动
+					if(mui('.wrapper').pullRefresh().y <= -100 && topStatus.classList.contains('hide')){ //下面
 						search.classList.add('searchbg');
 						plus.navigator.setStatusBarStyle( "dark" );
 						topStatus.classList.remove('hide');
-					}else if(mui('.wrapper').pullRefresh().y > -100 && !topStatus.classList.contains('hide')){ //在开始滚动
+					}else if(mui('.wrapper').pullRefresh().y > -100 && !topStatus.classList.contains('hide')){ //开始
 						search.classList.remove('searchbg'); 
 						plus.navigator.setStatusBarStyle( "light" );
 						topStatus.classList.add('hide'); 
@@ -450,52 +500,201 @@
 				success:function(data,textStatus,xhr){
 					//服务器返回响应，根据响应结果，分析是否登录成功；
 					console.log('成功'); 
-					console.log(JSON.stringify(data.icon));
+					//console.log(JSON.stringify(data.icon));
 					
 					//轮播图
-					/*var sliders = data.slides;
+					var sliders = data.slides;
 					var banner = document.querySelector('.mui-slider .mui-slider-group');
-					sliders.forEach(item => {
+					var bannerIndex = document.querySelector('.mui-slider-indicator');
+					sliders.forEach(function(item,index){
+						//图片轮播
 						var div = document.createElement('div');
 						div.className = 'mui-slider-item';
 						
-						var str = `<a href="${item.url}">
-							<img src="${item.img}"/>
-						</a>`;
+						var str = '<a href="'+item.url+'">'+
+							'<img src="'+item.img+'"/>'+
+						'</a>';
 						div.innerHTML = str;
 						banner.appendChild(div);
+						
+						//下面的图片索引
+						var indexDiv = document.createElement('div');
+						if(index == 0){
+							indexDiv.className = 'mui-indicator mui-active';
+						}else{
+							indexDiv.className = 'mui-indicator';
+						}
+						
+						bannerIndex.appendChild(indexDiv);
+						
 					});
 					//插入第一个节点
 					var div1 = document.createElement('div');
 					div1.className = 'mui-slider-item mui-slider-item-duplicate';
-					var str1 = `<a href="${sliders[sliders.length-1].url}">
-							<img src="${sliders[sliders.length-1].img}"/>
-						</a>`;
+					var str1 = '<a href="'+sliders[sliders.length-1].url+'">'+
+							'<img src="'+sliders[sliders.length-1].img+'"/>'+
+						'</a>';
 					div1.innerHTML = str1;
 					banner.insertBefore(div1); 
 					//插入最后一个节点
 					var div2 = document.createElement('div');
 					div2.className = 'mui-slider-item mui-slider-item-duplicate';
-					var str2 = `<a href="${sliders[0].url}">
-							<img src="${sliders[0].img}"/>
-						</a>`;
+					var str2 = '<a href="'+sliders[0].url+'">'+
+							'<img src="'+sliders[0].img+'"/>'+
+						'</a>';
 					div2.innerHTML = str2;
-					banner.appendChild(div2);*/
+					banner.appendChild(div2);
+					
+					//必须在这里，不然轮播图无效
+					var gallery = mui('.mui-slider'); 
+					gallery.slider({ 
+						interval: 2000 //自动轮播周期
+					});
 					
 					//分类
 					var icon = data.icon;
 					var classify = document.querySelector('.classify ul');
-					icon.forEach(item => {
+					icon.forEach(function(item){
 						var li = document.createElement('li');
-						var str = `<a href="#" title="${item.type}">
-							<div class="icon">
-								<img src="${item.img}" alt="" />
-							</div>
-							<p>${item.name}</p>
-						</a>`;
+						var str = '<a href="../detail.html" title="'+item.type+'">'+
+							'<div class="icon">'+
+								'<img src="'+item.img+'" alt="" />'+
+							'</div>'+
+							'<p>'+item.name+'</p>'+
+						'</a>';
 						li.innerHTML = str;
 						classify.appendChild(li);
 					});
+					
+					//专区栏目
+					//淘宝
+					var tbData = data.tb;
+					var tb = document.getElementById('tb');
+					tb.querySelector('h4').innerHTML = tbData.name; //标题
+					var tbUl = tb.querySelector('ul');
+					tbData.data.forEach(function(item){
+						var tbli = document.createElement('li');
+						var str = '<a href="../detail.html" title="'+item.type+'">'+
+							'<div class="activity-left">'+
+								'<p class="title">'+item.name+'</p>'+
+							'</div>'+
+							'<div class="activity-right">'+
+								'<img src="'+item.img+'" alt="" />'+
+							'</div>'+
+						'</a>';
+						tbli.innerHTML = str;
+						tbUl.appendChild(tbli);
+					});
+					if(tbData.goodslist.length > 0){
+						var tbviewScroll = tb.querySelector('.mui-scroll');
+						tbData.goodslist.forEach(function(item){
+							var a = document.createElement('a');
+							a.className = 'mui-control-item';
+							a.setAttribute("href","../detail.html");
+							//a.setAttribute("goods_id",item.goods_id);
+							var str = '<span class="img">'+
+					            		'<img src="'+item.pic+'" alt="" />'+
+						            '</span>'+
+						            '<span class="title">'+item.title+'</span>'+
+						            '<div class="price">'+
+						            	'<div class="price-top">'+item.coupon+'</div>'+
+						            	'<div class="price-foot">券后￥'+item.price+'</div>'+
+						            '</div>';
+							a.innerHTML = str;
+							tbviewScroll.appendChild(a);
+						});
+					}else{
+						document.querySelector('#tb .view').classList.add('hide');
+					}
+					
+					//京东
+					var jdData = data.jd;
+					var jd = document.getElementById('jd');
+					jd.querySelector('h4').innerHTML = jdData.name; //标题
+					var jdUl = jd.querySelector('ul');
+					jdData.data.forEach(function(item){
+						var jdli = document.createElement('li'); 
+						var str = '<a href="../detail.html" title="'+item.type+'">'+
+							'<div class="activity-left">'+
+								'<p class="title">'+item.name+'</p>'+
+							'</div>'+
+							'<div class="activity-right">'+
+								'<img src="'+item.img+'" alt="" />'+
+							'</div>'+
+						'</a>';
+						jdli.innerHTML = str;
+						jdUl.appendChild(jdli);
+					});
+					if(jdData.goodslist.length > 0){
+						var jdviewScroll = jd.querySelector('.mui-scroll');
+						jdData.goodslist.forEach(function(item){
+							var a = document.createElement('a');
+							a.className = 'mui-control-item';
+							a.setAttribute("href","../detail.html");
+							//a.setAttribute("goods_id",item.goods_id);
+							var str = '<span class="img">'+
+					            		'<img src="'+item.pic+'" alt="" />'+
+						            '</span>'+
+						            '<span class="title">'+item.title+'</span>'+
+						            '<div class="price">'+
+						            	'<div class="price-top">'+item.coupon+'</div>'+
+						            	'<div class="price-foot">券后￥'+item.price+'</div>'+
+						            '</div>';
+							a.innerHTML = str;
+							jdviewScroll.appendChild(a);
+						});
+					}else{
+						document.querySelector('#jd .view').classList.add('hide');
+					}
+					
+					//拼多多
+					var pddData = data.pdd;
+					var pdd = document.getElementById('pdd');
+					pdd.querySelector('h4').innerHTML = pddData.name; //标题
+					var pddUl = pdd.querySelector('ul');
+					pddData.data.forEach(function(item){
+						var li = document.createElement('li');
+						var str = '<a href="../detail.html" title="'+item.type+'">'+
+							'<div class="activity-left">'+
+								'<p class="title">'+item.name+'</p>'+
+							'</div>'+
+							'<div class="activity-right">'+
+								'<img src="'+item.img+'" alt="" />'+
+							'</div>'+
+						'</a>';
+						li.innerHTML = str;
+						pddUl.appendChild(li);
+					});
+					if(pddData.goodslist.length > 0){
+						var pddviewScroll = pdd.querySelector('.mui-scroll');
+						pddData.goodslist.forEach(function(item){
+							var a = document.createElement('a');
+							a.className = 'mui-control-item';
+							a.setAttribute("href","../detail.html");
+							//a.setAttribute("goods_id",item.goods_id);
+							var str = '<span class="img">'+
+					            		'<img src="'+item.pic+'" alt="" />'+
+						            '</span>'+
+						            '<span class="title">'+item.title+'</span>'+
+						            '<div class="price">'+
+						            	'<div class="price-top">'+item.coupon+'</div>'+
+						            	'<div class="price-foot">券后￥'+item.price+'</div>'+
+						            '</div>';
+							a.innerHTML = str; 
+							pddviewScroll.appendChild(a);
+						});
+					}else{ 
+						document.querySelector('#pdd .view').classList.add('hide');
+					}
+					
+					//中间横向滚动
+					mui('.mui-scroll-wrapper').scroll({
+						scrollY: false,
+						scrollX: true,
+						deceleration: 0.0005,
+						//indicators: true, //是否显示滚动条
+					});
+					
 					
 				},
 				error:function(xhr,type,errorThrown){

@@ -16,5 +16,7 @@ a:link,a:visited{ text-decoration:none;}
 
 body,.mui-content{ background-color:#fff;}
 .mui-content{ padding-bottom:20px;}
-.mui-bar-nav{ margin-top:20px; background-color:rgba(255,255,255,0.8) !important; box-shadow:none;}
+.mui-bar-nav{ margin-top:20px; background-color:rgba(255,255,255,1); box-shadow:none;}
 .mui-bar-nav .mui-action-back{ color:#000;}
+@font-face{ font-family: myFont; src: url(../fonts/gb.ttf);}
+

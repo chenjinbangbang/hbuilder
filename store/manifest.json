@@ -172,6 +172,13 @@
 					"pages/detail.html"
 				],
 				"priority": 0
+			},
+			"pages/index/personal.html": {
+				"resources": [],
+				"refer": [
+					"pages/personal/orders.html"
+				],
+				"priority": 0
 			}
 		},
 		"idle": {

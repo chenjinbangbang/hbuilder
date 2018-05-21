@@ -67,11 +67,13 @@
 		}); 
 		
 		//跳转页面
+		var Index = 0; //默认打开首页显示的子页序号
     	var subPages = ['pages/index/home.html','pages/index/search.html','pages/index/friends.html','pages/index/store.html','pages/index/personal.html'];
     	var subPageStyle = {
     		top: '0',
     		bottom: '50px'
     	};
+    	
     	//窗体管理
     	mui.plusReady(function(){ 
     		
@@ -92,7 +94,11 @@
     		
     			var sub = plus.webview.create(subPages[i],subPages[i],subPageStyle); //创建窗体
 
-    			sub.hide(); //所有窗体都隐藏
+    			//sub.hide(); //所有窗体都隐藏
+    			//如不是我们设置的默认的子页则隐藏，否则添加到窗口中
+		        if (i != Index) {
+		            sub.hide();
+		        }
     			self.append(sub); //把窗体追加到self中
     		} 
 
@@ -116,9 +122,13 @@
     	});
     	
     	//点击底部导航跳转页面  
+    	var activeTab = subPages[Index];
     	mui('.mui-bar-tab').on('tap','a',function(){ 
-    		
-    		var page = this.getAttribute('href');
+    		//var self = plus.webview.currentWebview(); //获取当前的窗体
+    		var targetTab = this.getAttribute('href');
+    		if (targetTab == activeTab) {
+		        return;
+		    }
     		
     		/*if(page == 'pages/index/personal.html'){
     			if(!judge_login_status()){
@@ -139,9 +149,23 @@
     				return true;
     			}
     		}*/
-    		plus.webview.show(page,"fade-in",200);
+    		
+    		//var w = plus.webview.all();  //返回所有窗体，包括为显示的webview窗口，进行叠加
+ 
+    		
+    		/*for(var i=0;i<w.length;i++){
+    			console.log(w[i].getURL());
+    			//plus.webview.hide(w[i].getURL());
+    		}*/
+    		
+    		plus.webview.show(targetTab,"fade-in",200);
+    		plus.webview.hide(activeTab);
+    		
+    		//更改当前活跃的选项卡
+    		activeTab = targetTab;
+    		
     		//document.querySelector('.mui-title').innerHTML = this.querySelector('.mui-tab-label').innerHTML;
-    	});
+    	}); 
     	
     	
     

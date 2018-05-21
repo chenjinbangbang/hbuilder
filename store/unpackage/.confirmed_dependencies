@@ -29,5 +29,10 @@
 		"refer": [
 			"pages/detail.html"
 		]
+	},
+	"pages/index/personal.html": {
+		"refer": [
+			"pages/personal/orders.html"
+		]
 	}
 }

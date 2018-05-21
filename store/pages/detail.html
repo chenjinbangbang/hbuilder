@@ -9,10 +9,11 @@
 		<link href="../css/base.css" rel="stylesheet" />
 		<link href="../fonts/iconfont.css" rel="stylesheet" />
 		<style type="text/css">
-			.mui-content{ margin-top:-44px; }
+			.mui-content{ margin-top:-44px;}
 			.icon{ width:20px; height:20px;}
+			.banner{}
 			
-			.back{ width:30px; height:30px; line-height:30px; text-align:center; background-color:rgba(0,0,0,0.3); border-radius:50%; position:absolute; top:70px; left:10px; z-index:10; color:#fff; font-size:26px;}
+			.back{ width:30px; height:30px; line-height:30px; text-align:center; background-color:rgba(0,0,0,0.3); border-radius:50%; position:absolute; top:40px; left:10px; z-index:10; color:#fff; font-size:26px;}
 			
 			.mui-bar{}
 			.mui-bar .mui-tab-item:nth-child(1){ width:1px; border-right:1px solid #ddd !important; color:#333;}
@@ -26,7 +27,7 @@
 			.starToast{ height:60px; text-align:center;}
 			.starToast span{ display:block; margin-top:15px;}
 			.starToast .iconfont{ color:#FF6400; font-size:24px;}
-			.starToast .message{ }
+			.starToast .message{}
 			
 			.scrollToTop{ width:48px; height:48px; font-weight:bold; position:fixed; right:20px; bottom:60px; z-index:100; text-align: center; background-color:rgba(255,255,255,0.8); border:1px solid #ccc; border-radius:50%;}
 			.scrollToTop .mui-icon{ color:#999; font-size:26px;}
@@ -116,7 +117,7 @@
 			
 			<span class="back mui-action-back mui-icon mui-icon-back"></span>
 			
-		  <div class="mui-scroll">
+		  <div class="mui-scroll banner">
 		    
 		    <div class="mui-slider">
 			    <div class="mui-slider-group">
@@ -311,10 +312,7 @@
 				</ul>
 				
 			</div>
-			
-			
-			
-			
+
 		  </div>
 		</div>
 		
@@ -329,6 +327,7 @@
 					container: '#refreshContainer',
 					//下拉刷新
 					down: {
+						//style: 'circle', 
 						contentdown: "下拉可以刷新",
 						contentover: '释放立即刷新',
 						contentrefresh: '正在刷新...',
@@ -353,7 +352,7 @@
 			function pullupRefresh(){
 				setTimeout(function(){
 					//创建dom
-					var table =document.querySelector(".like ul");
+					/*var table =document.querySelector(".like ul");
 					for(var i=0;i<3;i++){
 						var li = document.createElement("li");
 						//li.className = "mui-table-view-cell mui-media";
@@ -379,7 +378,7 @@
 			                
 			            li.innerHTML = str;
 			            table.appendChild(li);    
-					}
+					}*/
 					//结束下拉刷新
 					mui('#refreshContainer').pullRefresh().endPullupToRefresh();	
 				},1000);
@@ -413,6 +412,7 @@
 			//Android上监听原生滚动，IOS上监听div滚动，上拉超过一定距离后显示按钮，否则隐藏，可自行在条件判断中修改
 			if(mui.os.android){ //android设备
 				window.addEventListener('scroll',function(e){
+					console.log(window.pageYOffset);
 					//返回按钮的显示与隐藏
 					if(window.pageYOffset > 0 && !back.classList.contains('hide')){
 						back.classList.add('hide');
@@ -420,12 +420,12 @@
 						back.classList.remove('hide');
 					}
 					//返回按钮的变化
-					if(window.pageYOffset <= -100 && backNav.classList.contains('hide')){
+					if(window.pageYOffset >= 100 && backNav.classList.contains('hide')){ //下面
 						back.classList.add('hide');
 						backNav.classList.remove('hide');
 						plus.navigator.setStatusBarStyle( "dark" );
 						topStatus.classList.remove('hide');
-					}else if(window.pageYOffset > -100 && !backNav.classList.contains('hide')){
+					}else if(window.pageYOffset < 100 && !backNav.classList.contains('hide')){ //开始
 						back.classList.remove('hide');
 						backNav.classList.add('hide');
 						plus.navigator.setStatusBarStyle( "light" );
@@ -449,13 +449,13 @@
 						back.classList.remove('hide');
 					}
 					//返回按钮的变化
-					if(mui('.mui-scroll-wrapper').pullRefresh().y <= -100 && backNav.classList.contains('hide')){
+					if(mui('.mui-scroll-wrapper').pullRefresh().y <= -100 && backNav.classList.contains('hide')){ //下面
 						back.classList.add('hide');
 						backNav.classList.remove('hide');
 						//plus.navigator.setStatusBarBackground("#f00"); //无效，因为manifest.json配置优先级高
 						plus.navigator.setStatusBarStyle( "dark" );
 						topStatus.classList.remove('hide');
-					}else if(mui('.mui-scroll-wrapper').pullRefresh().y > -100 && !backNav.classList.contains('hide')){
+					}else if(mui('.mui-scroll-wrapper').pullRefresh().y > -100 && !backNav.classList.contains('hide')){ //开始
 						back.classList.remove('hide');
 						backNav.classList.add('hide');
 						plus.navigator.setStatusBarStyle( "light" );
