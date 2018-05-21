@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/base.css" rel="stylesheet" />
+		<style type="text/css">
+			.mui-content{ margin-top:20px;}
+			
+			.mui-bar-nav{}
+			.mui-bar-nav .mui-action-back{}
+			.mui-bar-nav h1{}
+			
+			.menu{}
+			.menu ul{ height:40px; display:flex; align-items:center; color:#666;}
+			.menu ul li{ flex:1; display:flex; justify-content:flex-end;}
+			.menu ul li .mui-icon{ font-size:18px;}
+			.menuIcon{ margin-right:20px; padding:3px 5px; font-size:20px !important; margin-top:5px;}
+
+			.like ul{ display:flex; flex-wrap:wrap;}
+			.like ul li{ width:100%; border-bottom:1px solid #f5f5f5; padding:5px;}
+			.like ul li a{ display:flex; flex-wrap:wrap; color:#333;}
+			.like .like-left{ width:140px;}
+			.like .like-left img{ width:100%; height:140px; display:block;}
+			.like .like-right{ flex:1; padding:0 8px;}
+			.like .like-right .name{ font-size:16px; margin-bottom:40px;}
+			.like .like-right .price{ display:flex; justify-content: space-between;}
+			.like .like-right .price p:nth-child(1){ color:#f00; font-size:20px;}
+			.like .like-right .price p:nth-child(2){}
+			.like .like-right .price1{ margin-top:10px; display:flex; justify-content: space-between;}
+			.like .like-right .price1 p{ color:#999;}
+			.like .like-right .price1 .ticket{}
+			.like .like-right .price1 .ticket img{ width:60px;}
+		</style>
+	</head>
+
+	<body>
+		
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">通用栏目</h1>
+		</header>
+		
+		<div class="mui-content">
+		    
+		    <div class="menu">
+		    	<ul>
+		    		<li>
+		    			<div>
+		    				<span>综合</span>
+		    				<span class="mui-icon mui-icon-arrowdown"></span>
+		    			</div>
+		    		</li>
+		    		<li>
+		    			<div>
+		    				<span>券后价</span>
+		    				<span class="mui-icon mui-icon-arrowdown"></span>
+		    			</div>
+		    		</li>
+		    		<li>
+		    			<div>
+		    				<span>销量</span>
+		    				<span class="mui-icon mui-icon-arrowdown"></span>
+		    			</div>
+		    		</li>
+		    		<li>
+		    			<span class="mui-icon mui-icon-list menuIcon"></span>
+		    		</li>
+		    	</ul>
+		    </div>
+		     
+		     <div class="like">
+		     	<ul>
+					<li>
+						<a href="detail.html">
+							<div class="like-left">
+								<img src="../imgs/1.jpg" alt="" />
+							</div>
+							<div class="like-right">
+								<div class="name">爱奇艺VIP黄金会员月卡 爱奇艺会员1个月</div>
+								<div class="price">
+									<p><span>￥</span>19.9</p>
+									<p>月销49118</p>
+								</div>
+								<div class="price1">
+									<p>天猫价  ￥69.9</p>
+									<div class="ticket">
+										<img src="../imgs/ticket.png" alt="" />
+									</div>
+								</div>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="detail.html">
+							<div class="like-left">
+								<img src="../imgs/2.jpg" alt="" />
+							</div>
+							<div class="like-right">
+								<div class="name">爱奇艺VIP黄金会员月卡 爱奇艺会员1个月</div>
+								<div class="price">
+									<p><span>￥</span>19.9</p>
+									<p>月销49118</p>
+								</div>
+								<div class="price1">
+									<p>天猫价  ￥69.9</p>
+									<div class="ticket">
+										<img src="../imgs/ticket.png" alt="" />
+									</div>
+								</div>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="detai3.html">
+							<div class="like-left">
+								<img src="../imgs/3.jpg" alt="" />
+							</div>
+							<div class="like-right">
+								<div class="name">爱奇艺VIP黄金会员月卡 爱奇艺会员1个月</div>
+								<div class="price">
+									<p><span>￥</span>19.9</p>
+									<p>月销49118</p>
+								</div>
+								<div class="price1">
+									<p>天猫价  ￥69.9</p>
+									<div class="ticket">
+										<img src="../imgs/ticket.png" alt="" />
+									</div>
+								</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+		     </div>
+		</div>
+		
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			
+			var likeLi = document.querySelectorAll('.like ul li');
+			var likeLeft = document.querySelectorAll('.like .like-left');
+			
+			document.querySelector('.menuIcon').addEventListener('tap',function(){
+				
+				if(this.classList.contains('mui-icon-list')){
+					this.classList.remove('mui-icon-list');
+					this.classList.add('mui-icon-bars'); 
+					
+					for(var i=0;i<likeLi.length;i++){
+						likeLi[i].style.width = '50%';
+						likeLi[i].querySelector('.name').style.marginBottom = '20px';
+						likeLeft[i].style.width = '100%';
+					}	
+				}else{
+					this.classList.add('mui-icon-list');
+					this.classList.remove('mui-icon-bars');
+					
+					for(var i=0;i<likeLi.length;i++){
+						likeLi[i].style.width = '100%';
+						likeLi[i].querySelector('.name').style.marginBottom = '40px';
+						likeLeft[i].style.width = '140px';
+						
+					}	
+				}
+				
+			});
+			
+		</script>
+	</body>
+
+</html>

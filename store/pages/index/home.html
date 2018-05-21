@@ -16,14 +16,14 @@
 	    	.search .message span{ font-size:22px; margin-top:5px; display:inline-block; color:#f5f5f5;}
 	    	.search .message .messageTip{ width:10px; height:10px; border-radius:50%; background-color:#f00; border:1px solid #fff; position:absolute; right:-3px; top:-2px;}
 	    	
-	    	.banner{ height:250px;}
+	    	.banner{ height:250px;} 
 	    	
 	    	.classify{ background-color:#fff; padding:10px; border-bottom:10px solid #f5f5f5;}
 	    	.classify ul{ display:flex; flex-wrap:wrap;}
 	    	.classify ul li{ width:20%; text-align:center; margin-top:10px;}
 	    	.classify ul li .icon{ height:50px; display:flex; justify-content: center; align-items:center;;}
 	    	.classify ul li .icon img{ width:45px;}
-	    	.classify ul li p{}
+	    	.classify ul li p{} 
 	    	
 	    	.activity{}
 	    	.activity h4{ padding:10px 0; font-size:18px; border-top:1px solid #eee; border-bottom:1px solid #eee; font-weight:bold; text-shadow:2px 2px 2px #ccc; color:#E80056; text-align: center;}
@@ -31,7 +31,7 @@
 			.activity ul li{ width:50%; height:100px; padding:5px;}
 			.activity ul li a{ display:flex;}
 			.activity .activity-left{ flex:2;}
-			.activity .activity-left .title{ font-size:18px; font-weight:bold; color:#666;}
+			.activity .activity-left .title{ font-size:16px; font-weight:bold; color:#666;}
 			.activity li:nth-child(1) .activity-left .title{ 
 				/*实现字体渐变*/
 				/*background-image: -webkit-gradient(linear, 0 0, right 0, from(#F75956), to(#B22A9C));
@@ -53,10 +53,11 @@
 	    	
 	    	.view{ /*background: -webkit-linear-gradient(top, #B8FF87 , #fff);*/ /*border-top:1px solid #eee; border-bottom:1px solid #eee;*/}
 	    	.view-title{ padding:0 10px; height:40px; display:flex; justify-content:space-between; align-items:center;}
-	    	.view-title p{ color:#666;} 
+	    	.view-title p{ color:#666;}
 	    	.view-title a{ color:#666;}
 	    	
-	    	.view .mui-scroll-wrapper{ height:260px !important; overflow:auto;}
+	    	.view .mui-scroll-wrapper{ height:260px;}
+	    	.view .mui-scroll-wrapper .mui-scroll{ height:260px; }
 	    	.view .mui-scroll-wrapper .mui-control-item{ display:inline-block; width:160px; border:2px solid #fff; padding:0; border-radius:8px; margin:0 3px;}
 	    	.view .mui-scroll-wrapper .mui-control-item.mui-active{ border:2px solid #fff; color:#666;}
 	    	.view .mui-scroll-wrapper .mui-control-item span{ display:block;}
@@ -67,7 +68,7 @@
 	    	.price div{ height:20px; line-height:20px; font-size:14px;}
 	    	.price .price-top{ background-color:#FA6477; color:#fff;}
 	    	.price .price-foot{ color:#FA6477;}
-	    	
+
 		</style>
 	</head>
 	<body>
@@ -84,11 +85,14 @@
 				<span class="iconfont icon-message"></span>
 			</div>
 		</div>
+
+</div>
+	
 		
 		<!--下拉刷新容器-->
-		<div id="refreshContainer" class="mui-content mui-scroll-wrapper wrapper">
-		  <div class="mui-scroll">
-			
+		<div id="refreshContainer" class="mui-content wrapper">
+		  <div class="">
+
 			<!--轮播图-->
 			<div class="mui-slider" >
 				<div class="mui-slider-group mui-slider-loop">
@@ -215,6 +219,7 @@
 						</a>
 					</li>-->
 				</ul>
+			
 				
 				<div class="view">
 					<div class="view-title">
@@ -339,7 +344,7 @@
 			
 			mui.init({
 				//配置下拉刷新和上拉加载
-				pullRefresh: {
+				/*pullRefresh: {
 					container: '#refreshContainer',
 					//下拉刷新
 					down: { 
@@ -353,7 +358,7 @@
 					up: {
 						//callback: pullupRefresh
 					}
-				}
+				}*/
 			});
 			
 			//下拉刷新
@@ -444,9 +449,9 @@
 				window.addEventListener('scroll',function(e){
 					//返回按钮的显示与隐藏
 					//console.log(window.pageYOffset);
-					if(window.pageYOffset > 0 && !search.classList.contains('hide')){
+					if(window.pageYOffset < 0 && !search.classList.contains('hide')){ //上面
 						search.classList.add('hide');
-					}else if(window.pageYOffset <= 0 && search.classList.contains('hide')){
+					}else if(window.pageYOffset > 0 && search.classList.contains('hide')){ //开始
 						search.classList.remove('hide');
 					}
 					//返回按钮的变化
@@ -556,7 +561,7 @@
 					var classify = document.querySelector('.classify ul');
 					icon.forEach(function(item){
 						var li = document.createElement('li');
-						var str = '<a href="../detail.html" title="'+item.type+'">'+
+						var str = '<a href="../goodsList.html" title="'+item.type+'">'+
 							'<div class="icon">'+
 								'<img src="'+item.img+'" alt="" />'+
 							'</div>'+
