@@ -60,11 +60,25 @@
 	
 	<script src="js/mui.min.js"></script>
 	<script src="fonts/iconfont.js"></script>
-	<script src="js/base.js"></script>
+	<script src="js/app.js"></script>
 	<script> 
-		mui.init({
-			//statusBarBackground: '#666'
-		}); 
+		mui.init(); 
+		var firstBack,activeTagId,windowHeight;
+		
+		//关闭页面，1。点击包含.mui-actiion-back类的控件，2.在屏幕内，向右快速滑动，2.Android手机按下back按键
+		mui.back = function(){
+			if(firstBack){
+				if(new Date().getTime() - firstBack < 1000){
+					plus.runtime.quit();
+				}
+			}else{
+				firstBack = new Date().getTime();
+				mui.toast('再按一次退出应用');
+				setTimeout(function(){
+					firstBack = null;
+				},1000);
+			}
+		}
 		
 		//跳转页面
 		var Index = 0; //默认打开首页显示的子页序号
@@ -94,11 +108,11 @@
     		
     			var sub = plus.webview.create(subPages[i],subPages[i],subPageStyle); //创建窗体
 
-    			//sub.hide(); //所有窗体都隐藏
+    			sub.hide(); //所有窗体都隐藏 
     			//如不是我们设置的默认的子页则隐藏，否则添加到窗口中
-		        if (i != Index) {
+		        /*if (i != Index) {  
 		            sub.hide();
-		        }
+		        }*/
     			self.append(sub); //把窗体追加到self中
     		} 
 
