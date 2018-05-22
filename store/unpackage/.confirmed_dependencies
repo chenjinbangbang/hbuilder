@@ -27,7 +27,8 @@
 	},
 	"pages/index/home.html": {
 		"refer": [
-			"pages/detail.html"
+			"pages/detail.html",
+			"pages/searchPage.html"
 		]
 	},
 	"pages/index/personal.html": {

@@ -169,7 +169,8 @@
 			"pages/index/home.html": {
 				"resources": [],
 				"refer": [
-					"pages/detail.html"
+					"pages/detail.html",
+					"pages/searchPage.html"
 				],
 				"priority": 0
 			},

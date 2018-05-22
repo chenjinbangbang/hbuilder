@@ -20,3 +20,24 @@ body,.mui-content{ background-color:#fff;}
 .mui-bar-nav .mui-action-back{ color:#000;}
 @font-face{ font-family: myFont; src: url(../fonts/gb.ttf);}
 
+//共用列表
+.like{} 
+.like .top{ height:40px; margin:auto; display:flex; justify-content: center; align-items:center;}
+.like .top:before{ content:''; position:absolute; width:50px; height:1px; background-color:#f00; margin:20px 0 0 -60px;}
+.like .top:after{ content:''; position:absolute; width:50px; height:1px; background-color:#f00; margin:20px 0 0 10px;}
+.like .top p{ margin-left:10px;}
+.like ul{ background-color:#fff;}
+.like ul li{ border-bottom:1px solid #f5f5f5; padding:5px;}
+.like ul li a{ display:flex; color:#333;}
+.like .like-left{ width:140px;}
+.like .like-left img{ width:100%; height:140px; display:block;}
+.like .like-right{ flex:1; padding:0 8px;}
+.like .like-right .name{ font-size:16px;}
+.like .like-right .commission{ color:#A63F42; margin-top:15px; display:inline-block; border-radius:20px; padding:2px 20px; background-color:#FCDDDB;}
+.like .like-right .price{ margin-top:15px; display:flex; justify-content: space-between;}
+.like .like-right .price p:nth-child(1){ color:#A63F42; font-size:20px;}
+.like .like-right .price p:nth-child(2){}
+.like .like-right .price1{ margin-top:5px; display:flex; justify-content: space-between;}
+.like .like-right .price1 p{ color:#999;}
+.like .like-right .price1 .ticket{}
+.like .like-right .price1 .ticket img{ width:60px;}

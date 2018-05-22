@@ -355,6 +355,7 @@ App.prototype.endLoadMore = function(more){
  * @param {Object} errorCallback     错误回调，如果return true，错误已经被处理，默认处理不执行
  * @param {Object} options           设置，wait 是否显示等待窗口，login 是否需要登录数据，close 是否关闭等待窗口
  */
+
 App.prototype.ajax = function(path,data,successCallback,errorCallback,options){
 	var that = this;
 	if(typeof data === 'function'){
@@ -407,7 +408,6 @@ App.prototype.ajax = function(path,data,successCallback,errorCallback,options){
 				plus.nativeUI.closeWaiting();
 				plus.nativeUI.toast('数据加载成功'); 
 				successCallback(data);  
-				
 			}else if(textStatus == ErrorCode.logout){
 				plus.nativeUI.closeWaiting();
 				mui.alert('登录过期',function(){  
@@ -452,14 +452,14 @@ App.prototype.closeWaiting = function(){
 };
 
 //判断用户是否联网
-App.prototype.CheckNetwork = function(){
+/*App.prototype.CheckNetwork = function(){
 	//console.log(plus.networkinfo.CONNECTION_NONE);
 	//console.log(plus.networkinfo.getCurrentType());   
 	if(plus.networkinfo.getCurrentType() == plus.networkinfo.CONNECTION_NONE){ //正常：3 1，断网：1 1
 		mui.alert('网络异常，请检查网络设置！');  
 	}
 }
-
+*/
 
 //创建app实例
 var app = new App();

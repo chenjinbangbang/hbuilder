@@ -8,6 +8,7 @@
     	<link rel="stylesheet" href="../../css/app.css"/>
     	<link rel="stylesheet" href="../../fonts/iconfont.css"/>
 		<style>
+			body,.mui-content{ background-color:#f5f5f5;}
 			
 			.search{ width:100%; padding:10px 10px 0 10px; top:20px; position:fixed; z-index:10; display:flex;}
 			.search .mui-search{ flex:1;}
@@ -18,30 +19,30 @@
 	    	
 	    	.banner{ height:250px;} 
 	    	
-	    	.classify{ background-color:#fff; padding:10px;}
+	    	.classify{ background-color:#fff; padding:10px; }
 	    	.classify ul{ display:flex; flex-wrap:wrap;}
 	    	.classify ul li{ width:20%; text-align:center; margin-top:10px;}
 	    	.classify ul li .icon{ height:50px; display:flex; justify-content: center; align-items:center;;}
 	    	.classify ul li .icon img{ width:45px;}
 	    	.classify ul li p{} 
 	    	
-	    	.activity{ border-top:20px solid #f5f5f5; border-radius:20px;}
-	    	.activity .t{ background: -webkit-linear-gradient(left, #FA79A0 , #D061F0); height:55px; margin:0 2px;  display:flex; justify-content: center; align-items:center;}
+	    	.activity{ margin:10px 2px 0 2px; background-color:#fff; border-radius:20px;  position:relative; overflow:hidden;}
+	    	.activity .t{ background: -webkit-linear-gradient(left, #FA79A0 , #D061F0); height:45px;  display:flex; justify-content: center; align-items:center;}
 	    	.jdt{  background: -webkit-linear-gradient(left, #F0DAFF , #F0DAFF) !important;}
 	    	.jdt h4{ color:#B47C6A !important;}
 	    	.activity .t>div{ position:relative;}
-	    	.activity .t>div p{ background: -webkit-linear-gradient(left, #D470F7 , #9B3AF4); position:absolute; font-size:12px; color:#fff; border-radius:20px; padding:0 8px; left:-80px; top:12px;}
-	    	.activity .t>div h4{ padding:10px 0; font-family:myFont; font-size:22px; font-weight:bold;  color:#fff; text-align: center;}
-	    	.activity .t a{ position:absolute; right:10px; color:#fff; margin-top:18px;}
-	    	.activity .t span{ font-size:16px;}
-	    	.activity .t span.mui-icon{ font-size:20px;}
+	    	.activity .t>div p{ background: -webkit-linear-gradient(left, #D470F7 , #9B3AF4); position:absolute; font-size:12px; color:#ddd; border-radius:20px; padding:0 5px; left:-75px; top:10px;}
+	    	.activity .t>div h4{ padding:10px 0; font-family:myFont; font-size:18px; font-weight:bold;  color:#fff; text-align: center;}
+	    	.activity .t a{ position:absolute; right:10px; color:#ddd; margin-top:12px;}
+	    	.activity .t span{ font-size:14px;} 
+	    	.activity .t span.mui-icon{ font-size:18px;} 
 	    	
 			.activity ul{ display:flex; flex-wrap:wrap; background-color:#fff;}
 			.activity ul li{ width:50%; padding:10px;}
 			.activity ul li a{ display:flex;}
 			.activity .activity-left{ flex:1; margin-right:5px;}
-			.activity .activity-left .title{ font-size:20px; font-weight:500; text-align:left;}
-			.activity .activity-left .name{ font-size:16px; margin:5px 0;}
+			.activity .activity-left .title{ font-size:18px; font-weight:500; text-align:left;}
+			.activity .activity-left .name{ font-size:15px; margin:5px 0;}
 			.activity .activity-left .img{}
 			.activity .activity-left .img img{ width:100%;}
 			.activity .activity-left .tip{ display:inline-block; padding:0 5px; background: -webkit-linear-gradient(left, #F75956 , #FC2E95); color:#fff; text-align: center; border-radius:4px; font-size:12px;}
@@ -58,48 +59,50 @@
     		.titleColor3{ color:#BF4A66; }
 	    	
 	    	.view{ /*background: -webkit-linear-gradient(top, #B8FF87 , #fff);*/ /*border-top:1px solid #eee; border-bottom:1px solid #eee;*/}
-	    	.view-title{ height:35px; display:flex; align-items:center;}
-	    	.view-title div{ height:35px; line-height:35px;}
-	    	.view-title div:nth-child(1){ width:100px; font-family:myFont; font-size:18px; font-weight:bold; text-align: center; color:#fff; background-color:#D563FF;}
-	    	.view-title div:nth-child(2){ width:25px; background-color:#9740FA; border-top-right-radius:15px; border-bottom-right-radius:15px;}
+	    	.view-title{ height:30px; display:flex; align-items:center;}
+	    	.view-title div{ height:30px; line-height:30px;}
+	    	.view-title div:nth-child(1){ width:90px; font-family:myFont; font-size:16px; font-weight:bold; text-align: center; color:#fff; background-color:#D563FF;}
+	    	.view-title div:nth-child(2){ width:20px; background-color:#9740FA; border-top-right-radius:15px; border-bottom-right-radius:15px;}
 	    	
-	    	.view .mui-scroll-wrapper{ height:260px; margin-top:10px;}
-	    	.view .mui-scroll-wrapper .mui-scroll{ height:260px;}
+	    	.view .mui-scroll-wrapper{ height:240px; margin-top:10px;}
+	    	.view .mui-scroll-wrapper .mui-scroll{ height:240px;}
 	    	.view .mui-scroll-wrapper .mui-control-item{ display:inline-block; position:relative; width:160px; border:2px solid #fff; padding:0; margin:0 3px; border-radius:8px;}
 	    	.view .mui-scroll-wrapper .mui-control-item.mui-active{ border:2px solid #fff; color:#666;}
 	    	.view .mui-scroll-wrapper .mui-control-item span{ display:block;}
 	    	.view .mui-scroll-wrapper .mui-control-item .img{ display:flex; justify-content:center; align-items:center; height:160px;}
 	    	.view .mui-scroll-wrapper .mui-control-item .img img{ width:100%; width:100%; height:100%;}
-			.view .title{ height:50px; padding:10px; background-color:#FDF3F4; display:block; text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
-	    	.view .title1{  position:absolute; width:120px; left:20px; font-size:16px; border-radius:20px; top:145px; height:30px; line-height:30px; color:#f00; background-color:#FDF3F4; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-	    	.price{ width:90%; margin:auto; position:relative; overflow:hidden; border:1px solid #FA6477; border-radius:8px;}
-	    	.price div{ height:20px; line-height:20px; font-size:14px;}
-	    	.price .price-top{ background-color:#FA6477; color:#fff;}
-	    	.price .price-foot{ color:#FA6477;}
-
+			.view .title{ height:50px; padding:10px; color:#999; background-color:#FDF3F4; display:block; text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+	    	.view .title1{  position:absolute; width:120px; left:20px; font-size:16px; border-radius:20px; top:145px; height:30px; line-height:30px; color:#B1405A; background-color:#FDF3F4; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+	    	.view .price{ width:90%; margin:auto; position:relative; overflow:hidden; border:1px solid #FA6477; border-radius:8px;}
+	    	.view .price div{ height:20px; line-height:20px; font-size:14px;}
+	    	.view .price .price-top{ background-color:#FA6477; color:#fff;}
+	    	.view .price .price-foot{ color:#FA6477;}
+	    	
+	    	.goods{}
+	    	.goods .goodsTab{ padding:10px 0; border:none; display:flex; justify-content: space-around;}
+			.goods .goodsTab li{ border:none; color:#333; border-radius:20px; padding:3px 10px;}
+			.goods .goodsTab li.active{ color:#fff; background-color:#F8454D;}
 		</style>
 	</head>
 	<body>
 		
 		<!--顶部白色背景-->
 		<div class="topStatus hide"></div>
-		
-		<div class="search">
-			<div class="mui-input-row mui-search">
-				<input type="search" class="mui-input-clear" name="" required="" placeholder="搜索商品名称/淘宝宝贝标题" id="search">
-			</div>
-			<div class="message">
-				<span class="messageTip"></span>
-				<span class="iconfont icon-message"></span>
+			<div class="search">
+				<div class="mui-input-row mui-search">
+					<input type="search" class="mui-input-clear" name="" required="" placeholder="搜索商品名称/淘宝宝贝标题" id="search">
+				</div>
+				<div class="message">
+					<span class="messageTip"></span>
+					<span class="iconfont icon-message"></span>
+				</div>
 			</div>
 		</div>
-
-</div>
 	
 		
 		<!--下拉刷新容器-->
-		<div id="refreshContainer" class="mui-content wrapper">
-		  <div class="">
+		<div id="refreshContainer" class="mui-content wrapper mui-scroll-wrapper">
+		  <div class="mui-scroll">
 
 			<!--轮播图-->
 			<div class="mui-slider" >
@@ -175,6 +178,8 @@
 
 				</ul>
 			</div>
+			
+			
 
 			<!--专区栏目-->
 			<div class="activity" id="tb">
@@ -271,7 +276,86 @@
 				</div>	
 			</div> 
 			
+			<div class="goods">
+			  <ul class="goodsTab">
+			  	<li class="active">搭配精选</li>
+			  	<li>白富美必备</li>
+			  	<li>立体A字裙</li>
+			  	<li>黑白极简风</li>
+			  </ul>
+			  <div class="like">
+				<ul>
+					<li>
+						<a href="detail.html">
+							<div class="like-left">
+								<img src="../../imgs/1.jpg" alt="" />
+							</div>
+							<div class="like-right">
+								<div class="name">爱奇艺VIP黄金会员月卡 爱奇艺会员1个月</div>
+								<div class="commission">预估佣金:￥6.32</div>
+								<div class="price">
+									<p><span>￥</span>19.9</p>
+									<p>月销49118</p>
+								</div>
+								<div class="price1">
+									<p>天猫价  ￥69.9</p>
+									<div class="ticket">
+										<img src="../../imgs/ticket.png" alt="" />
+									</div>
+								</div>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="detail.html">
+							<div class="like-left">
+								<img src="../../imgs/2.jpg" alt="" />
+							</div>
+							<div class="like-right">
+								<div class="name">爱奇艺VIP黄金会员月卡 爱奇艺会员1个月</div>
+								<div class="commission">预估佣金:￥6.32</div>
+								<div class="price">
+									<p><span>￥</span>19.9</p>
+									<p>月销49118</p>
+								</div>
+								<div class="price1">
+									<p>天猫价  ￥69.9</p>
+									<div class="ticket">
+										<img src="../../imgs/ticket.png" alt="" />
+									</div>
+								</div>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="detai3.html">
+							<div class="like-left">
+								<img src="../../imgs/3.jpg" alt="" />
+							</div>
+							<div class="like-right">
+								<div class="name">爱奇艺VIP黄金会员月卡 爱奇艺会员1个月</div>
+								<div class="commission">预估佣金:￥6.32</div>
+								<div class="price">
+									<p><span>￥</span>19.9</p>
+									<p>月销49118</p>
+								</div>
+								<div class="price1">
+									<p>天猫价  ￥69.9</p>
+									<div class="ticket">
+										<img src="../../imgs/ticket.png" alt="" />
+									</div>
+								</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			</div>
+
 		  </div>
+		  
+		  
+		  
 		</div>
 		
 		<script src="../../js/mui.js"></script>

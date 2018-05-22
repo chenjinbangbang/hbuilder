@@ -1,30 +1,30 @@
 
 mui.init({
 	//配置下拉刷新和上拉加载
-	/*pullRefresh: {
+	pullRefresh: {
 		container: '#refreshContainer',
 		//下拉刷新
 		down: { 
 			//auto: false,
-			contentdown: "下拉可以刷新",
-			contentover: '释放立即刷新',
-			contentrefresh: '正在刷新...',
+			//contentdown: "下拉可以刷新",
+			//contentover: '释放立即刷新',
+			//contentrefresh: '正在刷新...',
 			callback: pulldownRefresh
 		},
 		//上拉加载
 		up: {
 			//callback: pullupRefresh
 		}
-	}*/
+	}
 });
 
 //下拉刷新
-/*function pulldownRefresh(){
+function pulldownRefresh(){
 	setTimeout(function(){
 		//结束下拉刷新
 		mui('#refreshContainer').pullRefresh().endPulldownToRefresh();	
 	},1000);
-}*/
+}
 
 var search = document.getElementById('search');
 search.addEventListener('focus',function(){
@@ -49,6 +49,21 @@ search.addEventListener('focus',function(){
 	},500);
 	
 });
+
+//tabs切换
+function tabsAct(ele){
+	mui('.goodsTab').on('tap','li',function(){			
+		//获取当前的class列表
+		var tabs = ele.children;
+		for(var i=0;i<tabs.length;i++){
+			tabs[i].classList.remove("active");
+		}
+		this.classList.add('active');
+	});
+}
+var ele = document.querySelector('.goodsTab');
+tabsAct(ele);
+
 
 //分类栏目跳转
 mui('.classify').on('tap','a',function(){
@@ -144,11 +159,22 @@ if(mui.os.android){ //android设备
 	});
 }
 
-//判断用户是否联网
-app.CheckNetwork();
+mui.plusReady(function(){
+	
+	//判断用户是否联网
+	//app.CheckNetwork();
+	if(plus.networkinfo.getCurrentType() == plus.networkinfo.CONNECTION_NONE){ //正常：3 1，断网：1 1
+		mui.alert('网络异常，请检查网络设置！');  
+	}
+	
+	//获取数据
+	initData();
+	
+	//滚动到底部 
+	//mui('.wrapper.mui-scroll-wrapper').scroll().scrollToBottom(100);
+});
 
-initData();
-function initData(){
+function initData(){   
 	app.ajax('/plugin.php?mod=wechat&act=app&do=config',{},function(data){
 		console.log(JSON.stringify(data)); 
 		
@@ -363,6 +389,7 @@ function initData(){
 			deceleration: 0.0005,
 			//indicators: true, //是否显示滚动条
 		});
+
 		
 	});
 }
