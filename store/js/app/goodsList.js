@@ -21,10 +21,29 @@ document.querySelector('.menuIcon').addEventListener('tap',function(){
 			likeLi[i].style.width = '100%';
 			likeLi[i].querySelector('.name').style.marginBottom = '40px';
 			likeLeft[i].style.width = '140px';
-			
 		}	
 	}
+});
+
+//分类栏目跳转
+mui('#list').on('tap','a',function(){
+	var page = this.getAttribute('href');
+	//var title =  this.getAttribute('title');
 	
+	//叮咚抢
+	/*if(title == 'ddq'){
+		page = '../ddq.html';
+	}*/
+	
+	mui.openWindow({ 
+		url: page,
+		id: page,
+		extras: {},
+		waiting: {
+			autoShow: true,
+			title: '正在加载...'
+		}
+	});
 });
 
 mui.plusReady(function(){

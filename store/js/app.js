@@ -480,7 +480,7 @@ mui.plusReady(function(){
 				}
 				if(app._lastStatusBarStyle){
 					plus.navigator.setStatusStyle(app._lastStatusBarStyle);
-				}
+				}  
 			}
 			_oldBack();
 		}

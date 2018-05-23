@@ -163,6 +163,8 @@ if(mui.os.android){ //android设备
 
 mui.plusReady(function(){
 	
+	plus.navigator.setStatusBarStyle( "light" );
+	
 	//判断用户是否联网
 	//app.CheckNetwork();
 	if(plus.networkinfo.getCurrentType() == plus.networkinfo.CONNECTION_NONE){ //正常：3 1，断网：1 1
@@ -243,7 +245,7 @@ function initData(){
 		
 		
 		//淘宝
-		var tbData = data.tb;
+		/*var tbData = data.tb; 
 		var tb = document.getElementById('tb');
 		tb.querySelector('h4').innerHTML = tbData.name; //标题
 		var tbUl = tb.querySelector('ul');
@@ -278,7 +280,7 @@ function initData(){
 	            	'<div class="title1">'+item.d_title+'</div>';
 				a.innerHTML = str;
 				tbviewScroll.appendChild(a);
-			});
+			}); 
 		}else{
 			document.querySelector('#tb .view').classList.add('hide');
 		}
@@ -363,7 +365,7 @@ function initData(){
 			});
 		}else{ 
 			document.querySelector('#pdd .view').classList.add('hide');
-		}
+		}*/
 		
 		//中间横向滚动
 		mui('.mui-scroll-wrapper').scroll({
