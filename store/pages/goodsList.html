@@ -19,21 +19,6 @@
 			.menu ul li{ flex:1; display:flex; justify-content:flex-end;}
 			.menu ul li .mui-icon{ font-size:18px;}
 			.menuIcon{ margin-right:20px; padding:3px 5px; font-size:20px !important; margin-top:5px;}
-
-			.like ul{ display:flex; flex-wrap:wrap;}
-			.like ul li{ width:100%; border-bottom:1px solid #f5f5f5; padding:5px;}
-			.like ul li a{ display:flex; flex-wrap:wrap; color:#333;}
-			.like .like-left{ width:140px;}
-			.like .like-left img{ width:100%; height:140px; display:block;}
-			.like .like-right{ flex:1; padding:0 8px;}
-			.like .like-right .name{ font-size:16px; margin-bottom:40px;}
-			.like .like-right .price{ display:flex; justify-content: space-between;}
-			.like .like-right .price p:nth-child(1){ color:#f00; font-size:20px;}
-			.like .like-right .price p:nth-child(2){}
-			.like .like-right .price1{ margin-top:10px; display:flex; justify-content: space-between;}
-			.like .like-right .price1 p{ color:#999;}
-			.like .like-right .price1 .ticket{}
-			.like .like-right .price1 .ticket img{ width:60px;}
 		</style>
 	</head>
 
@@ -73,14 +58,15 @@
 		    </div>
 		     
 		     <div class="like">
-		     	<ul>
-					<li>
+		     	<ul id="list">
+					<!--<li>
 						<a href="detail.html">
 							<div class="like-left">
 								<img src="../imgs/1.jpg" alt="" />
 							</div>
 							<div class="like-right">
 								<div class="name">爱奇艺VIP黄金会员月卡 爱奇艺会员1个月</div>
+								<div class="commission">预估佣金:￥6.32</div>
 								<div class="price">
 									<p><span>￥</span>19.9</p>
 									<p>月销49118</p>
@@ -101,6 +87,7 @@
 							</div>
 							<div class="like-right">
 								<div class="name">爱奇艺VIP黄金会员月卡 爱奇艺会员1个月</div>
+								<div class="commission">预估佣金:￥6.32</div>
 								<div class="price">
 									<p><span>￥</span>19.9</p>
 									<p>月销49118</p>
@@ -121,6 +108,7 @@
 							</div>
 							<div class="like-right">
 								<div class="name">爱奇艺VIP黄金会员月卡 爱奇艺会员1个月</div>
+								<div class="commission">预估佣金:￥6.32</div>
 								<div class="price">
 									<p><span>￥</span>19.9</p>
 									<p>月销49118</p>
@@ -133,45 +121,14 @@
 								</div>
 							</div>
 						</a>
-					</li>
+					</li>-->
 				</ul>
 		     </div>
 		</div>
 		
 		<script src="../js/mui.js"></script>
 		<script src="../js/app.js"></script>
-		<script type="text/javascript">
-			mui.init();
-			
-			var likeLi = document.querySelectorAll('.like ul li');
-			var likeLeft = document.querySelectorAll('.like .like-left');
-			
-			document.querySelector('.menuIcon').addEventListener('tap',function(){
-				
-				if(this.classList.contains('mui-icon-list')){
-					this.classList.remove('mui-icon-list');
-					this.classList.add('mui-icon-bars'); 
-					
-					for(var i=0;i<likeLi.length;i++){
-						likeLi[i].style.width = '50%';
-						likeLi[i].querySelector('.name').style.marginBottom = '20px';
-						likeLeft[i].style.width = '100%';
-					}	
-				}else{
-					this.classList.add('mui-icon-list');
-					this.classList.remove('mui-icon-bars');
-					
-					for(var i=0;i<likeLi.length;i++){
-						likeLi[i].style.width = '100%';
-						likeLi[i].querySelector('.name').style.marginBottom = '40px';
-						likeLeft[i].style.width = '140px';
-						
-					}	
-				}
-				
-			});
-			
-		</script>
+		<script src="../js/app/goodsList.js"></script>
 	</body>
 
 </html>

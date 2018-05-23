@@ -21,6 +21,10 @@ mui.init({
 //下拉刷新
 function pulldownRefresh(){
 	setTimeout(function(){
+		
+		//获取数据
+		//initData();
+		
 		//结束下拉刷新
 		mui('#refreshContainer').pullRefresh().endPulldownToRefresh();	
 	},1000);
@@ -49,21 +53,6 @@ search.addEventListener('focus',function(){
 	},500);
 	
 });
-
-//tabs切换
-function tabsAct(ele){
-	mui('.goodsTab').on('tap','li',function(){			
-		//获取当前的class列表
-		var tabs = ele.children;
-		for(var i=0;i<tabs.length;i++){
-			tabs[i].classList.remove("active");
-		}
-		this.classList.add('active');
-	});
-}
-var ele = document.querySelector('.goodsTab');
-tabsAct(ele);
-
 
 //分类栏目跳转
 mui('.classify').on('tap','a',function(){
@@ -107,11 +96,24 @@ mui('.activity').on('tap','a',function(){
 			title: '正在加载...'
 		}
 	});
-		
 });
 
-//回到顶部和返回按钮显示与隐藏
+//tabs切换
+function tabsAct(ele){
+	mui('.goodsTab').on('tap','li',function(){			
+		//获取当前的class列表
+		var tabs = ele.children;
+		for(var i=0;i<tabs.length;i++){
+			tabs[i].classList.remove("active");
+		}
+		this.classList.add('active');
+	});
+}
+var ele = document.querySelector('.goodsTab');
+tabsAct(ele);
 
+
+//回到顶部和返回按钮显示与隐藏
 var search = document.querySelector('.search'); //返回
 var topStatus = document.querySelector('.topStatus'); //顶部状态栏
 
@@ -174,6 +176,7 @@ mui.plusReady(function(){
 	//mui('.wrapper.mui-scroll-wrapper').scroll().scrollToBottom(100);
 });
 
+//获取数据
 function initData(){   
 	app.ajax('/plugin.php?mod=wechat&act=app&do=config',{},function(data){
 		console.log(JSON.stringify(data)); 
@@ -182,44 +185,34 @@ function initData(){
 		var sliders = data.slides;
 		var banner = document.querySelector('.mui-slider .mui-slider-group');
 		var bannerIndex = document.querySelector('.mui-slider-indicator');
-		sliders.forEach(function(item,index){
-			//图片轮播
-			var div = document.createElement('div');
-			div.className = 'mui-slider-item';
+		
+		var str = '',strIndex = '';
+		str += '<div class="mui-slider-item mui-slider-item-duplicate">'+
+			'<a href="'+sliders[sliders.length-1].url+'">'+
+				'<img src="'+sliders[sliders.length-1].img+'"/>'+
+			'</a>'+ 
+		'</div>';
+		mui.each(sliders,function(index,item){
+			str += '<div class="mui-slider-item">'+
+				'<a href="'+item.url+'">'+
+					'<img src="'+item.img+'"/>'+
+				'</a>'+
+			'</div>';
 			
-			var str = '<a href="'+item.url+'">'+
-				'<img src="'+item.img+'"/>'+
-			'</a>';
-			div.innerHTML = str;
-			banner.appendChild(div);
-			
-			//下面的图片索引
-			var indexDiv = document.createElement('div');
 			if(index == 0){
-				indexDiv.className = 'mui-indicator mui-active';
+				strIndex += '<div class="mui-indicator mui-active"></div>';
 			}else{
-				indexDiv.className = 'mui-indicator';
+				strIndex += '<div class="mui-indicator"></div>';
 			}
 			
-			bannerIndex.appendChild(indexDiv);
-			
 		});
-		//插入第一个节点
-		var div1 = document.createElement('div');
-		div1.className = 'mui-slider-item mui-slider-item-duplicate';
-		var str1 = '<a href="'+sliders[sliders.length-1].url+'">'+
-				'<img src="'+sliders[sliders.length-1].img+'"/>'+
-			'</a>';
-		div1.innerHTML = str1;
-		banner.insertBefore(div1); 
-		//插入最后一个节点
-		var div2 = document.createElement('div');
-		div2.className = 'mui-slider-item mui-slider-item-duplicate';
-		var str2 = '<a href="'+sliders[0].url+'">'+
+		str += '<div class="mui-slider-item mui-slider-item-duplicate">'+
+			'<a href="'+sliders[0].url+'">'+
 				'<img src="'+sliders[0].img+'"/>'+
-			'</a>';
-		div2.innerHTML = str2;
-		banner.appendChild(div2);
+			'</a>'+
+		'</div>';
+		banner.innerHTML = str;
+		bannerIndex.innerHTML = strIndex;
 		
 		//必须在这里，不然轮播图无效
 		var gallery = mui('.mui-slider'); 
@@ -230,19 +223,25 @@ function initData(){
 		//分类
 		var icon = data.icon;
 		var classify = document.querySelector('.classify ul');
-		icon.forEach(function(item){
-			var li = document.createElement('li');
-			var str = '<a href="../goodsList.html" title="'+item.type+'">'+
+		
+		var classifyStr = '';
+		mui.each(icon,function(index,item){
+			classifyStr += '<li>'+
+				'<a href="../goodsList.html" title="'+item.type+'">'+
 				'<div class="icon">'+
 					'<img src="'+item.img+'" alt="" />'+
 				'</div>'+
 				'<p>'+item.name+'</p>'+
-			'</a>';
-			li.innerHTML = str;
-			classify.appendChild(li);
+				'</a>'+
+			'</li>';
 		});
+		classify.innerHTML = classifyStr;
 		
 		//专区栏目
+		var column = document.getElementById("column"); //栏目父级
+		var columnStr = '';
+		
+		
 		//淘宝
 		var tbData = data.tb;
 		var tb = document.getElementById('tb');
@@ -250,14 +249,6 @@ function initData(){
 		var tbUl = tb.querySelector('ul');
 		tbData.data.forEach(function(item,i){
 			var tbli = document.createElement('li');
-			/*var str = '<a href="../detail.html" title="'+item.type+'">'+
-				'<div class="activity-left">'+
-					'<p class="title">'+item.name+'</p>'+
-				'</div>'+
-				'<div class="activity-right">'+
-					'<img src="'+item.img+'" alt="" />'+
-				'</div>'+
-			'</a>';*/
 			var str = '<a href="../detail.html" title="'+item.type+'">'+
 							'<div class="activity-left">'+
 								'<p class="title titleColor'+i+'">'+item.name+'</p>'+
@@ -280,14 +271,6 @@ function initData(){
 				a.className = 'mui-control-item';
 				a.setAttribute("href","../detail.html");
 				a.setAttribute("title",item.goods_id);
-				/*var str = '<span class="img">'+
-		            		'<img src="'+item.pic+'" alt="" />'+
-			            '</span>'+
-			            '<span class="title">'+item.title+'</span>'+
-			            '<div class="price">'+
-			            	'<div class="price-top">'+item.coupon+'</div>'+
-			            	'<div class="price-foot">券后￥'+item.price+'</div>'+
-			            '</div>';*/
 			    var str = '<span class="img">'+
             		'<img src="'+item.pic+'" alt="" />'+
 	            	'</span>'+

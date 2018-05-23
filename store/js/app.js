@@ -381,7 +381,6 @@ App.prototype.ajax = function(path,data,successCallback,errorCallback,options){
 		if(typeof mOptions.wait === 'string'){
 			app.waiting(mOptions.wait);
 		}else{
-			console.log(111);
 			plus.nativeUI.showWaiting('加载中...');
 		}
 	}
