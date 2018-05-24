@@ -405,7 +405,7 @@ App.prototype.ajax = function(path,data,successCallback,errorCallback,options){
 				//mOptions.close && that.closeWaiting();
 				//typeof successCallback === 'function' && successCallback(e);
 				plus.nativeUI.closeWaiting();
-				plus.nativeUI.toast('数据加载成功'); 
+				//plus.nativeUI.toast('数据加载成功',{duration: '500'});   
 				successCallback(data);  
 			}else if(textStatus == ErrorCode.logout){
 				plus.nativeUI.closeWaiting();

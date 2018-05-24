@@ -5,29 +5,201 @@ mui.init({
 		container: '#refreshContainer',
 		//下拉刷新
 		down: { 
-			//auto: false,
-			//contentdown: "下拉可以刷新",
-			//contentover: '释放立即刷新',
-			//contentrefresh: '正在刷新...',
-			callback: pulldownRefresh
+			callback: function pulldownRefresh(){
+				//获取数据
+				//initData();
+				setTimeout(function(){
+					mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
+				},1000);
+				
+			}
 		},
 		//上拉加载
-		up: {
-			//callback: pullupRefresh
-		}
+		/*up: {
+			callback: function pullupRefresh(){
+				//获取数据
+				initData();
+			}
+		}*/
 	}
 });
 
-//下拉刷新
-function pulldownRefresh(){
-	setTimeout(function(){
+mui.plusReady(function(){
+	
+	plus.navigator.setStatusBarStyle( "light" );
+	
+	//判断用户是否联网
+	//app.CheckNetwork();
+	if(plus.networkinfo.getCurrentType() == plus.networkinfo.CONNECTION_NONE){ //正常：3 1，断网：1 1
+		mui.alert('网络异常，请检查网络设置！');  
+	}
+	
+	//获取数据
+	initData();
+	
+	//滚动到底部 
+	//mui('.wrapper.mui-scroll-wrapper').scroll().scrollToBottom(100);
+});
+
+//获取数据
+function initData(){   
+	app.ajax('/plugin.php?mod=wechat&act=app&do=config',{},function(data){
+		console.log(JSON.stringify(data)); 
 		
-		//获取数据
-		//initData();
+		//轮播图  
+		var sliders = data.slides;
+		var banner = document.querySelector('.banner');
+		var bannerImg = document.createElement('div');
+		bannerImg.className = 'mui-slider-group mui-slider-loop';
+		var bannerIndex = document.createElement('div');
+		bannerIndex.className = 'mui-slider-indicator';
 		
-		//结束下拉刷新
-		mui('#refreshContainer').pullRefresh().endPulldownToRefresh();	
-	},1000);
+		var str = '',strIndex = '';
+		str += '<div class="mui-slider-item mui-slider-item-duplicate">'+
+			'<a href="'+sliders[sliders.length-1].url+'">'+
+				'<img src="'+sliders[sliders.length-1].img+'"/>'+
+			'</a>'+ 
+		'</div>';
+		mui.each(sliders,function(index,item){
+			str += '<div class="mui-slider-item">'+
+				'<a href="'+item.url+'">'+
+					'<img src="'+item.img+'"/>'+
+				'</a>'+
+			'</div>';
+			
+			if(index == 0){
+				strIndex += '<div class="mui-indicator mui-active"></div>';
+			}else{
+				strIndex += '<div class="mui-indicator"></div>';
+			}
+			
+		});
+		str += '<div class="mui-slider-item mui-slider-item-duplicate">'+
+			'<a href="'+sliders[0].url+'">'+
+				'<img src="'+sliders[0].img+'"/>'+
+			'</a>'+
+		'</div>';
+		bannerImg.innerHTML = str;
+		bannerIndex.innerHTML = strIndex;
+		banner.appendChild(bannerImg);
+		banner.appendChild(bannerIndex);
+
+		//必须在这里，不然轮播图无效
+		var gallery = mui('.mui-slider'); 
+		gallery.slider({ 
+			interval: 2000 //自动轮播周期
+		});
+		
+		//分类
+		var icon = data.icon;
+		var classify = document.querySelector('.classify');
+		var classifyUl = document.createElement('ul');
+		
+		var classifyStr = '';
+		mui.each(icon,function(index,item){
+			classifyStr += '<li>'+
+				'<a href="../goodsList.html" title="'+item.type+'">'+
+				'<div class="icon">'+
+					'<img src="'+item.img+'" alt="" />'+
+				'</div>'+
+				'<p>'+item.name+'</p>'+
+				'</a>'+
+			'</li>';
+		});
+		classifyUl.innerHTML = classifyStr;
+		classify.appendChild(classifyUl);
+		
+		
+		//专区栏目
+		var type = data.type;
+		var column = document.getElementById("column"); //栏目父级
+		//var columnStr = '';
+		
+		mui.each(type,function(index,item){
+			
+			var activity = document.createElement('div');
+			activity.className = 'activity';
+			
+			//标题
+			var t = document.createElement('div');
+			t.className = 't activityBg'+index;
+			t.innerHTML = '<div><h4>'+ item.name +'</h4></div>';
+			activity.appendChild(t);
+			
+			//中间内容
+			var data = item.data;
+			var activityUl = document.createElement('ul');
+			var dataStr = '';
+			mui.each(data,function(index,item){
+				dataStr += '<li>'+
+							'<a href="../../pages/detail.html">'+
+								/*'<div class="activity-left">'+
+									'<p class="title titleColor0">'+ item.name +'</p>'+
+									'<p class="name">'+ item.name +'</p>'+
+									'<div class="img">'+
+										'<img src="'+ item.img +'" alt="" />'+
+									'</div>'+
+								'</div>'+*/
+								'<div class="activity-right">'+
+									'<img src="'+ item.img +'" alt="" />'+
+								'</div>'+
+							'</a>'+
+						'</li>';
+			});
+			activityUl.innerHTML = dataStr;
+			activity.appendChild(activityUl);
+			
+			//底部内容
+			var goodslist = item.goodslist;
+			var view = document.createElement('div');
+			view.className = 'view';
+			
+			//今日精选
+			var viewTitle = '<div class="view-title">'+
+							 '<div>今日精选</div>'+
+							 '<div></div>'+
+						'</div>';
+			view.innerHTML = viewTitle;
+			
+			//商品信息
+			var goodsWrapper = document.createElement('div');
+			goodsWrapper.className = 'mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted';
+			var goodsWrapperScroll = document.createElement('div');
+			goodsWrapperScroll.className = 'mui-scroll';
+			
+			var goodsStr = '';
+			mui.each(goodslist,function(index,item){
+				goodsStr += '<a class="mui-control-item" href="../../pages/detail.html">'+
+						            '<span class="img">'+
+					            		'<img src="'+ item.pic +'" alt="" />'+
+						            '</span>'+
+						            '<span class="title">'+ item.title +'</span>'+
+						            '<div class="title1">#'+ item.title +'</div>'+
+						            /*'<div class="price">'+
+						            	'<div class="price-top">3元券</div>'+
+						            	'<div class="price-foot">券后￥14.90</div>'+
+						            '</div>'+*/
+						        '</a>';
+			});
+			goodsWrapperScroll.innerHTML = goodsStr;
+			goodsWrapper.appendChild(goodsWrapperScroll);
+			view.appendChild(goodsWrapper);
+			activity.appendChild(view);
+			
+			column.appendChild(activity);
+			
+		});
+		
+		//中间横向滚动
+		mui('.mui-scroll-wrapper').scroll({
+			scrollY: false,
+			scrollX: true,
+			deceleration: 0.0005,
+			//indicators: true, //是否显示滚动条
+		});
+
+		
+	});
 }
 
 var search = document.getElementById('search');
@@ -76,13 +248,14 @@ mui('.classify').on('tap','a',function(){
 });
 
 //跳转到商品详情
-mui('.activity').on('tap','a',function(){
+mui('#column,.goods').on('tap','a',function(){
+	
 	var page = this.getAttribute('href');
 	
-	var title = this.getAttribute('title');
+	/*var title = this.getAttribute('title');
 	if(title == 'zhutijie'){
 		page = '../theme.html';
-	}
+	}*/
 	
 	var id = 1;
 	mui.openWindow({
@@ -111,6 +284,8 @@ function tabsAct(ele){
 }
 var ele = document.querySelector('.goodsTab');
 tabsAct(ele);
+
+
 
 
 //回到顶部和返回按钮显示与隐藏
@@ -160,245 +335,3 @@ if(mui.os.android){ //android设备
 		}
 	});
 }
-
-mui.plusReady(function(){
-	
-	plus.navigator.setStatusBarStyle( "light" );
-	
-	//判断用户是否联网
-	//app.CheckNetwork();
-	if(plus.networkinfo.getCurrentType() == plus.networkinfo.CONNECTION_NONE){ //正常：3 1，断网：1 1
-		mui.alert('网络异常，请检查网络设置！');  
-	}
-	
-	//获取数据
-	initData();
-	
-	//滚动到底部 
-	//mui('.wrapper.mui-scroll-wrapper').scroll().scrollToBottom(100);
-});
-
-//获取数据
-function initData(){   
-	app.ajax('/plugin.php?mod=wechat&act=app&do=config',{},function(data){
-		console.log(JSON.stringify(data)); 
-		
-		//轮播图  
-		var sliders = data.slides;
-		var banner = document.querySelector('.mui-slider .mui-slider-group');
-		var bannerIndex = document.querySelector('.mui-slider-indicator');
-		
-		var str = '',strIndex = '';
-		str += '<div class="mui-slider-item mui-slider-item-duplicate">'+
-			'<a href="'+sliders[sliders.length-1].url+'">'+
-				'<img src="'+sliders[sliders.length-1].img+'"/>'+
-			'</a>'+ 
-		'</div>';
-		mui.each(sliders,function(index,item){
-			str += '<div class="mui-slider-item">'+
-				'<a href="'+item.url+'">'+
-					'<img src="'+item.img+'"/>'+
-				'</a>'+
-			'</div>';
-			
-			if(index == 0){
-				strIndex += '<div class="mui-indicator mui-active"></div>';
-			}else{
-				strIndex += '<div class="mui-indicator"></div>';
-			}
-			
-		});
-		str += '<div class="mui-slider-item mui-slider-item-duplicate">'+
-			'<a href="'+sliders[0].url+'">'+
-				'<img src="'+sliders[0].img+'"/>'+
-			'</a>'+
-		'</div>';
-		banner.innerHTML = str;
-		bannerIndex.innerHTML = strIndex;
-		
-		//必须在这里，不然轮播图无效
-		var gallery = mui('.mui-slider'); 
-		gallery.slider({ 
-			interval: 2000 //自动轮播周期
-		});
-		
-		//分类
-		var icon = data.icon;
-		var classify = document.querySelector('.classify ul');
-		
-		var classifyStr = '';
-		mui.each(icon,function(index,item){
-			classifyStr += '<li>'+
-				'<a href="../goodsList.html" title="'+item.type+'">'+
-				'<div class="icon">'+
-					'<img src="'+item.img+'" alt="" />'+
-				'</div>'+
-				'<p>'+item.name+'</p>'+
-				'</a>'+
-			'</li>';
-		});
-		classify.innerHTML = classifyStr;
-		
-		//专区栏目
-		var column = document.getElementById("column"); //栏目父级
-		var columnStr = '';
-		
-		
-		//淘宝
-		/*var tbData = data.tb; 
-		var tb = document.getElementById('tb');
-		tb.querySelector('h4').innerHTML = tbData.name; //标题
-		var tbUl = tb.querySelector('ul');
-		tbData.data.forEach(function(item,i){
-			var tbli = document.createElement('li');
-			var str = '<a href="../detail.html" title="'+item.type+'">'+
-							'<div class="activity-left">'+
-								'<p class="title titleColor'+i+'">'+item.name+'</p>'+
-								'<p class="name">'+item.name+'</p>'+
-								'<div class="img">'+
-									'<img src="'+item.img+'" alt="" />'+
-								'</div>'+
-							'</div>'+
-							'<div class="activity-right">'+
-								'<img src="'+item.img+'" alt="" />'+
-							'</div>'+
-						'</a>';
-			tbli.innerHTML = str;
-			tbUl.appendChild(tbli);
-		});
-		if(tbData.goodslist.length > 0){
-			var tbviewScroll = tb.querySelector('.mui-scroll');
-			tbData.goodslist.forEach(function(item){
-				var a = document.createElement('a');
-				a.className = 'mui-control-item';
-				a.setAttribute("href","../detail.html");
-				a.setAttribute("title",item.goods_id);
-			    var str = '<span class="img">'+
-            		'<img src="'+item.pic+'" alt="" />'+
-	            	'</span>'+
-	            	'<span class="title">'+item.title+'</span>'+
-	            	'<div class="title1">'+item.d_title+'</div>';
-				a.innerHTML = str;
-				tbviewScroll.appendChild(a);
-			}); 
-		}else{
-			document.querySelector('#tb .view').classList.add('hide');
-		}
-		
-		//京东
-		var jdData = data.jd;
-		var jd = document.getElementById('jd');
-		jd.querySelector('h4').innerHTML = jdData.name; //标题
-		var jdUl = jd.querySelector('ul');
-		jdData.data.forEach(function(item,i){
-			var jdli = document.createElement('li'); 
-			var str = '<a href="../detail.html" title="'+item.type+'">'+
-				'<div class="activity-left">'+
-					'<p class="title titleColor'+i+'">'+item.name+'</p>'+
-					'<p class="name">'+item.name+'</p>'+
-					'<div class="img">'+
-						'<img src="'+item.img+'" alt="" />'+
-					'</div>'+
-				'</div>'+
-				'<div class="activity-right">'+
-					'<img src="'+item.img+'" alt="" />'+
-				'</div>'+
-			'</a>';
-			jdli.innerHTML = str;
-			jdUl.appendChild(jdli);
-		});
-		if(jdData.goodslist.length > 0){
-			var jdviewScroll = jd.querySelector('.mui-scroll');
-			jdData.goodslist.forEach(function(item){
-				var a = document.createElement('a');
-				a.className = 'mui-control-item';
-				a.setAttribute("href","../detail.html");
-				a.setAttribute("title",item.goods_id);
-				var str = '<span class="img">'+
-            		'<img src="'+item.pic+'" alt="" />'+
-	            	'</span>'+
-	            	'<span class="title">'+item.title+'</span>'+
-	            	'<div class="title1">'+item.d_title+'</div>';
-				a.innerHTML = str;
-				jdviewScroll.appendChild(a);
-			});
-		}else{
-			document.querySelector('#jd .view').classList.add('hide');
-		}
-		
-		//拼多多
-		var pddData = data.pdd;
-		var pdd = document.getElementById('pdd');
-		pdd.querySelector('h4').innerHTML = pddData.name; //标题
-		var pddUl = pdd.querySelector('ul');
-		pddData.data.forEach(function(item,i){
-			var li = document.createElement('li');
-			var str = '<a href="../detail.html" title="'+item.type+'">'+
-				'<div class="activity-left">'+
-					'<p class="title titleColor'+i+'">'+item.name+'</p>'+
-					'<p class="name">'+item.name+'</p>'+
-					'<div class="img">'+
-						'<img src="'+item.img+'" alt="" />'+
-					'</div>'+
-				'</div>'+
-				'<div class="activity-right">'+
-					'<img src="'+item.img+'" alt="" />'+
-				'</div>'+
-			'</a>';
-			li.innerHTML = str;
-			pddUl.appendChild(li);
-		});
-		if(pddData.goodslist.length > 0){
-			var pddviewScroll = pdd.querySelector('.mui-scroll');
-			pddData.goodslist.forEach(function(item){
-				var a = document.createElement('a');
-				a.className = 'mui-control-item';
-				a.setAttribute("href","../detail.html");
-				a.setAttribute("title",item.goods_id);
-				var str = '<span class="img">'+
-            		'<img src="'+item.pic+'" alt="" />'+
-	            	'</span>'+
-	            	'<span class="title">'+item.title+'</span>'+
-	            	'<div class="title1">'+item.d_title+'</div>';
-				a.innerHTML = str; 
-				pddviewScroll.appendChild(a);
-			});
-		}else{ 
-			document.querySelector('#pdd .view').classList.add('hide');
-		}*/
-		
-		//中间横向滚动
-		mui('.mui-scroll-wrapper').scroll({
-			scrollY: false,
-			scrollX: true,
-			deceleration: 0.0005,
-			//indicators: true, //是否显示滚动条
-		});
-
-		
-	});
-}
-
-/*mui.ajax('http://test.wx.nuozhe8.com/plugin.php?mod=wechat&act=app&do=config',{
-//mui.ajax('http://www.mjpai.cn:3100/api/users/code',{
-	data:{},
-	dataType:'json',//服务器返回json格式数据
-	type:'get',//HTTP请求类型
-	timeout:10000,//超时时间设置为10秒；
-	//crossDomain: true,
-	headers:{'Content-Type':'application/json'},	              
-	success:function(data,textStatus,xhr){
-		//服务器返回响应，根据响应结果，分析是否登录成功；
-		//console.log('成功'); 
-		//console.log(JSON.stringify(data.icon));
-		
-		
-		
-		
-	},
-	error:function(xhr,type,errorThrown){
-		//异常处理；
-		console.log('失败');
-		console.log(errorThrown);
-	}
-});*/

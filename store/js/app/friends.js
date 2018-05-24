@@ -1,5 +1,5 @@
 
-mui.init({
+/*mui.init({
 	subpages: [{
 		url: 'friends_sub.html',
 		id: 'friends_sub.html',
@@ -8,9 +8,41 @@ mui.init({
 			bottom: '0px'
 		} 
 	}]
-});
+});*/
 
 mui.plusReady(function(){ 
 	//console.log(plus.navigator.getStatusBarStyle());
 	plus.navigator.setStatusBarStyle( "dark" );   
+});
+
+mui.init({
+	//配置下拉刷新和上拉加载
+	pullRefresh: {
+		container: '#refreshContainer',
+		//下拉刷新
+		down: {
+			callback: pulldownRefresh
+		},
+		//上拉加载
+		up: {
+			//callback: pullupRefresh
+		}
+	}
+});
+
+//下拉刷新
+function pulldownRefresh(){
+
+	setTimeout(function(){
+		//结束下拉刷新
+		mui('#refreshContainer').pullRefresh().endPulldownToRefresh();	
+	},1000);
+}
+
+//var tabsBtn = document.getElementById('friends-tabs').getElementsByTagName('li')[0];
+//var tabsContent = document.getElementById('firends-content').getElementsByTagName('div');
+mui('.friends-tabs').on('tap','li',function(){
+	var id = this.getAttribute('id');
+	
+	console.log(this.index);
 });

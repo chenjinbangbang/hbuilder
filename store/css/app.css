@@ -32,12 +32,25 @@ body,.mui-content{ background-color:#fff;}
 .like .like-left{ width:140px;}
 .like .like-left img{ width:100%; height:140px; display:block;}
 .like .like-right{ flex:1; padding:0 8px;}
-.like .like-right .name{ font-size:16px;}
+.like .like-right .name{ font-size:16px; 
+	word-break: break-all;
+    text-overflow: ellipsis;
+    display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+    -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+    -webkit-line-clamp: 2; /** 显示的行数 **/
+    overflow: hidden;  /** 隐藏超出的内容 **/
+}
 .like .like-right .commission{ color:#A63F42; margin-top:15px; display:inline-block; border-radius:20px; padding:2px 20px; background-color:#FCDDDB;}
 .like .like-right .price{ margin-top:15px; display:flex; justify-content: space-between;}
 .like .like-right .price p:nth-child(1){ color:#A63F42; font-size:20px;}
 .like .like-right .price p:nth-child(2){}
-.like .like-right .price1{ margin-top:5px; display:flex; justify-content: space-between;}
+.like .like-right .price1{ margin-top:5px; display:flex; justify-content: space-between;} 
 .like .like-right .price1 p{ color:#999;}
-.like .like-right .price1 .ticket{}
-.like .like-right .price1 .ticket img{ width:60px;}
+.like .like-right .price1 .ticket{ position:relative;}
+/*.like .like-right .price1 .ticket img{ width:60px;}*/
+.like .like-right .price1 .ticket .coupon{ position:absolute; color:#fff; margin-left:18px; font-size:12px;}
+.like .like-right .price1 .ticket .iconfont{ font-size:80px; 
+	background-image: -webkit-gradient(linear, 0 0, right 0, from(#FB6A15), to(#FA2912));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}

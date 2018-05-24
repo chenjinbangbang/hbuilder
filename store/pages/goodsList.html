@@ -7,6 +7,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
+		<link href="../fonts/iconfont.css" rel="stylesheet" />
 		<style type="text/css">
 			.mui-content{ margin-top:20px;}
 			
@@ -29,8 +30,9 @@
 		    <h1 class="mui-title">通用栏目</h1>
 		</header>
 		
-		<div class="mui-content">
-		    
+		<!--下拉刷新容器-->
+		<div id="refreshContainer" class="mui-content mui-scroll-wrapper">
+		  <div class="mui-scroll">
 		    <div class="menu">
 		    	<ul>
 		    		<li>
@@ -59,7 +61,7 @@
 		     
 		     <div class="like">
 		     	<ul id="list">
-					<!--<li>
+<!--					<li>
 						<a href="detail.html">
 							<div class="like-left">
 								<img src="../imgs/1.jpg" alt="" />
@@ -74,7 +76,8 @@
 								<div class="price1">
 									<p>天猫价  ￥69.9</p>
 									<div class="ticket">
-										<img src="../imgs/ticket.png" alt="" />
+										<span class="coupon">券￥100</span>
+										<span class="iconfont icon-couponss"></span>
 									</div>
 								</div>
 							</div>
@@ -95,7 +98,8 @@
 								<div class="price1">
 									<p>天猫价  ￥69.9</p>
 									<div class="ticket">
-										<img src="../imgs/ticket.png" alt="" />
+										<span class="coupon">券￥100</span>
+										<span class="iconfont icon-couponss"></span>
 									</div>
 								</div>
 							</div>
@@ -116,7 +120,8 @@
 								<div class="price1">
 									<p>天猫价  ￥69.9</p>
 									<div class="ticket">
-										<img src="../imgs/ticket.png" alt="" />
+										<span class="coupon">券￥100</span>
+										<span class="iconfont icon-couponss"></span>
 									</div>
 								</div>
 							</div>
@@ -124,6 +129,7 @@
 					</li>-->
 				</ul>
 		     </div>
+		  </div>
 		</div>
 		
 		<script src="../js/mui.js"></script>

@@ -1,4 +1,90 @@
 
+var page = 1; //页数
+
+mui.init({
+	//配置下拉刷新和上拉加载
+	pullRefresh: {
+		container: '#refreshContainer',
+		//下拉刷新
+		down: {
+			callback: function pulldownRefresh(){
+				page = 1;
+				//获取数据
+				initData();
+			}
+		},
+		//上拉加载
+		up: {
+			callback: function pullupRefresh(){
+				page++;
+				//获取数据
+				initData();
+			}
+		}
+	}
+});
+ 
+mui.plusReady(function(){ 
+	plus.navigator.setStatusBarStyle( "dark" );
+	plus.navigator.setStatusBarBackground('#ffffff');
+	
+	//获取数据
+	initData();
+});
+
+//获取数据
+function initData(){
+	app.ajax('/plugin.php?mod=wechat&act=app&do=tb&sign=c1c365507cf2c64a6049b5f3ae07355e&timestamp=1&uid=1&get=ppq&page='+page,{},function(data){
+		console.log(JSON.stringify(data)); 
+		
+		var listData = data.list;
+		var list = document.getElementById("list");
+		var str = '';
+		mui.each(listData,function(index,item){
+			str += '<li>'+
+				'<a href="detail.html">'+
+					'<div class="like-left">'+
+						'<img src="'+ item.pic +'" alt="" />'+
+					'</div>'+
+					'<div class="like-right">'+
+						'<div class="name">'+ item.title +'</div>'+
+						'<div class="commission">预估佣金:￥'+ item.yongjin +'</div>'+
+						'<div class="price">'+
+							'<p><span>￥</span>'+ item.price +'</p>'+
+							'<p>月销'+ item.sales +'</p>'+
+						'</div>'+
+						'<div class="price1">'+
+							'<p>天猫价  ￥'+ item.o_price +'</p>'+ 
+							'<div class="ticket">'+
+								'<span class="coupon">券￥'+ item.coupon +'</span>'+
+								'<span class="iconfont icon-couponss"></span>'+
+							'</div>'+
+						'</div>'+
+					'</div>'+
+				'</a>'+
+			'</li>';
+		});
+		
+		if(page == 1){
+			list.innerHTML = str;
+			//结束下拉刷新
+			mui('#refreshContainer').pullRefresh().endPulldownToRefresh();	
+		}else{
+			//判断是否有数据，没有就不添加数据
+			if(str){
+				list.appendChild(str);
+				return;
+			}
+
+			//上拉加载结束
+			mui('#refreshContainer').pullRefresh().endPullupToRefresh(true);	
+		}
+		
+	});
+}
+
+
+
 var likeLi = document.querySelectorAll('.like ul li');
 var likeLeft = document.querySelectorAll('.like .like-left');
 
@@ -45,45 +131,3 @@ mui('#list').on('tap','a',function(){
 		}
 	});
 });
-
-mui.plusReady(function(){
-	
-	//获取数据
-	initData();
-});
-
-//获取数据
-function initData(){
-	app.ajax('/plugin.php?mod=wechat&act=app&do=tb&sign=c1c365507cf2c64a6049b5f3ae07355e&timestamp=1&uid=1&get=ppq&page=1',{},function(data){
-		console.log(JSON.stringify(data)); 
-		
-		var listData = data.list;
-		var list = document.getElementById("list");
-		var str = '';
-		mui.each(listData,function(index,item){
-			str += '<li>'+
-						'<a href="detail.html">'+
-							'<div class="like-left">'+
-								'<img src="'+ item.pic +'" alt="" />'+
-							'</div>'+
-							'<div class="like-right">'+
-								'<div class="name">'+ item.title +'</div>'+
-								'<div class="commission">预估佣金:￥'+ item.yongjin +'</div>'+
-								'<div class="price">'+
-									'<p><span>￥</span>19.9</p>'+
-									'<p>月销49118</p>'+
-								'</div>'+
-								'<div class="price1">'+
-									'<p>天猫价  ￥69.9</p>'+
-									'<div class="ticket">'+
-										'<img src="../imgs/ticket.png" alt="" />'+
-									'</div>'+
-								'</div>'+
-							'</div>'+
-						'</a>'+
-					'</li>';
-		});
-		list.innerHTML = str;
-	});
-}
-

@@ -53,7 +53,7 @@ function pullupRefresh(){
             li.innerHTML = str;
             table.appendChild(li);    
 		}*/
-		//结束下拉刷新
+		//结束上拉加载
 		mui('#refreshContainer').pullRefresh().endPullupToRefresh();	
 	},1000);
 }
