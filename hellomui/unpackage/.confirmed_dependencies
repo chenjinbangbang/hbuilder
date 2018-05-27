@@ -1,0 +1,18 @@
+{
+	"index.html": {
+		"refer": [
+			"index-menu.html",
+			"examples/slider-default.html",
+			"examples/guide.html",
+			"examples/pullrefresh_main.html"
+		]
+	},
+	"examples/pullrefresh_main.html": {
+		"resources": [
+			"examples/pullrefresh_sub.html"
+		],
+		"refer": [
+			"examples/pullrefresh_sub.html"
+		]
+	}
+}

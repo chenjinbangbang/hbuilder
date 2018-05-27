@@ -1,32 +1,45 @@
 
+		
 mui.init({
+	statusBarBackground:"#FF0000",
 	//配置下拉刷新和上拉加载
 	pullRefresh: {
 		container: '#refreshContainer',
 		//下拉刷新
-		down: { 
+		down: {
+			//auto: true,
+			//style: 'circle',
 			callback: function pulldownRefresh(){
-				//获取数据
-				//initData();
-				setTimeout(function(){
-					mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
-				},1000);
-				
+				//获取首页数据
+				initData();
+				//加载首页栏目板块
+				initColumn();
 			}
 		},
 		//上拉加载
 		/*up: {
 			callback: function pullupRefresh(){
-				//获取数据
+				//获取首页数据
 				initData();
 			}
 		}*/
 	}
 });
 
-mui.plusReady(function(){
+mui.plusReady(function(){ 
 	
-	plus.navigator.setStatusBarStyle( "light" );
+	//设置状态栏样式
+	plus.navigator.setStatusBarStyle( "dark" );  
+	var height = plus.navigator.getStatusbarHeight();
+	if(mui.os.android){
+		document.querySelector('.topStatus').style.height = height+'px';
+		/*document.querySelector('.topStatus').style.background = 'rgba(188,188,188,1)';*/
+		document.querySelector('.search').style.marginTop = height+'px';
+	}else{
+		document.querySelector('.topStatus_search').style.background = '-webkit-linear-gradient(top,rgba(0,0,0,0.4),rgba(0,0,0,0.05))';
+		document.querySelector('.topStatus').style.height = height+'px';
+		document.querySelector('.search').style.marginTop = height+'px';
+	}
 	
 	//判断用户是否联网
 	//app.CheckNetwork();
@@ -34,21 +47,27 @@ mui.plusReady(function(){
 		mui.alert('网络异常，请检查网络设置！');  
 	}
 	
-	//获取数据
-	initData();
-	
-	//滚动到底部 
-	//mui('.wrapper.mui-scroll-wrapper').scroll().scrollToBottom(100);
+	app.login(function(data){
+		console.log(data);
+		//获取首页数据
+		initData();
+		
+		//加载首页栏目板块
+		initColumn('tb');
+	});
+
+
 });
 
-//获取数据
+//获取首页数据
 function initData(){   
 	app.ajax('/plugin.php?mod=wechat&act=app&do=config',{},function(data){
-		console.log(JSON.stringify(data)); 
+		console.log(JSON.stringify(data));
 		
 		//轮播图  
 		var sliders = data.slides;
 		var banner = document.querySelector('.banner');
+		banner.innerHTML = ''; //初始化
 		var bannerImg = document.createElement('div');
 		bannerImg.className = 'mui-slider-group mui-slider-loop';
 		var bannerIndex = document.createElement('div');
@@ -93,6 +112,7 @@ function initData(){
 		//分类
 		var icon = data.icon;
 		var classify = document.querySelector('.classify');
+		classify.innerHTML = ''; //初始化
 		var classifyUl = document.createElement('ul');
 		
 		var classifyStr = '';
@@ -113,6 +133,7 @@ function initData(){
 		//专区栏目
 		var type = data.type;
 		var column = document.getElementById("column"); //栏目父级
+		column.innerHTML = ''; //初始化
 		//var columnStr = '';
 		
 		mui.each(type,function(index,item){
@@ -122,15 +143,18 @@ function initData(){
 			
 			//标题
 			var t = document.createElement('div');
-			t.className = 't activityBg'+index;
+			t.className = 't';
+			console.log(JSON.stringify(item));
+			t.style.background = '-webkit-linear-gradient(left, '+ item.color[0] +' , '+ item.color[1] +')';
 			t.innerHTML = '<div><h4>'+ item.name +'</h4></div>';
 			activity.appendChild(t);
 			
 			//中间内容
 			var data = item.data;
 			var activityUl = document.createElement('ul');
+			activityUl.className = 'tt';
 			var dataStr = '';
-			mui.each(data,function(index,item){
+			mui.each(data,function(index,item){ 
 				dataStr += '<li>'+
 							'<a href="../../pages/detail.html">'+
 								/*'<div class="activity-left">'+
@@ -157,31 +181,33 @@ function initData(){
 			//今日精选
 			var viewTitle = '<div class="view-title">'+
 							 '<div>今日精选</div>'+
-							 '<div></div>'+
 						'</div>';
 			view.innerHTML = viewTitle;
 			
 			//商品信息
 			var goodsWrapper = document.createElement('div');
-			goodsWrapper.className = 'mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted';
+			goodsWrapper.className = 'made scrollbox';
+			goodsWrapper.id = 'horizontal';
 			var goodsWrapperScroll = document.createElement('div');
-			goodsWrapperScroll.className = 'mui-scroll';
+			goodsWrapperScroll.className = 'madegame';
+			var goodsWrapperScrollUl = document.createElement('ul');
+			//goodsWrapperScrollUl.id = 'ho';
 			
 			var goodsStr = '';
 			mui.each(goodslist,function(index,item){
-				goodsStr += '<a class="mui-control-item" href="../../pages/detail.html">'+
+				goodsStr += '<li>'+
+								'<a href="../../pages/detail.html">'+
 						            '<span class="img">'+
 					            		'<img src="'+ item.pic +'" alt="" />'+
 						            '</span>'+
 						            '<span class="title">'+ item.title +'</span>'+
 						            '<div class="title1">#'+ item.title +'</div>'+
-						            /*'<div class="price">'+
-						            	'<div class="price-top">3元券</div>'+
-						            	'<div class="price-foot">券后￥14.90</div>'+
-						            '</div>'+*/
-						        '</a>';
+						        '</a>'+
+						       '</li>';
 			});
-			goodsWrapperScroll.innerHTML = goodsStr;
+			goodsWrapperScrollUl.innerHTML = goodsStr;
+			goodsWrapperScroll.appendChild(goodsWrapperScrollUl);
+			
 			goodsWrapper.appendChild(goodsWrapperScroll);
 			view.appendChild(goodsWrapper);
 			activity.appendChild(view);
@@ -190,17 +216,99 @@ function initData(){
 			
 		});
 		
-		//中间横向滚动
-		mui('.mui-scroll-wrapper').scroll({
-			scrollY: false,
-			scrollX: true,
-			deceleration: 0.0005,
-			//indicators: true, //是否显示滚动条
-		});
+
+
+		//滚动到底部  
+		//mui('.mui-content.mui-scroll-wrapper').scroll().scrollToBottom(500);
+		
+		//下拉刷新结束
+		mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
 
 		
 	});
 }
+
+//加载首页栏目板块
+function initColumn(title){
+	var sign = localStorage.getItem('sign');
+	var uid = localStorage.getItem('uid');
+	var timestamp = localStorage.getItem('timestamp');
+	var doC = title; 
+	
+	//console.log(title);
+	//console.log(sign); 
+	//console.log(timestamp);
+	document.querySelector('.goods').classList.remove('hide');
+	
+	app.ajax('/plugin.php?mod=wechat&act=app&do='+ doC +'&sign='+ sign +'&timestamp='+ timestamp +'&uid='+ uid +'&get=new&page=1',{},function(data){
+		console.log(JSON.stringify(data));
+		
+		if(data.code){
+			mui.toast(data.msg);
+			return;
+		}
+		
+		var listData = data.list;
+		var list = document.getElementById("list");
+		var str = '';
+		
+
+		
+		if(listData.length > 0){
+			//有数据
+			document.querySelector('.nodata').classList.add('hide');
+			
+			mui.each(listData,function(index,item){
+				str += '<li>'+
+					'<a href="../detail.html">'+
+						'<div class="like-left">'+
+							'<img src="'+ item.pic +'" alt="" />'+
+						'</div>'+
+						'<div class="like-right">'+
+							'<div class="name">'+ item.title +'</div>'+
+							'<div class="commission">预估佣金:￥'+ item.yongjin +'</div>'+
+							'<div class="price">'+
+								'<p><span>￥</span>'+ item.price +'</p>'+
+								'<p>月销'+ item.sales +'</p>'+
+							'</div>'+
+							'<div class="price1">'+
+								'<p>天猫价  ￥'+ item.o_price +'</p>'+ 
+								'<div class="ticket">'+
+									'<span class="coupon">券￥'+ item.coupon +'</span>'+
+									'<span class="iconfont icon-couponss"></span>'+
+								'</div>'+
+							'</div>'+
+						'</div>'+
+					'</a>'+
+				'</li>';
+			});
+			list.innerHTML = str;
+		}else{
+			//没有数据
+			document.querySelector('.nodata').classList.remove('hide');
+		}
+
+		
+	});
+}
+//tabs切换
+function tabsAct(ele){
+	mui('.goodsTab').on('tap','li',function(){			
+		//获取当前的class列表
+		var tabs = ele.children;
+		for(var i=0;i<tabs.length;i++){
+			tabs[i].classList.remove("active");
+		}
+		this.classList.add('active');
+		
+		var title = this.getAttribute('title');
+		//加载首页栏目板块
+		initColumn(title);
+		
+	});
+}
+var ele = document.querySelector('.goodsTab');
+tabsAct(ele);
 
 var search = document.getElementById('search');
 search.addEventListener('focus',function(){
@@ -226,43 +334,34 @@ search.addEventListener('focus',function(){
 	
 });
 
-//分类栏目跳转
-mui('.classify').on('tap','a',function(){
+//跳转页面
+mui('.mui-content').on('tap','a',function(){
 	var page = this.getAttribute('href');
-	var title =  this.getAttribute('title');
+	var title = "";
 	
-	//叮咚抢
-	if(title == 'ddq'){
-		page = '../ddq.html';
+	if(this.getAttribute('title')){
+		title =  this.getAttribute('title');
+		
+		//主题推荐
+		if(title == 'zhuti'){
+			page = '../theme.html';
+		}
+		//叮咚抢
+		if(title == 'ddq'){
+			page = '../ddq.html';
+		}
+		//拼购
+		if(title == 'haiwai'){
+			page = '../haiwai.html';
+		}
 	}
+
 	
 	mui.openWindow({ 
 		url: page,
 		id: page,
-		extras: {},
-		waiting: {
-			autoShow: true,
-			title: '正在加载...'
-		}
-	});
-});
-
-//跳转到商品详情
-mui('#column,.goods').on('tap','a',function(){
-	
-	var page = this.getAttribute('href');
-	
-	/*var title = this.getAttribute('title');
-	if(title == 'zhutijie'){
-		page = '../theme.html';
-	}*/
-	
-	var id = 1;
-	mui.openWindow({
-		url: page,
-		id: page,
 		extras: {
-			id: id
+			title: title
 		},
 		waiting: {
 			autoShow: true,
@@ -271,46 +370,24 @@ mui('#column,.goods').on('tap','a',function(){
 	});
 });
 
-//tabs切换
-function tabsAct(ele){
-	mui('.goodsTab').on('tap','li',function(){			
-		//获取当前的class列表
-		var tabs = ele.children;
-		for(var i=0;i<tabs.length;i++){
-			tabs[i].classList.remove("active");
-		}
-		this.classList.add('active');
-	});
-}
-var ele = document.querySelector('.goodsTab');
-tabsAct(ele);
-
-
-
-
-//回到顶部和返回按钮显示与隐藏
-var search = document.querySelector('.search'); //返回
-var topStatus = document.querySelector('.topStatus'); //顶部状态栏
-
+//搜索和状态栏的状态变化
+var topStatus_search = document.querySelector('.topStatus_search');
 //Android上监听原生滚动，IOS上监听div滚动，上拉超过一定距离后显示按钮，否则隐藏，可自行在条件判断中修改
 if(mui.os.android){ //android设备
 	window.addEventListener('scroll',function(e){
-		//返回按钮的显示与隐藏
-		//console.log(window.pageYOffset);
-		if(window.pageYOffset < 0 && !search.classList.contains('hide')){ //上面
-			search.classList.add('hide');
-		}else if(window.pageYOffset > 0 && search.classList.contains('hide')){ //开始
-			search.classList.remove('hide');
+		//返回按钮的显示与隐藏 
+		if(window.pageYOffset < 0 && !topStatus_search.classList.contains('hide')){ //上面
+			topStatus_search.classList.add('hide');
+		}else if(window.pageYOffset >= 0 && topStatus_search.classList.contains('hide')){ //开始
+			topStatus_search.classList.remove('hide');
 		}
 		//返回按钮的变化
-		if(window.pageYOffset >= 100 && topStatus.classList.contains('hide')){ //下面
-			search.classList.add('searchbg');
+		if(window.pageYOffset >= 100 && !topStatus_search.classList.contains('topStatus_searchbg')){ //下面
+			topStatus_search.classList.add('topStatus_searchbg');  
 			plus.navigator.setStatusBarStyle( "dark" );
-			topStatus.classList.remove('hide');
-		}else if(window.pageYOffset < 100 && !topStatus.classList.contains('hide')){ //开始
-			search.classList.remove('searchbg'); 
+		}else if(window.pageYOffset < 100 && topStatus_search.classList.contains('topStatus_searchbg')){ //开始
+			topStatus_search.classList.remove('topStatus_searchbg'); 
 			plus.navigator.setStatusBarStyle( "light" );
-			topStatus.classList.add('hide'); 
 		}
 	});
 }else{ //ios设备
@@ -318,20 +395,27 @@ if(mui.os.android){ //android设备
 	document.querySelector('.wrapper').addEventListener('scroll',function(){
 		//mui('.wrapper').pullRefresh().y：获取距离顶部的距离大小
 		//搜索的显示与隐藏
-		if(mui('.wrapper').pullRefresh().y > 0 && !search.classList.contains('hide')){
-			search.classList.add('hide'); 
-		}else if(mui('.wrapper').pullRefresh().y <= 0 && search.classList.contains('hide')){
-			search.classList.remove('hide');
+		if(mui('.wrapper').pullRefresh().y > 0 && !topStatus_search.classList.contains('hide')){ //上面
+			topStatus_search.classList.add('hide');
+		}else if(mui('.wrapper').pullRefresh().y <= 0 && topStatus_search.classList.contains('hide')){ //开始
+			topStatus_search.classList.remove('hide');
 		}
 		//搜索的变化
-		if(mui('.wrapper').pullRefresh().y <= -100 && topStatus.classList.contains('hide')){ //下面
-			search.classList.add('searchbg');
+		if(mui('.wrapper').pullRefresh().y <= -100 && !topStatus_search.classList.contains('topStatus_searchbg')){ //下面
+			topStatus_search.classList.add('topStatus_searchbg');  
 			plus.navigator.setStatusBarStyle( "dark" );
-			topStatus.classList.remove('hide');
-		}else if(mui('.wrapper').pullRefresh().y > -100 && !topStatus.classList.contains('hide')){ //开始
-			search.classList.remove('searchbg'); 
+		}else if(mui('.wrapper').pullRefresh().y > -100 && topStatus_search.classList.contains('topStatus_searchbg')){ //开始
+			topStatus_search.classList.remove('topStatus_searchbg'); 
 			plus.navigator.setStatusBarStyle( "light" );
-			topStatus.classList.add('hide'); 
 		}
 	});
 }
+		/*(function($){
+			//$(window).load(function(){
+				$.mCustomScrollbar.defaults.theme="light-2"; //set "light-2" as the default theme
+				$(".madegame ul").mCustomScrollbar({
+					axis:"y",
+					advanced:{autoExpandHorizontalScroll:false}
+				});
+			//});
+		})(jQuery);*/

@@ -34,7 +34,11 @@ mui.plusReady(function(){
 
 //获取数据
 function initData(){
-	app.ajax('/plugin.php?mod=wechat&act=app&do=tb&sign=c1c365507cf2c64a6049b5f3ae07355e&timestamp=1&uid=1&get=ppq&page='+page,{},function(data){
+	var sign = localStorage.getItem('sign');
+	var uid = localStorage.getItem('uid');
+	var timestamp = localStorage.getItem('timestamp');
+	
+	app.ajax('/plugin.php?mod=wechat&act=app&do=tb&sign='+ sign +'&timestamp='+ timestamp +'&uid='+ uid +'&get=ppq&page='+page,{},function(data){
 		console.log(JSON.stringify(data)); 
 		
 		var listData = data.list;
@@ -71,7 +75,7 @@ function initData(){
 			mui('#refreshContainer').pullRefresh().endPulldownToRefresh();	
 		}else{
 			//判断是否有数据，没有就不添加数据
-			if(str){
+			if(str){ 
 				list.appendChild(str);
 				return;
 			}

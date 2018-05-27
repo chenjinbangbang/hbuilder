@@ -140,12 +140,12 @@
 		"pages": {
 			"index.html": {
 				"resources": [
-					"pages/index/home.html"
+					"pages/index/home.html",
+					"pages/index/search.html"
 				],
 				"refer": [
 					"personal.html",
 					"pages/index/store.html",
-					"pages/index/search.html",
 					"pages/index/friends.html",
 					"pages/index/personal.html"
 				],
@@ -170,14 +170,18 @@
 				"refer": [
 					"pages/detail.html",
 					"pages/searchPage.html",
-					"pages/goodsList.html"
+					"pages/goodsList.html",
+					"pages/theme.html",
+					"pages/ddq.html"
 				],
 				"priority": 0
 			},
 			"pages/index/personal.html": {
 				"resources": [],
 				"refer": [
-					"pages/personal/orders.html"
+					"pages/personal/orders.html",
+					"pages/personal/settings.html",
+					"pages/personal/fans.html"
 				],
 				"priority": 0
 			},

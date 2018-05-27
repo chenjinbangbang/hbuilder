@@ -155,7 +155,10 @@
 					"list.html"
 				],
 				"refer": [
-					"index-menu.html"
+					"index-menu.html",
+					"examples/slider-default.html",
+					"examples/guide.html",
+					"examples/pullrefresh_main.html"
 				],
 				"priority": 0
 			},

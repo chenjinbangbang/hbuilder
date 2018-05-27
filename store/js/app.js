@@ -269,7 +269,74 @@ function ImagePicker(callback,options){
 
 //获取列表数据组件
 
+/*============================= 设置全局的mui方法 ============================*/
 function App(){}
+
+/*=============== 登录 ===============*/
+
+//
+App.prototype.createState = function(name,callback){
+	//var state = 
+};
+
+//设置应用本地配置
+App.prototype.setSettings = function(settings){
+	settings = settings || {};
+	localStorage.setItem('$settings',JSON.stringify(settings));
+};
+//获取应用本地配置
+App.prototype.getSettings = function(){
+	var settingsText = localStorage.getItem('$settingss') || "{}";
+	return JSON.parse(settingsText);
+};
+
+//设置当前状态
+App.prototype.setState = function(state){
+	state = state || {};
+	localStorage.setItem('$state',JSON.stringify(state));
+};
+
+//获取当前状态
+App.prototype.getState = function(){
+	var stateText = localStorage.getItem('$state') | "{}";
+	return JSON.parse(stateText);
+};
+
+//获取本地是否安装客户端
+App.prototype.isInstalled = function(id){
+	if(id === 'qihoo' && mui.os.plus){ //返回是否在 5+ App(包括流应用)运行
+		return true;
+	}
+	if(mui.os.android){
+		var main = plus.android.runtimeMainActivity();
+		var packageManager = main.getPackageManager();
+		var PackageManager = plus.addroid.importClass(packageManager); //导入Objective-C类对象
+		var packageName = {
+			'qq': 'com.tencent.mobileqq',
+			'weixin': 'com.tencent.mm',
+			'sinaweibo': 'com.sina.weibo'
+		};
+		try{
+			return packageManager.getPackageInfo(packageName[id],PackageManager.GET_ACTIVITIES);
+		}catch(e){}
+	}else{
+		switch(id){
+			case 'qq':
+				var TencentOAuth = plus.ios.import('TencentOAuth');
+				return TencentOAuth.iphoneQQInstalled();
+			case 'weixin':
+				var WXApi = plus.ios.import('WXApi');
+				return WXApi.isWXAppInstalled();
+			case 'sinaweibo':
+				var SinaAPI = plus.ios.import('WeiboSDK');
+				return SinaAPI.isWeiboAppInstalled();
+			default:
+				break;
+		}
+	}
+};
+
+
 //评分
 App.prototype.star = function(selector){
 	var eles = document.querySelectorAll(selector);
@@ -357,6 +424,7 @@ App.prototype.endLoadMore = function(more){
  */
 
 App.prototype.ajax = function(path,data,successCallback,errorCallback,options){
+	
 	var that = this;
 	if(typeof data === 'function'){
 		options = errorCallback;
@@ -381,7 +449,7 @@ App.prototype.ajax = function(path,data,successCallback,errorCallback,options){
 		if(typeof mOptions.wait === 'string'){
 			app.waiting(mOptions.wait);
 		}else{
-			plus.nativeUI.showWaiting('加载中...');
+			//plus.nativeUI.showWaiting('加载中...');
 		}
 	}
 	//登录
@@ -404,7 +472,7 @@ App.prototype.ajax = function(path,data,successCallback,errorCallback,options){
 			if(textStatus == 'success'){
 				//mOptions.close && that.closeWaiting();
 				//typeof successCallback === 'function' && successCallback(e);
-				plus.nativeUI.closeWaiting();
+				//plus.nativeUI.closeWaiting();
 				//plus.nativeUI.toast('数据加载成功',{duration: '500'});   
 				successCallback(data);  
 			}else if(textStatus == ErrorCode.logout){
@@ -460,9 +528,26 @@ App.prototype.closeWaiting = function(){
 }
 */
 
+//登录函数
+App.prototype.login = function(callback){
+	var username = '123123';
+	var password = '123123';
+	app.ajax('/plugin.php?mod=wechat&act=app&do=login&username='+ username +'&password='+password,{},function(data){
+		//console.log(JSON.stringify(data));
+		localStorage.setItem('uid',data.uid);
+		localStorage.setItem('token',data.token);
+		
+		var timestamp = Math.floor(new Date().getTime()/1000);
+		var sign = hex_md5(data.token + timestamp + '123');
+		localStorage.setItem('sign',sign);
+		localStorage.setItem('timestamp',timestamp);
+		callback(true);
+	});
+};
+
 //创建app实例
 var app = new App();
-mui.plusReady(function(){ 
+mui.plusReady(function(){
 	
 	//动态改变状态栏颜色
 	var currentView = plus.webview.currentWebview();
