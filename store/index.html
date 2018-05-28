@@ -65,9 +65,10 @@
 		
 		mui.init();  
 		
-		var firstBack,activeTagId,windowHeight; 
+		
 		
 		//关闭页面，1。点击包含.mui-actiion-back类的控件，2.在屏幕内，向右快速滑动，2.Android手机按下back按键
+		var firstBack; 
 		mui.back = function(){
 			if(firstBack){
 				if(new Date().getTime() - firstBack < 1000){

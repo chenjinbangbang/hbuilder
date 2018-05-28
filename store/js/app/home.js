@@ -1,68 +1,67 @@
 
-		
-mui.init({
-	statusBarBackground:"#FF0000",
-	//配置下拉刷新和上拉加载
-	pullRefresh: {
-		container: '#refreshContainer',
-		//下拉刷新
-		down: {
-			//auto: true,
-			//style: 'circle',
-			callback: function pulldownRefresh(){
-				//获取首页数据
-				initData();
-				//加载首页栏目板块
-				initColumn();
+var vm = new Vue({
+	el: '#refreshContainer',
+	data: {},
+	mounted: function(){
+		mui.plusReady(function(){
+			
+			//设置状态栏样式
+			plus.navigator.setStatusBarStyle( "dark" );  
+			var height = plus.navigator.getStatusbarHeight();
+			if(mui.os.android){
+				document.querySelector('.topStatus').style.height = height+'px';
+				/*document.querySelector('.topStatus').style.background = 'rgba(188,188,188,1)';*/
+				document.querySelector('.search').style.marginTop = height+'px';
+			}else{
+				document.querySelector('.topStatus_search').style.background = '-webkit-linear-gradient(top,rgba(0,0,0,0.4),rgba(0,0,0,0.05))';
+				document.querySelector('.topStatus').style.height = height+'px';
+				document.querySelector('.search').style.marginTop = height+'px';
 			}
-		},
-		//上拉加载
-		/*up: {
-			callback: function pullupRefresh(){
-				//获取首页数据
-				initData();
+			
+			//判断用户是否联网
+			//app.CheckNetwork();
+			if(plus.networkinfo.getCurrentType() == plus.networkinfo.CONNECTION_NONE){ //正常：3 1，断网：1 1
+				mui.alert('网络异常，请检查网络设置！');  
 			}
-		}*/
-	}
-});
-
-mui.plusReady(function(){ 
-	
-	//设置状态栏样式
-	plus.navigator.setStatusBarStyle( "dark" );  
-	var height = plus.navigator.getStatusbarHeight();
-	if(mui.os.android){
-		document.querySelector('.topStatus').style.height = height+'px';
-		/*document.querySelector('.topStatus').style.background = 'rgba(188,188,188,1)';*/
-		document.querySelector('.search').style.marginTop = height+'px';
-	}else{
-		document.querySelector('.topStatus_search').style.background = '-webkit-linear-gradient(top,rgba(0,0,0,0.4),rgba(0,0,0,0.05))';
-		document.querySelector('.topStatus').style.height = height+'px';
-		document.querySelector('.search').style.marginTop = height+'px';
-	}
-	
-	//判断用户是否联网
-	//app.CheckNetwork();
-	if(plus.networkinfo.getCurrentType() == plus.networkinfo.CONNECTION_NONE){ //正常：3 1，断网：1 1
-		mui.alert('网络异常，请检查网络设置！');  
-	}
-	
-	app.login(function(data){
-		console.log(data);
-		//获取首页数据
-		initData();
+			
+			mui.init({
+				statusBarBackground:"#FF0000",
+				//配置下拉刷新和上拉加载
+				pullRefresh: {
+					container: '#refreshContainer',
+					//下拉刷新
+					down: {
+						auto: true,
+						callback: function pulldownRefresh(){
+							//获取首页数据
+							initData();
+							//加载首页栏目板块
+							initColumn();
+						}
+					},
+					//上拉加载
+					/*up: {
+						callback: function pullupRefresh(){
+							//获取首页数据
+							initData();
+						}
+					}*/
+				}
+			});
+			
+			
+			
+		});
+	},
+	methods: {
 		
-		//加载首页栏目板块
-		initColumn('tb');
-	});
-
-
+	}
 });
 
 //获取首页数据
 function initData(){   
 	app.ajax('/plugin.php?mod=wechat&act=app&do=config',{},function(data){
-		console.log(JSON.stringify(data));
+		//console.log(JSON.stringify(data));
 		
 		//轮播图  
 		var sliders = data.slides;
@@ -229,19 +228,19 @@ function initData(){
 }
 
 //加载首页栏目板块
-function initColumn(title){
-	var sign = localStorage.getItem('sign');
-	var uid = localStorage.getItem('uid');
-	var timestamp = localStorage.getItem('timestamp');
+function initColumn(title){ 
+	var sign = plus.storage.getItem('sign');
+	var uid = plus.storage.getItem('uid');
+	var timestamp = plus.storage.getItem('timestamp');
 	var doC = title; 
 	
 	//console.log(title);
-	//console.log(sign); 
-	//console.log(timestamp);
+	mui.toast(sign); 
+	mui.toast(timestamp); 
 	document.querySelector('.goods').classList.remove('hide');
 	
 	app.ajax('/plugin.php?mod=wechat&act=app&do='+ doC +'&sign='+ sign +'&timestamp='+ timestamp +'&uid='+ uid +'&get=new&page=1',{},function(data){
-		console.log(JSON.stringify(data));
+		//console.log(JSON.stringify(data));
 		
 		if(data.code){
 			mui.toast(data.msg);

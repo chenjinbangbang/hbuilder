@@ -1,38 +1,108 @@
 
-var page = 1; //页数
+var vm = new Vue({
+	el: '#refreshContainer',
+	data: {
+		types: [], //类别
+		typeIndex: null, //类别索引
+		lists: [], //数据列表
+		page: 1, //加载的页数，用于下拉加载更多数据
+		type: 1, //1代表下拉加载,2代表下拉加载
+	},
+	mounted: function(){
+		var self = this;
+		
+		mui.plusReady(function(){
+			//状态栏初始化
+			plus.navigator.setStatusBarStyle( "dark" );
+			plus.navigator.setStatusBarBackground('#ffffff');
+			
+			mui.init({
+				//swipeBack: true, //启动右滑关闭功能
+				pullRefresh: {
+					container: '#refreshContainer',
+					//下拉刷新
+					down: {
+						auto: true,
+						callback: function pulldownRefresh(){
+							self.page = 1; //刷新并显示第一页
+							self.type = 1; //代表下拉加载
+							//获取数据
+							self.initData();
+						}
+					},
+					//上拉加载
+					up: {
+						callback: function pullupRefresh(){
+							self.page++; //翻下一页
+							self.type = 2; //代表下拉加载
+							//获取数据
+							self.initData();
+						}
+					}  
+				}
+			});
 
-mui.init({
-	//配置下拉刷新和上拉加载
-	pullRefresh: {
-		container: '#refreshContainer',
-		//下拉刷新
-		down: {
-			callback: function pulldownRefresh(){
-				page = 1;
-				//获取数据
-				initData();
-			}
+		});
+	},
+	methods: {
+		//获取数据
+		initData: function(){
+			var self = this;
+			var sign = localStorage.getItem('sign');
+			var uid = localStorage.getItem('uid');
+			var timestamp = localStorage.getItem('timestamp');
+			
+			app.ajax('/plugin.php?mod=wechat&act=app&do=tb&sign='+ sign +'&timestamp='+ timestamp +'&uid='+ uid +'&get=ppq&page='+self.page,{},function(data){
+				console.log(JSON.stringify(data));
+				
+				//类别
+				self.types = data.type;
+				//self.typeIndex = self.types.
+				
+				//数据
+				var list = data.list; 
+				if(self.type === 1){
+					//下拉刷新
+					self.lists = list;
+					
+					 //有重新触发上拉加载的需求（比如当前类别已无更多数据，但切换到另外一个类别后，应支持继续上拉加载）
+					//mui('#refreshContainer').pullRefresh().refresh(true);
+					
+					//结束下拉刷新
+					mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
+				}else if(self.type === 2){
+					//下拉加载
+					if(list.length > 0){
+						self.lists.push(list);
+						mui('#refreshContainer').pullRefresh().endPullupToRefresh(false);	
+					}else{
+						mui('#refreshContainer').pullRefresh().endPullupToRefresh(true);	
+					}
+				}
+
+			},function(){
+				 mui('#refreshContainer').pullRefresh().endPullupToRefresh(true);
+			});
 		},
-		//上拉加载
-		up: {
-			callback: function pullupRefresh(){
-				page++;
-				//获取数据
-				initData();
-			}
+		//点击切换类别
+		typeFn: function(index){
+			this.typeIndex = index;
+			
+			this.initData();
 		}
 	}
 });
+
+//var page = 1; //页数
  
-mui.plusReady(function(){ 
-	plus.navigator.setStatusBarStyle( "dark" );
-	plus.navigator.setStatusBarBackground('#ffffff');
+/*mui.plusReady(function(){ 
+	
 	
 	//获取数据
 	initData();
 });
-
-//获取数据
+*/
+/*//获取数据
 function initData(){
 	var sign = localStorage.getItem('sign');
 	var uid = localStorage.getItem('uid');
@@ -85,14 +155,14 @@ function initData(){
 		}
 		
 	});
-}
+}*/
 
 
 
 var likeLi = document.querySelectorAll('.like ul li');
 var likeLeft = document.querySelectorAll('.like .like-left');
 
-document.querySelector('.menuIcon').addEventListener('tap',function(){
+/*document.querySelector('.menuIcon').addEventListener('tap',function(){
 	
 	if(this.classList.contains('mui-icon-list')){
 		this.classList.remove('mui-icon-list');
@@ -113,7 +183,7 @@ document.querySelector('.menuIcon').addEventListener('tap',function(){
 			likeLeft[i].style.width = '140px';
 		}	
 	}
-});
+});*/
 
 //分类栏目跳转
 mui('#list').on('tap','a',function(){

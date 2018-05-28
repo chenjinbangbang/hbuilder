@@ -15,15 +15,16 @@
 			.mui-bar-nav .mui-action-back{}
 			.mui-bar-nav h1{}
 			
-			.menu{}
-			.menu ul{ height:40px; display:flex; align-items:center; color:#666;}
-			.menu ul li{ flex:1; display:flex; justify-content:flex-end;}
-			.menu ul li .mui-icon{ font-size:18px;}
-			.menuIcon{ margin-right:20px; padding:3px 5px; font-size:20px !important; margin-top:5px;}
+			.menu{ overflow-x:auto; background-color:#fff; border-bottom:1px solid #eee;}
+			.menu ul{ width:1000px; height:40px; display:flex; align-items:center; text-align:center; color:#333;}
+			.menu ul li{ width:80px;} 
+			.menu ul li.active{ font-size:16px; color:#EA1C17;}
+			/*.menu ul li .mui-icon{ font-size:18px;}
+			.menuIcon{ margin-right:20px; padding:3px 5px; font-size:20px !important; margin-top:5px;}*/
 		</style>
 	</head>
 
-	<body>
+	<body >
 		
 		<header class="mui-bar mui-bar-nav">
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
@@ -57,105 +58,45 @@
 		    			<span class="mui-icon mui-icon-list menuIcon"></span>
 		    		</li>
 		    	</ul>-->
-		    	<div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-				    <div class="mui-scroll">
-				        <a class="mui-control-item mui-active">
-				            推荐
-				        </a>
-				        <a class="mui-control-item">
-				            热点
-				        </a>
-				        <a class="mui-control-item">
-				            北京
-				        </a>
-				        <a class="mui-control-item">
-				            社会
-				        </a>
-				        <a class="mui-control-item">
-				            娱乐
-				        </a>
-				        <a class="mui-control-item">
-				            科技
-				        </a>
-				    </div>
-				</div>
+		    	
+		    	<ul>
+		    		<li v-for="(type,index) in types" :class="{active: 0 === 0}" @click="typeFn(index)">{{type}}</li>
+		    	</ul>
+
 		    </div>
 		     
 		     <div class="like">
-		     	<div class="nodata hide">没有更多的数据哦！</div>
+		     	<!--<div class="nodata" v-if="lists.length <= 0">没有更多的数据哦！</div>-->
 		     	<ul id="list">
-					<!--<li>
+					<li v-for="list in lists">
 						<a href="detail.html">
 							<div class="like-left">
-								<img src="../imgs/1.jpg" alt="" />
+								<img :src="list.pic" alt="" />
 							</div>
 							<div class="like-right">
-								<div class="name">爱奇艺VIP黄金会员月卡 爱奇艺会员1个月</div>
-								<div class="commission">预估佣金:￥6.32</div>
+								<div class="name">{{list.title}}</div>
+								<div class="commission">预估佣金:￥{{list.yongjin}}</div>
 								<div class="price">
-									<p><span>￥</span>19.9</p>
-									<p>月销49118</p>
+									<p><span>￥</span>{{list.price}}</p>
+									<p>月销{{list.sales}}</p>
 								</div>
 								<div class="price1">
-									<p>天猫价  ￥69.9</p>
+									<p>天猫价  ￥{{list.o_price}}</p>
 									<div class="ticket">
-										<span class="coupon">券￥100</span>
+										<span class="coupon">券￥{{list.coupon}}</span>
 										<span class="iconfont icon-couponss"></span>
 									</div>
 								</div>
 							</div>
 						</a>
 					</li>
-					<li>
-						<a href="detail.html">
-							<div class="like-left">
-								<img src="../imgs/2.jpg" alt="" />
-							</div>
-							<div class="like-right">
-								<div class="name">爱奇艺VIP黄金会员月卡 爱奇艺会员1个月</div>
-								<div class="commission">预估佣金:￥6.32</div>
-								<div class="price">
-									<p><span>￥</span>19.9</p>
-									<p>月销49118</p>
-								</div>
-								<div class="price1">
-									<p>天猫价  ￥69.9</p>
-									<div class="ticket">
-										<span class="coupon">券￥100</span>
-										<span class="iconfont icon-couponss"></span>
-									</div>
-								</div>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="detai3.html">
-							<div class="like-left">
-								<img src="../imgs/3.jpg" alt="" />
-							</div>
-							<div class="like-right">
-								<div class="name">爱奇艺VIP黄金会员月卡 爱奇艺会员1个月</div>
-								<div class="commission">预估佣金:￥6.32</div>
-								<div class="price">
-									<p><span>￥</span>19.9</p>
-									<p>月销49118</p>
-								</div>
-								<div class="price1">
-									<p>天猫价  ￥69.9</p>
-									<div class="ticket">
-										<span class="coupon">券￥100</span>
-										<span class="iconfont icon-couponss"></span>
-									</div>
-								</div>
-							</div>
-						</a>
-					</li>-->
 				</ul>
 		     </div>
 		  </div>
 		</div>
 		
 		<script src="../js/mui.js"></script>
+		<script src="../js/vue.min.js"></script>
 		<script src="../js/app.js"></script>
 		<script src="../js/app/goodsList.js"></script>
 	</body>

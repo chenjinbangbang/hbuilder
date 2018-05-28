@@ -11,8 +11,9 @@
 });*/
 
 mui.plusReady(function(){ 
-	//console.log(plus.navigator.getStatusBarStyle());
-	plus.navigator.setStatusBarStyle( "dark" );   
+	
+	app.androidTop();
+	
 });
 
 mui.init({
@@ -21,7 +22,13 @@ mui.init({
 		container: '#refreshContainer',
 		//下拉刷新
 		down: {
-			callback: pulldownRefresh
+			style: 'circle',
+			callback: function(){
+				setTimeout(function(){
+					//结束下拉刷新
+					mui('#refreshContainer').pullRefresh().endPulldownToRefresh();	
+				},1000);
+			}
 		},
 		//上拉加载
 		up: {
@@ -30,14 +37,6 @@ mui.init({
 	}
 });
 
-//下拉刷新
-function pulldownRefresh(){
-
-	setTimeout(function(){
-		//结束下拉刷新
-		mui('#refreshContainer').pullRefresh().endPulldownToRefresh();	
-	},1000);
-}
 
 //var tabsBtn = document.getElementById('friends-tabs').getElementsByTagName('li')[0];
 //var tabsContent = document.getElementById('firends-content').getElementsByTagName('div');

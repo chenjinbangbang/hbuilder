@@ -463,44 +463,17 @@ App.prototype.ajax = function(path,data,successCallback,errorCallback,options){
 		type: 'get',
 		timeout: 10000,
 		success: function(data,textStatus,xhr){  
-			console.log(textStatus);
-			//console.log(AppConfig.apiPath + path + ',' + JSON.stringify(mData) + ',' + JSON.stringify(e));
-			//var msg = e.msg;
-			//var code = e.response;
+			//console.log(JSON.stringify(data));
 			
-			//if(textStatus == ErrorCode.success){
 			if(textStatus == 'success'){
-				//mOptions.close && that.closeWaiting();
-				//typeof successCallback === 'function' && successCallback(e);
-				//plus.nativeUI.closeWaiting();
-				//plus.nativeUI.toast('数据加载成功',{duration: '500'});   
 				successCallback(data);  
-			}else if(textStatus == ErrorCode.logout){
-				plus.nativeUI.closeWaiting();
-				mui.alert('登录过期',function(){  
-					that.logout(true);
-				});
-			}else{ 
-				if(textStatus == ErrorCode.error && !msg){
-					textStatus = ErrorCode.nodata;
-					msg = AppConfig.nodataErrorMsg;
-				}
-				
-				/*plus.nativeUI.closeWaiting();
-				if(typeof errorCallback !== 'function' || !errorCallback(msg,textStatus)){
-					mui.alert(msg);
-				}*/
 			}
 		},
 		error: function error(xhr,type,errorThrown){ 
-			console.log(type);
-			//console.log(AppConfig.apiPath + path + "," + JSON.stringify(mData) + "," + JSON.stringify(mData) + "," + a.responseText);
-			//plus.nativeUI.closeWaiting(); 
-			/*if(typeof errroCallback !== 'function' || !errorCallback(AppConfig.ajaxErrorMsg,ErrorCode.SERVER)){
-				mui.alert(AppConfig.ajaxErrorMsg);
-			}*/
-			
-		}
+			//console.log(type);
+			mui.toast('网络异常，请稍后重试');
+			errorCallback(); 
+		} 
 	});
 };
 
@@ -528,48 +501,52 @@ App.prototype.closeWaiting = function(){
 }
 */
 
+//解决安卓无法改变状态栏背景颜色
+App.prototype.androidTop = function(){
+	console.log(11);
+	//设置状态栏样式
+	plus.navigator.setStatusBarStyle( "dark" );  
+	var height = plus.navigator.getStatusbarHeight();
+	
+	//var androidTop = document.createElement('div');
+	//androidTop.className = 'androidTop';
+	//androidTop.style.height = height + 'px'; //android7.0不支持，可能因为渲染完之后div不存在
+	//document.body.insertBefore(androidTop);
+	
+	//android7.0支持
+	var androidTop = document.querySelector('.androidTop');
+	androidTop.style.height = height + 'px';
+	
+	
+};
+
 //登录函数
 App.prototype.login = function(callback){
 	var username = '123123';
 	var password = '123123';
 	app.ajax('/plugin.php?mod=wechat&act=app&do=login&username='+ username +'&password='+password,{},function(data){
 		//console.log(JSON.stringify(data));
-		localStorage.setItem('uid',data.uid);
-		localStorage.setItem('token',data.token);
+		plus.storage.setItem('uid',data.uid);
+		plus.storage.setItem('token',data.token);
 		
 		var timestamp = Math.floor(new Date().getTime()/1000);
 		var sign = hex_md5(data.token + timestamp + '123');
-		localStorage.setItem('sign',sign);
-		localStorage.setItem('timestamp',timestamp);
-		callback(true);
+		plus.storage.setItem('sign',sign);
+		plus.storage.setItem('timestamp',timestamp);
+		callback();
 	});
 };
+
+//公共方法，判断是否登录
+function judge_login_status(){
+	return true;
+}
 
 //创建app实例
 var app = new App();
 mui.plusReady(function(){
 	
-	//动态改变状态栏颜色
-	var currentView = plus.webview.currentWebview();
-	var launchViewId = plus.webview.getLaunchWebview().id;
-	var currentViewId = currentView.id;
-	
-	if(!app._keepStatusBarBackground){
-		app._keepStatusBarBackground = plus.navigator.getStatusBarBackground();
-		app._lastStatusBarStyle = plus.navigator.getStatusBarStyle();
-		var _oldBack = mui.back;
-		mui.back = function(){
-			if(!app._keepStatusBarBackground){
-				if(app._lastStatusBarBackground){
-					plus.navigator.setStatusBarBackground(app._lastStatusBarBackground);
-				}
-				if(app._lastStatusBarStyle){
-					plus.navigator.setStatusStyle(app._lastStatusBarStyle);
-				}  
-			}
-			_oldBack();
-		}
-	}
+	judge_login_status(); //公共方法，判断是否登录
 	
 });
 

@@ -1,5 +1,8 @@
 
  mui.plusReady(function(){
+ 	
+ 	
+ 	
  	var settings  = app.getSettings(); //获取应用本地配置
  	var state = app.getState();
  	
